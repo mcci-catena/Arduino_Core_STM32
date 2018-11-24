@@ -33,7 +33,7 @@ For full instructions on using the "**Boards Manager**", see  [Installing the MC
 
 The Arduino IDE allows you to select the following items.
 
-- **LoRaWAN Region**: when using the Arduino LMIC, you can select North America, Europ, Australia, Asia, Japan, or India as your target region.
+- **LoRaWAN Region**: when using the Arduino LMIC, you can select North America, Europe, Australia, Asia, Japan, or India as your target region.
 - **Optimization**: choose smallest, fast, faster, fastest, or debug.
 - **Serial interface**: Select "USB Serial" or "Generic Serial".
 - **System clock**: Select "HSI 16 MHz", "PLLCLK 24 MHz", "PLLCLK 32 MHz", "MSI 2097 KHz (no USB Serial)" or "MSI 4194 KHz (no USB Serial)". If "MSI 2097 KHz (no USB Serial)" or "MSI 4194 KHz (no USB Serial)" is selected, then you can not use "USB Serial" for serial interface.
