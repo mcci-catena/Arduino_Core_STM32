@@ -76,11 +76,12 @@ enum {
   PC2,  //D31     RADIO_ANT_SWITCH_TX_RFO   CRF2  Murata internal
   NC_1, //D32     Flash Write-Protect (not supported these platforms)
   PA8,  //D33
+  PC15, //D34     Dummy for VREFINT
   PEND
 };
 
 // This must be a literal with the same value as PEND
-#define NUM_DIGITAL_PINS        34
+#define NUM_DIGITAL_PINS        35
 // This must be a literal with a value less than or equal to to MAX_ANALOG_INPUTS
 #define NUM_ANALOG_INPUTS       5
 #define NUM_ANALOG_FIRST        14

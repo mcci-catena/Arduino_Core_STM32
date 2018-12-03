@@ -114,6 +114,7 @@
   * @{
   */
 static PinName g_current_pin = NC;
+static uint32_t g_current_channel_no_gpio = 0;
 
 /**
   * @}
@@ -126,6 +127,7 @@ static uint32_t get_adc_channel(PinName pin)
 {
   uint32_t function = pinmap_function(pin, PinMap_ADC);
   uint32_t channel = 0;
+  g_current_channel_no_gpio = 0;
   switch(STM_PIN_CHANNEL(function)) {
 #ifdef ADC_CHANNEL_0
     case 0:
@@ -179,13 +181,16 @@ static uint32_t get_adc_channel(PinName pin)
     break;
     case 16:
       channel = ADC_CHANNEL_TEMPSENSOR;
+      g_current_channel_no_gpio = 1;
     break;
     case 17:
       channel = ADC_CHANNEL_VREFINT;
+      g_current_channel_no_gpio = 1;
     break;
 #ifdef ADC_CHANNEL_VBAT
 	case 18:
       channel = ADC_CHANNEL_VBAT;
+      g_current_channel_no_gpio = 1;
     break;
 #endif
     default:
@@ -440,6 +445,9 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef *hadc)
   __HAL_RCC_ADC_CONFIG(RCC_ADCCLKSOURCE_SYSCLK);
 #endif
 
+  if (g_current_channel_no_gpio)
+    return;
+
   /* Enable GPIO clock ****************************************/
   port = set_GPIO_Port_Clock(STM_PORT(g_current_pin));
 
@@ -592,12 +600,12 @@ uint16_t adc_read_value(PinName pin)
 #endif
 
   g_current_pin = pin; /* Needed for HAL_ADC_MspInit*/
+  AdcChannelConf.Channel      = get_adc_channel(pin);             /* Specifies the channel to configure into ADC */
 
   if (HAL_ADC_Init(&AdcHandle) != HAL_OK) {
     return 0;
   }
 
-  AdcChannelConf.Channel      = get_adc_channel(pin);             /* Specifies the channel to configure into ADC */
 #ifdef STM32L4xx
   if (!IS_ADC_CHANNEL(&AdcHandle, AdcChannelConf.Channel)) return 0;
 #else

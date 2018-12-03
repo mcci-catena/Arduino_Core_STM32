@@ -63,6 +63,7 @@ const PinName digitalPin[] = {
   PC_2,  //D31/A17 RADIO_ANT_SWITCH_TX_RFO   CRF2
   NC,    //D32     Flash Write-Protect (not supported these platforms)
   PA_8,  //D33
+  PC_15  //D34     Dummy for VREFINT
 };
 
 #ifdef __cplusplus
