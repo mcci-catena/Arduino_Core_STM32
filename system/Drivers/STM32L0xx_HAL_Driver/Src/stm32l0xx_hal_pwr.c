@@ -545,10 +545,22 @@ void HAL_PWR_EnterSLEEPMode(uint32_t Regulator, uint8_t SLEEPEntry)
   */
 void HAL_PWR_EnterSTOPMode(uint32_t Regulator, uint8_t STOPEntry)
 {
+  /* Enable Power interface clock */
+  __HAL_RCC_PWR_CLK_ENABLE();
+
   uint32_t const save_rcc_cfgr = RCC->CFGR;
   uint32_t const save_pwr_cr = PWR->CR;
   uint32_t const save_syscfg_cfgr3 = SYSCFG->CFGR3;
   uint32_t tmpreg;
+
+  /* Enable the low power voltage regulator */
+  SET_BIT(PWR->CR, PWR_LOWPOWERREGULATOR_ON);
+
+  /* Set Ultra-Low-power mode by switch-off Vrefint */
+  SET_BIT(PWR->CR, PWR_CR_ULP);
+
+  /* Clear WUF flag */
+  __HAL_PWR_CLEAR_FLAG(PWR_FLAG_WU);
 
   /* Check the parameters */
   assert_param(IS_PWR_REGULATOR(Regulator));
@@ -599,6 +611,9 @@ void HAL_PWR_EnterSTOPMode(uint32_t Regulator, uint8_t STOPEntry)
   PWR->CR = save_pwr_cr;
   SYSCFG->CFGR3 = save_syscfg_cfgr3;
   HAL_PWR_RestoreCFGR(save_rcc_cfgr);
+
+  /* Disable Power interface clock */
+  __HAL_RCC_PWR_CLK_DISABLE();
 }
 
 static void HAL_PWR_RestoreCFGR(uint32_t save_rcc_cfgr)
