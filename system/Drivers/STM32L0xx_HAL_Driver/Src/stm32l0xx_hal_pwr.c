@@ -553,9 +553,6 @@ void HAL_PWR_EnterSTOPMode(uint32_t Regulator, uint8_t STOPEntry)
   uint32_t const save_syscfg_cfgr3 = SYSCFG->CFGR3;
   uint32_t tmpreg;
 
-  /* Enable the low power voltage regulator */
-  SET_BIT(PWR->CR, PWR_LOWPOWERREGULATOR_ON);
-
   /* Set Ultra-Low-power mode by switch-off Vrefint */
   SET_BIT(PWR->CR, PWR_CR_ULP);
 
