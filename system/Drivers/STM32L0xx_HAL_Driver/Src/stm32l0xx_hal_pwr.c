@@ -651,18 +651,6 @@ void HAL_PWR_EnterSTANDBYMode(void)
   uint32_t const save_rcc_cfgr = RCC->CFGR;
   uint32_t const save_pwr_cr = PWR->CR;
 
-  /* Enable Power interface clock */
-  __HAL_RCC_PWR_CLK_ENABLE();
-
-  /* Enable the low power voltage regulator */
-  SET_BIT(PWR->CR, PWR_LOWPOWERREGULATOR_ON);
-
-  /* Set Ultra-Low-power mode by switch-off Vrefint */
-  SET_BIT(PWR->CR, PWR_CR_ULP);
-
-  /* Clear WUF flag */
-  __HAL_PWR_CLEAR_FLAG(PWR_FLAG_WU);
-
   /* Select Standby mode */
   SET_BIT(PWR->CR, PWR_CR_PDDS);
 
@@ -688,9 +676,6 @@ void HAL_PWR_EnterSTANDBYMode(void)
   /* restore the register we stuffed */
   PWR->CR = save_pwr_cr;
   HAL_PWR_RestoreCFGR(save_rcc_cfgr);
-
-  /* Disable Power interface clock */
-  __HAL_RCC_PWR_CLK_DISABLE();
 }
 
 /**
