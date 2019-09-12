@@ -23,6 +23,9 @@ extern "C"{
 #ifdef USBCON
 #include "usb_interface.h"
 #endif //USBCON
+#include "stm32_rtc.h"
+#include "stm32_clock.h"
+#include "stm32_adc.h"
 
 void init( void ) ;
 #ifdef __cplusplus

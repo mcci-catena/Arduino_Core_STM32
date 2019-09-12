@@ -1,12 +1,12 @@
 /*
 
-Module: override_usbd_ll_connectionstate.c
+Module: stm32_adc.h
 
 Function:
-        Override USBD_LL_ConnectionState() function for CATENA_4551 variant.
+        Read analog header for STM32 platform.
 
 Copyright notice and license information:
-        Copyright 2018-2019 MCCI Corporation. All rights reserved.
+        Copyright 2019 MCCI Corporation. All rights reserved.
 
         This library is free software; you can redistribute it and/or
         modify it under the terms of the GNU Lesser General Public
@@ -28,30 +28,28 @@ Author:
 
 */
 
-#include <Arduino.h>
-#include <usbd_conf.h>
+#ifndef _STM32_ADC_H_          /* prevent multiple includes */
+#define _STM32_ADC_H_
 
-#ifdef USBCON
+#include "stm32_def.h"
 
-#define ANALOG_CHANNEL_VBUS	2
-#if defined(ARDUINO_MCCI_CATENA_4610) || defined(ARDUINO_MCCI_CATENA_4611)
-# define READ_COUNT		1
-#else
-# define READ_COUNT		6	// 4612, 4617, 4618
+#ifdef __cplusplus
+ extern "C" {
 #endif
-#define	MULTIPLIER		3
 
-/**
-  * @brief  Get USB connection state
-  * @param  None
-  * @retval 0 if disconnected
-  */
-uint32_t USBD_LL_ConnectionState(void)
-	{
-	uint32_t vBus;
+#ifdef STM32L0xx
 
-	vBus = Stm32ReadAnalog(ANALOG_CHANNEL_VBUS, READ_COUNT, MULTIPLIER);
-	return vBus < 3000 ? 0 : 1;
-	}
+uint32_t Stm32ReadAnalog(
+	uint32_t Channel,
+	uint32_t ReadCount,
+	uint32_t Multiplier
+	);
 
-#endif // USBCON
+#endif	/* STM32L0xx */
+
+#ifdef __cplusplus
+}
+#endif
+
+/**** end of stm32_clock.h ****/
+#endif /* _STM32_ADC_H_ */
