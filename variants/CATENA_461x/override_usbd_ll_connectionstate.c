@@ -34,10 +34,10 @@ Author:
 #ifdef USBCON
 
 #define ANALOG_CHANNEL_VBUS	2
-#if defined(ARDUINO_MCCI_CATENA_4610) || defined(ARDUINO_MCCI_CATENA_4611)
+#if defined(ARDUINO_MCCI_CATENA_4610)
 # define READ_COUNT		1
 #else
-# define READ_COUNT		6	// 4612, 4617, 4618
+# define READ_COUNT		6	// 4611, 4612, 4617, 4618
 #endif
 #define	MULTIPLIER		3
 
