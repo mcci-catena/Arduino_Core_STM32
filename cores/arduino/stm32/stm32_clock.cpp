@@ -29,10 +29,9 @@ Author:
 */
 
 #include <Arduino.h>
+#include <stm32_clock.h>
 
-#ifdef __cplusplus
- extern "C" {
-#endif
+extern "C" {
 
 #ifdef STM32L0xx
 
@@ -79,7 +78,7 @@ uint32_t Stm32CalibrateSystemClock(void)
         /* if mSecond is low, this meaans we must increase the system clock */
         if (mSecond <= 1000000)
             {
-            Serial.print('-');
+//          Serial.print('-');
             /*
             || the following condition establishes that we're
             || below the target frequency, but closer than we've been
@@ -131,7 +130,7 @@ uint32_t Stm32CalibrateSystemClock(void)
         /* if mSecond is high, we must reduce the system clock */
         else
             {
-            Serial.print('+');
+//          Serial.print('+');
             /*
             || the following condition establishes that we're
             || above the target frequency, but closer than we've been
@@ -194,7 +193,7 @@ uint32_t Stm32CalibrateSystemClock(void)
 
     if (CalibNew != Calib)
         {
-        Serial.print(CalibNew < Calib ? '+' : '-');
+//      Serial.print(CalibNew < Calib ? '+' : '-');
         if (fCalibrateMSI)
             {
             __HAL_RCC_MSI_CALIBRATIONVALUE_ADJUST(CalibNew);
@@ -206,8 +205,8 @@ uint32_t Stm32CalibrateSystemClock(void)
         delay(500);
         }
 
-    Serial.print(" 0x");
-    Serial.println(CalibNew, HEX);
+//  Serial.print(" 0x");
+//  Serial.println(CalibNew, HEX);
     return CalibNew;
     }
 
@@ -248,6 +247,4 @@ Stm32MeasureMicrosPerRtcSecond(
 
 #endif	/* STM32L0xx */
 
-#ifdef __cplusplus
 } /* extern "C" */
-#endif

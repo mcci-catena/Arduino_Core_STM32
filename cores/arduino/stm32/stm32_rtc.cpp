@@ -29,10 +29,9 @@ Author:
 */
 
 #include <Arduino.h>
+#include <stm32_rtc.h>
 
-#ifdef __cplusplus
- extern "C" {
-#endif
+extern "C" {
 
 #ifdef STM32L0xx
 
@@ -262,6 +261,4 @@ bool Stm32RtcSetAlarm(
 
 #endif  /* STM32L0xx */
 
-#ifdef __cplusplus
 } /* extern "C" */
-#endif

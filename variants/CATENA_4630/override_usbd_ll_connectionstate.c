@@ -30,6 +30,7 @@ Author:
 
 #include <Arduino.h>
 #include <usbd_conf.h>
+#include <stm32_adc.h>
 
 #ifdef USBCON
 
@@ -44,9 +45,17 @@ Author:
   */
 uint32_t USBD_LL_ConnectionState(void)
 	{
-	uint32_t vBus;
+	static uint32_t vBus = 0;
+	static uint32_t	LastReadTime = 0;
+	uint32_t CurrentTime;
 
-	vBus = Stm32ReadAnalog(ANALOG_CHANNEL_VBUS, READ_COUNT, MULTIPLIER);
+	CurrentTime = millis();
+	if ((CurrentTime - LastReadTime) > 1500 || LastReadTime == 0)
+		{
+		vBus = Stm32ReadAnalog(ANALOG_CHANNEL_VBUS, READ_COUNT, MULTIPLIER);
+		LastReadTime = CurrentTime;
+		}
+
 	return vBus < 3000 ? 0 : 1;
 	}
 

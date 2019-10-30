@@ -29,6 +29,7 @@ Author:
 */
 
 #include <Arduino.h>
+#include <stm32_adc.h>
 
 constexpr unsigned long ADC_TIMEOUT = 10;
 constexpr int STM32L0_ADC_CHANNEL_VREFINT = 17;
@@ -39,9 +40,7 @@ constexpr uint32_t AdcClockModePclk2 = ADC_CFGR2_CKMODE_0;
 /* the clock we'll use: */
 constexpr uint32_t AdcClockMode = AdcClockModeAsync;
 
-#ifdef __cplusplus
- extern "C" {
-#endif
+extern "C" {
 
 #ifdef STM32L0xx
 
@@ -83,6 +82,7 @@ AdcReadAnalog(
 		while (LL_RCC_HSI_IsReady() != 1U)
 			{
 			/* Wait for HSI ready */
+			yield();
 			}
 		}
 
@@ -91,9 +91,6 @@ AdcReadAnalog(
 	if (fStatusOk)
 		{
 		*pValue = 2;
-
-		// make sure the clock is configured
-		// ADC1->CFGR2 = (ADC1->CFGR2 & ~ADC_CFGR2_CKMODE) | AdcClockMode;
 
 		fStatusOk = AdcCalibrate();
 		}
@@ -198,6 +195,7 @@ static bool AdcDisable(void)
 	uTime = millis();
 	while (ADC1->CR & ADC_CR_ADSTP)
 		{
+		yield();
 		if ((millis() - uTime) > ADC_TIMEOUT)
 			{
 //			Serial.print("?AdcDisable: CR=");
@@ -210,6 +208,7 @@ static bool AdcDisable(void)
 	uTime = millis();
 	while (ADC1->CR & ADC_CR_ADEN)
 		{
+		yield();
 		if ((millis() - uTime) > ADC_TIMEOUT)
 			{
 //			Serial.print("?AdcDisable: CR=");
@@ -227,9 +226,6 @@ static bool AdcCalibrate(void)
 	if (ADC1->CR & ADC_CR_ADEN)
 		{
 		ADC1->CR &= ~ADC_CR_ADEN;
-
-		// if (! AdcDisable())
-		// 	return false;
 		}
 
 	uTime = millis();
@@ -240,6 +236,7 @@ static bool AdcCalibrate(void)
 
 	while (! (ADC1->ISR & ADC_ISR_EOCAL))
 		{
+		yield();
 		if ((millis() - uTime) > ADC_TIMEOUT)
 			{
 //			Serial.print("?AdcCalibrate: CCR=");
@@ -251,8 +248,6 @@ static bool AdcCalibrate(void)
 			return false;
 			}
 		}
-
-	// uint32_t calData = ADC1->DR;
 
 	/* turn off eocal */
 	ADC1->ISR = ADC_ISR_EOCAL;
@@ -276,6 +271,7 @@ static bool AdcEnable(void)
 	uTime = millis();
 	while (!(ADC1->ISR & ADC_ISR_ADRDY))
 		{
+		yield();
 		if ((millis() - uTime) > ADC_TIMEOUT)
 			{
 //			Serial.print("?AdcEnable: CR=");
@@ -296,6 +292,7 @@ static bool AdcGetValue(uint32_t *value)
 	uTime = millis();
 	while (! ((rAdcIsr = ADC1->ISR) & (ADC_ISR_EOC | ADC_ISR_EOSEQ)))
 		{
+		yield();
 		if ((millis() - uTime) > ADC_TIMEOUT)
 			{
 			*value = 0x0FFFu;
@@ -360,6 +357,4 @@ uint32_t Stm32ReadAnalog(
 
 #endif	/* STM32L0xx */
 
-#ifdef __cplusplus
 } /* extern "C" */
-#endif
