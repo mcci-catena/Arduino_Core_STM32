@@ -155,7 +155,9 @@ Remember to restart the IDE whenever you change `platform.txt`, `boards.txt` or 
 
 ## Release History
 
-- HEAD adds support for KR-920 (Korea 920 MHz) in the region selection menu.
+- HEAD adds system clock calibration and read analog code from Catena-Arduino-Platform module ([#126](https://github.com/mcci-catena/Arduino_Core_STM32/issues/126)).
+
+- [v2.6.0](https://github.com/mcci-catena/Arduino_Core_STM32/releases/tag/v2.6.0) adds support for KR-920 (Korea 920 MHz) in the region selection menu ([#117](https://github.com/mcci-catena/Arduino_Core_STM32/issues/117)). Adds official library.properties fields for linking pre-compiled object and adds additional pins definitions for SX1276 radios ([#128](https://github.com/mcci-catena/Arduino_Core_STM32/issues/128)) (thanks to Kent Williams). Add source-level debugging support ([#122](https://github.com/mcci-catena/Arduino_Core_STM32/issues/122)). Adjust USB `Vbus` check values for Catena 461x platform. Define AU915 as well as AU921 for LMIC migration ([#131](https://github.com/mcci-catena/Arduino_Core_STM32/issues/131)). Fix link "`warning: changing start of section .bss by 4 bytes`" ([#129](https://github.com/mcci-catena/Arduino_Core_STM32/issues/129)). Update issue template.
 
 - [v2.5.0](https://github.com/mcci-catena/Arduino_Core_STM32/releases/tag/v2.5.0) enables the crystal controlled LSE clock, and uses it to run the RTC. Code was substantially refactored to move common code to common directories. Bug fixes.
 
