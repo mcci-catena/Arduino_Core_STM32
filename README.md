@@ -4,7 +4,7 @@ This repository is MCCI's version of [Arduino_Core_STM32](https://github.com/stm
 
 For general information, please check the stm32duino [README.md](https://github.com/stm32duino/Arduino_Core_STM32#arduino-core-support-for-stm32-based-boards), especially the [Getting Started](https://github.com/stm32duino/Arduino_Core_STM32#getting-started) section.
 
-[![GitHub release](https://img.shields.io/github/release/mcci-catena/Arduino_Core_STM32.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/releases/latest) [![GitHub commits](https://img.shields.io/github/commits-since/mcci-catena/Arduino_Core_STM32/latest.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/compare/v2.5.0...master)
+[![GitHub release](https://img.shields.io/github/release/mcci-catena/Arduino_Core_STM32.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/releases/latest) [![GitHub commits](https://img.shields.io/github/commits-since/mcci-catena/Arduino_Core_STM32/latest.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/compare/v2.6.0...master)
 
 **Contents:**
 <!-- markdownlint-disable MD033 -->
@@ -15,10 +15,10 @@ For general information, please check the stm32duino [README.md](https://github.
 - [Getting Started](#getting-started)
 - [Features](#features)
 - [Supported Boards and CPUs](#supported-boards-and-cpus)
-	- [Catena 461x Series](#catena-461x-series)
-		- [Sensors on Catena 4612, 4617, and 4618](#sensors-on-catena-4612-4617-and-4618)
-	- [Catena 4630 Features](#catena-4630-features)
-	- [Catena 4801 Features](#catena-4801-features)
+    - [Catena 461x Series](#catena-461x-series)
+        - [Sensors on Catena 4612, 4617, and 4618](#sensors-on-catena-4612-4617-and-4618)
+    - [Catena 4630 Features](#catena-4630-features)
+    - [Catena 4801 Features](#catena-4801-features)
 - [Troubleshooting](#troubleshooting)
 - [Installing a Development Copy of this BSP](#installing-a-development-copy-of-this-bsp)
 - [Release History](#release-history)
@@ -41,7 +41,7 @@ For full instructions on using the "**Boards Manager**", see  [Installing the MC
 
 The Arduino IDE allows you to select the following items.
 
-- **LoRaWAN Region**: when using the Arduino LMIC, you can select North America, Europ, Australia, Asia, Japan, or India as your target region.
+- **LoRaWAN Region**: when using the Arduino LMIC, you can select North America, Europe, Australia, Asia-923, Japan, Korea, or India as your target region.
 - **Optimization**: choose smallest, fast, faster, fastest, or debug.
 - **Serial interface**: Select "USB Serial", "Generic Serial" or "No Serial".
 - **System clock**: Select "32 MHz (most power)", "24 MHz", "16 MHz", "4.194 MHz (no USB)" or "2.097 MHz (no USB, least power)". If "2.097 MHz (no USB, least power)" or "4.194 MHz (no USB)" is selected, then you cannot use "USB Serial" for serial interface.
