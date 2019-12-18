@@ -44,6 +44,10 @@ Author:
 # endif
 #endif
 
+// uint32_t  calibValue;
+uint32_t  calibStartTime;
+uint32_t  calibrationTime;
+
 /**
   * @brief  System Clock Configuration
   * @param  None
@@ -61,6 +65,11 @@ void SystemClock_Config(void)
     /**Configure the main internal regulator output voltage
     */
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+
+  /** Configure LSE Drive Capability
+  */
+  HAL_PWR_EnableBkUpAccess();
+  __HAL_RCC_LSEDRIVE_CONFIG(RCC_LSEDRIVE_LOW);
 
     /**Initializes the CPU, AHB and APB busses clocks
     */
@@ -182,4 +191,9 @@ void SystemClock_Config(void)
 
   /* SysTick_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+
+  /* Calibrate the System Clock */
+  calibStartTime = millis();					// Start of calibration (for debugging)
+  SystemClock_Calib();
+  calibrationTime = millis() - calibStartTime;	// Time taken for calibration (for debugging)
 }

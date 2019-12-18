@@ -78,8 +78,10 @@ extern "C"{
 
 // weaked functions declaration
 void SystemClock_Config(void);
+uint32_t SystemClock_Calib(void);
 
 void _Error_Handler(const char *, int);
+void calib_Error_Handler(void);
 
 #define Error_Handler() _Error_Handler(__FILE__, __LINE__)
 
