@@ -38,7 +38,7 @@ Author:
   * @param  None
   * @retval 0 if disconnected
   */
-USBD_LL_ConnectionState_WEAK uint32_t USBD_LL_ConnectionState(void)
+uint32_t USBD_LL_ConnectionState(void)
 {
   uint32_t vBus;
 

@@ -30,20 +30,33 @@ Author:
 
 #include <Arduino.h>
 #include <usbd_conf.h>
+#include <stm32_adc.h>
 
 #ifdef USBCON
+
+#define ANALOG_CHANNEL_VBUS	4
+#define READ_COUNT		1
+#define	MULTIPLIER		3
 
 /**
   * @brief  Get USB connection state
   * @param  None
   * @retval 0 if disconnected
   */
-USBD_LL_ConnectionState_WEAK uint32_t USBD_LL_ConnectionState(void)
-{
-  uint32_t vBus;
+uint32_t USBD_LL_ConnectionState(void)
+	{
+	static uint32_t vBus = 0;
+	static uint32_t	LastReadTime = 0;
+	uint32_t CurrentTime;
 
-  vBus = analogRead(16);
-  return vBus > 250 ? 1 : 0;
-}
+	CurrentTime = millis();
+	if ((CurrentTime - LastReadTime) > 1500 || LastReadTime == 0)
+		{
+		vBus = Stm32ReadAnalog(ANALOG_CHANNEL_VBUS, READ_COUNT, MULTIPLIER);
+		LastReadTime = CurrentTime;
+		}
+
+	return vBus < 3000 ? 0 : 1;
+	}
 
 #endif // USBCON

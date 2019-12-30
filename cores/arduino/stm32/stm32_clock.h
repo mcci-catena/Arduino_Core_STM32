@@ -1,12 +1,12 @@
 /*
 
-Module: override_usbd_ll_connectionstate.c
+Module: stm32_clock.h
 
 Function:
-        Override USBD_LL_ConnectionState() function for CATENA_4551 variant.
+        System clock calibration header for STM32 platform.
 
 Copyright notice and license information:
-        Copyright 2018-2019 MCCI Corporation. All rights reserved.
+        Copyright 2019 MCCI Corporation. All rights reserved.
 
         This library is free software; you can redistribute it and/or
         modify it under the terms of the GNU Lesser General Public
@@ -28,39 +28,25 @@ Author:
 
 */
 
-#include <Arduino.h>
-#include <usbd_conf.h>
-#include <stm32_adc.h>
+#ifndef _STM32_CLOCK_H_          /* prevent multiple includes */
+#define _STM32_CLOCK_H_
 
-#ifdef USBCON
+#include "stm32_def.h"
 
-#define ANALOG_CHANNEL_VBUS	2
-#if defined(ARDUINO_MCCI_CATENA_4610)
-# define READ_COUNT		1
-#else
-# define READ_COUNT		6	// 4611, 4612, 4617, 4618
+#ifdef __cplusplus
+ extern "C" {
 #endif
-#define	MULTIPLIER		3
 
-/**
-  * @brief  Get USB connection state
-  * @param  None
-  * @retval 0 if disconnected
-  */
-uint32_t USBD_LL_ConnectionState(void)
-	{
-	static uint32_t vBus = 0;
-	static uint32_t	LastReadTime = 0;
-	uint32_t CurrentTime;
+#ifdef STM32L0xx
 
-	CurrentTime = millis();
-	if ((CurrentTime - LastReadTime) > 1500 || LastReadTime == 0)
-		{
-		vBus = Stm32ReadAnalog(ANALOG_CHANNEL_VBUS, READ_COUNT, MULTIPLIER);
-		LastReadTime = CurrentTime;
-		}
+uint32_t Stm32CalibrateSystemClock(void);
+uint32_t Stm32MeasureMicrosPerRtcSecond(void);
 
-	return vBus < 3000 ? 0 : 1;
-	}
+#endif	/* STM32L0xx */
 
-#endif // USBCON
+#ifdef __cplusplus
+}
+#endif
+
+/**** end of stm32_clock.h ****/
+#endif /* _STM32_CLOCK_H_ */
