@@ -1,0 +1,43 @@
+##############################################################################
+#
+# File: .travis.yml
+#
+# Function:
+#     Travis script for test-building this library.
+#
+# Copyright Notice:
+#     See LICENSE file accompanying this project.
+#
+# Author:
+#     frazar   October, 2020
+#
+##############################################################################
+
+language: minimal
+sudo: true
+
+env:
+  global:
+    - ARDUINO_CLI_VERSION=latest
+
+before_install:
+  - # Download arduino-cli binary
+  - wget "https://downloads.arduino.cc/arduino-cli/arduino-cli_${ARDUINO_CLI_VERSION}_Linux_64bit.tar.gz"
+  - tar xf "arduino-cli_${ARDUINO_CLI_VERSION}_Linux_64bit.tar.gz"
+  - # Add arduino-cli binary to $PATH
+  - mkdir -p "$HOME/bin"
+  - mv arduino-cli $HOME/bin/
+  - export PATH="$PATH:$HOME/bin"
+  - arduino-cli version
+
+install:
+  - # Install mcci:stm32 core as packaged in github.com/mcci-catena/arduino-boards.
+  - # NOTE: The version downloaded in this way is different from the one being tested
+  - arduino-cli core install mcci:stm32 --additional-urls 'https://github.com/mcci-catena/arduino-boards/raw/master/BoardManagerFiles/package_mcci_index.json'
+  - # Replace the downloaded version of the mcci:stm32 core with the repo being tested
+  - ARDUINO_CORE_STM32_VERSION="$(ls "$HOME/.arduino15/packages/mcci/hardware/stm32/")"
+  - rm -rf "$HOME/.arduino15/packages/mcci/hardware/stm32/$ARDUINO_CORE_STM32_VERSION"
+  - ln -s "$TRAVIS_BUILD_DIR" "$HOME/.arduino15/packages/mcci/hardware/stm32/$ARDUINO_CORE_STM32_VERSION"
+
+script:
+ - tests/ci.sh
