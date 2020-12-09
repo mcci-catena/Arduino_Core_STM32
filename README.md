@@ -4,7 +4,7 @@ This repository is MCCI's version of [Arduino_Core_STM32](https://github.com/stm
 
 For general information, please check the stm32duino [README.md](https://github.com/stm32duino/Arduino_Core_STM32#arduino-core-support-for-stm32-based-boards), especially the [Getting Started](https://github.com/stm32duino/Arduino_Core_STM32#getting-started) section.
 
-[![GitHub release](https://img.shields.io/github/release/mcci-catena/Arduino_Core_STM32.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/releases/latest) [![GitHub commits](https://img.shields.io/github/commits-since/mcci-catena/Arduino_Core_STM32/latest.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/compare/v2.7.0...master)
+[![GitHub release](https://img.shields.io/github/release/mcci-catena/Arduino_Core_STM32.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/releases/latest) [![GitHub commits](https://img.shields.io/github/commits-since/mcci-catena/Arduino_Core_STM32/latest.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/compare/v2.8.0...master)
 
 **Contents:**
 <!-- markdownlint-disable MD033 -->
@@ -18,7 +18,7 @@ For general information, please check the stm32duino [README.md](https://github.
     - [Catena 461x Series](#catena-461x-series)
         - [Sensors on Catena 4612, 4617, and 4618](#sensors-on-catena-4612-4617-and-4618)
     - [Catena 4630 Features](#catena-4630-features)
-    - [Catena 4801 Features](#catena-4801-features)
+    - [Catena 480x Features](#catena-480x-features)
 - [Troubleshooting](#troubleshooting)
 - [Installing a Development Copy of this BSP](#installing-a-development-copy-of-this-bsp)
 - [Release History](#release-history)
@@ -58,7 +58,8 @@ The Arduino IDE allows you to select the following items.
 | MCCI Catena 4617 | Murata CMWX1ZZABZ module, STM32L082 | [461x](#catena-461x-series) | Primary battery, HS3001 |
 | MCCI Catena 4618 | Murata CMWX1ZZABZ module, STM32L082 | [461x](#catena-461x-series) | Primary battery, SHT31-DIS-F |
 | MCCI Catena 4630 | Murata CMWX1ZZABZ module, STM32L082 | [4630](#catena-4630-features) | LiPo battery,ZMOD4410, PMS7003 |
-| MCCI Catena 4801 | Murata CMWX1ZZABZ module, STM32L082 | [4801](#catena-4801-features) | Primary battery, Modbus |
+| MCCI Catena 4801 | Murata CMWX1ZZABZ module, STM32L082 | [480x](#catena-480x-features) | Primary battery, Modbus |
+| MCCI Catena 4802 | Murata CMWX1ZZABZ module, STM32L082 | [480x](#catena-480x-features) | Primary battery, Modbus, SHT31-DIS-F, I2C Expander |
 
 ### Catena 461x Series
 
@@ -104,22 +105,22 @@ The 4630 is a Feather-compatible board designed for field air-quality monitoring
 | Sensors | ZMOD4410 VOC sensor; BME280 temperature/pressure/humidity |
 | External interfaces | TTL Serial, dedicated cable for connecting to PMS7003 PM2.5 sensor |
 
-### Catena 4801 Features
+### Catena 480x Features
 
-The 4801 is a dedicated board for remote Modbus applications, using the Murata module.
+The 480x is a dedicated board for remote Modbus applications, using the Murata module.
 
-| Feature | 4801 |
-|---------|------|
-| TCXO Control | Controlled by code |
-| Battery type | Primary battery, boost regulator (but can tolerate up to 3.7V battery) |
-| System voltage | 2.2V to 3.3V, depending on whether boost regulator is enabled. |
-| Regulator control | EN output from CPU controls boost regulator, and 4801 normally runs with boost regulator off for lower power. |
-| High-side switch for power for external sensors | Yes |
-| Screw terminals for external sensors | 1x4 pin |
-| Feather physical compatibility | No |
-| USB | Not supported |
-| Sensors | none |
-| External interfaces | Modbus, TTL serial |
+| Feature | 4801 | 4802 |
+|---------|------|------|
+| TCXO Control | Controlled by code | Controlled by code |
+| Battery type | Primary battery, boost regulator (but can tolerate up to 3.7V battery) | Primary battery, buck regulator (but can tolerate up to 5V battery) |
+| System voltage | 2.2V to 3.3V, depending on whether boost regulator is enabled. | 3.6V to 5V |
+| Regulator control | EN output from CPU controls boost regulator, and 4801 normally runs with boost regulator off for lower power. | Always enabled if +VIN present.
+| High-side switch for power for external sensors | Yes | Yes |
+| Screw terminals for external sensors | 1x4 pin | 2x4 pin |
+| Feather physical compatibility | No | No |
+| USB | Not supported | Not supported |
+| Sensors | none | SHT31 |
+| External interfaces | Modbus, TTL serial | Modbus, TTL serial, I2C Expander |
 
 ## Troubleshooting
 
@@ -154,6 +155,8 @@ If you want to develop and test changes to this package, we suggest the followin
 Remember to restart the IDE whenever you change `platform.txt`, `boards.txt` or `programmers.txt`.
 
 ## Release History
+
+- [v2.8.0](https://github.com/mcci-catena/Arduino_Core_STM32/releases/tag/v2.8.0) Added support for new board: 4802, [#143](https://github.com/mcci-catena/Arduino_Core_STM32/issues/143).
 
 - [v2.7.0](https://github.com/mcci-catena/Arduino_Core_STM32/releases/tag/v2.7.0) adds UI support for LoRaWAN network and subband selection, [#22](https://github.com/mcci-catena/Arduino_Core_STM32/issues/22).  Note, though, that the UI options must be implemented by your target LoRaWAN stack in order to be effective.
 

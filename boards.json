@@ -83,5 +83,15 @@
 				}
 			]
 			},
+
+			{
+			"modelnumber": 	"4802",
+			"build_variant": "CATENA_4802",
+			"extra_sections": [ 
+				{ "name": "xserial",
+				  "using": "xserial_nousb"
+				}
+			]
+			},
 		]
 }
