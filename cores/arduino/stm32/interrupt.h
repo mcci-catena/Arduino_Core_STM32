@@ -61,6 +61,11 @@ void stm32_interrupt_enable(GPIO_TypeDef *port, uint16_t pin, callback_function_
 void stm32_interrupt_enable(GPIO_TypeDef *port, uint16_t pin, void (*callback)(void), uint32_t mode);
 void stm32_interrupt_disable(GPIO_TypeDef *port, uint16_t pin);
 
+#ifdef __cplusplus
+	extern "C"
+#endif
+void stm32_interrupt_enable_forC(GPIO_TypeDef *port, uint16_t pin, void (*callback)(void), uint32_t mode);
+
 #endif /* __INTERRUPT_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
