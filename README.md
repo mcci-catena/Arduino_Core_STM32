@@ -1,6 +1,6 @@
 # Arduino core support for STM32L082-based boards
 
-This repository is MCCI's version of [Arduino_Core_STM32](https://github.com/stm32duino/Arduino_Core_STM32), adapted for the STM32L082. The BSP here targets the STM32L082 as used in the Murata CMWX1ZZABZ LoRa&reg; module, as further in the MCCI Catena&reg; LoRaWAN&reg; technology boards. Several of these boards are closely compatible with the Adafruit Feather M0 LoRa. See [Supported Boards and CPUs](#supported-boards-and-cpus) for more info.
+This repository is MCCI's version of [Arduino_Core_STM32](https://github.com/stm32duino/Arduino_Core_STM32), adapted for the STM32L082. The BSP here targets the STM32L082 as used in the Murata CMWX1ZZABZ LPWAN module, as further in the MCCI Catena&reg; LoRaWAN&reg; Sigfox&reg; technology boards. Several of these boards are closely compatible with the Adafruit Feather M0 LoRa. See [Supported Boards and CPUs](#supported-boards-and-cpus) for more info.
 
 For general information, please check the stm32duino [README.md](https://github.com/stm32duino/Arduino_Core_STM32#arduino-core-support-for-stm32-based-boards), especially the [Getting Started](https://github.com/stm32duino/Arduino_Core_STM32#getting-started) section.
 
@@ -41,6 +41,7 @@ For full instructions on using the "**Boards Manager**", see  [Installing the MC
 
 The Arduino IDE allows you to select the following items.
 
+- **Technology**: select "LoRaWAN" or "Sigfox".
 - **LoRaWAN Region**: when using the Arduino LMIC, you can select North America, Europe, Australia, Asia-923, Japan, Korea, or India as your target region.
 - **Optimization**: choose smallest, fast, faster, fastest, or debug.
 - **Serial interface**: Select "USB Serial", "Generic Serial" or "No Serial".
