@@ -157,7 +157,9 @@ Remember to restart the IDE whenever you change `platform.txt`, `boards.txt` or 
 
 ## Release History
 
-- HEAD: Switch to true semantic versioning [#150](https://github.com/mcci-catena/Arduino_Core_STM32/issues/150. add support for MCCI trusted bootloader. This will be V3.0 when released; version is (semantic) 3.0.0-1 (pre-release 1).
+- HEAD: Added support to Sigfox Technology, also added an option Technology to the menu, [#145](https://github.com/mcci-catena/Arduino_Core_STM32/issues/145).
+
+- Switch to true semantic versioning [#150](https://github.com/mcci-catena/Arduino_Core_STM32/issues/150. add support for MCCI trusted bootloader. This will be V3.0 when released; version is (semantic) 3.0.0-1 (pre-release 1).
 
 - [v2.8.0](https://github.com/mcci-catena/Arduino_Core_STM32/releases/tag/v2.8.0) Added support for new board: 4802, [#143](https://github.com/mcci-catena/Arduino_Core_STM32/issues/143).
 
