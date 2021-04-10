@@ -36,6 +36,8 @@ menu.lorawan_subband=LoRaWAN Subband
 menu.xserial=Serial interface
 menu.sysclk=System clock
 
+menu.boot=Trusted boot
+
 menu.opt=Optimize
 menu.upload_method=Upload method
 
@@ -62,7 +64,7 @@ mcci_catena_4551.build.series=STM32L0xx
 mcci_catena_4551.build.variant=CATENA_4551
 mcci_catena_4551.build.variant_extra_flags=
 mcci_catena_4551.build.cmsis_lib_gcc=arm_cortexM0l_math
-mcci_catena_4551.build.ldscript=../mcci-ldscript.ld
+mcci_catena_4551.build.ldscript=
 mcci_catena_4551.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line} -DARDUINO_CATENA_4551 -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
 # mcci_catena_4551.build.c.Werror=
 # mcci_catena_4551.build.cpp.Werror=
@@ -110,6 +112,15 @@ mcci_catena_4551.menu.sysclk.pll24m.build.sysclk_flags=-DCATENA_CFG_SYSCLK=24
 mcci_catena_4551.menu.sysclk.hsi16m.build.sysclk_flags=-DCATENA_CFG_SYSCLK=16
 mcci_catena_4551.menu.sysclk.msi4194k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=4
 mcci_catena_4551.menu.sysclk.msi2097k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=2
+
+#
+# menu.bootloader
+mcci_catena_4551.menu.boot.basic=Basic
+mcci_catena_4551.menu.boot.trusted=MCCI Trusted Boot
+
+# the flags
+mcci_catena_4551.menu.boot.basic.build.ldscript=../mcci-ldscript-basic.ld
+mcci_catena_4551.menu.boot.trusted.build.ldscript=../mcci-ldscript-trusted.ld
 
 #
 # menu.opt
@@ -237,7 +248,7 @@ mcci_catena_4610.build.series=STM32L0xx
 mcci_catena_4610.build.variant=CATENA_461x
 mcci_catena_4610.build.variant_extra_flags=-DMCCI_CATENA_461x_PA0_SWITCHES_VDD=0
 mcci_catena_4610.build.cmsis_lib_gcc=arm_cortexM0l_math
-mcci_catena_4610.build.ldscript=../mcci-ldscript.ld
+mcci_catena_4610.build.ldscript=
 mcci_catena_4610.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line}  -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
 # mcci_catena_4610.build.c.Werror=
 # mcci_catena_4610.build.cpp.Werror=
@@ -285,6 +296,15 @@ mcci_catena_4610.menu.sysclk.pll24m.build.sysclk_flags=-DCATENA_CFG_SYSCLK=24
 mcci_catena_4610.menu.sysclk.hsi16m.build.sysclk_flags=-DCATENA_CFG_SYSCLK=16
 mcci_catena_4610.menu.sysclk.msi4194k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=4
 mcci_catena_4610.menu.sysclk.msi2097k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=2
+
+#
+# menu.bootloader
+mcci_catena_4610.menu.boot.basic=Basic
+mcci_catena_4610.menu.boot.trusted=MCCI Trusted Boot
+
+# the flags
+mcci_catena_4610.menu.boot.basic.build.ldscript=../mcci-ldscript-basic.ld
+mcci_catena_4610.menu.boot.trusted.build.ldscript=../mcci-ldscript-trusted.ld
 
 #
 # menu.opt
@@ -412,7 +432,7 @@ mcci_catena_4611.build.series=STM32L0xx
 mcci_catena_4611.build.variant=CATENA_461x
 mcci_catena_4611.build.variant_extra_flags=-DMCCI_CATENA_461x_PA0_SWITCHES_VDD=0
 mcci_catena_4611.build.cmsis_lib_gcc=arm_cortexM0l_math
-mcci_catena_4611.build.ldscript=../mcci-ldscript.ld
+mcci_catena_4611.build.ldscript=
 mcci_catena_4611.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line} -DARDUINO_CATENA_4611 -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
 # mcci_catena_4611.build.c.Werror=
 # mcci_catena_4611.build.cpp.Werror=
@@ -460,6 +480,15 @@ mcci_catena_4611.menu.sysclk.pll24m.build.sysclk_flags=-DCATENA_CFG_SYSCLK=24
 mcci_catena_4611.menu.sysclk.hsi16m.build.sysclk_flags=-DCATENA_CFG_SYSCLK=16
 mcci_catena_4611.menu.sysclk.msi4194k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=4
 mcci_catena_4611.menu.sysclk.msi2097k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=2
+
+#
+# menu.bootloader
+mcci_catena_4611.menu.boot.basic=Basic
+mcci_catena_4611.menu.boot.trusted=MCCI Trusted Boot
+
+# the flags
+mcci_catena_4611.menu.boot.basic.build.ldscript=../mcci-ldscript-basic.ld
+mcci_catena_4611.menu.boot.trusted.build.ldscript=../mcci-ldscript-trusted.ld
 
 #
 # menu.opt
@@ -587,7 +616,7 @@ mcci_catena_4612.build.series=STM32L0xx
 mcci_catena_4612.build.variant=CATENA_461x
 mcci_catena_4612.build.variant_extra_flags=-DMCCI_CATENA_461x_PA0_SWITCHES_VDD=1
 mcci_catena_4612.build.cmsis_lib_gcc=arm_cortexM0l_math
-mcci_catena_4612.build.ldscript=../mcci-ldscript.ld
+mcci_catena_4612.build.ldscript=
 mcci_catena_4612.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line} -DARDUINO_CATENA_4612 -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
 # mcci_catena_4612.build.c.Werror=
 # mcci_catena_4612.build.cpp.Werror=
@@ -635,6 +664,15 @@ mcci_catena_4612.menu.sysclk.pll24m.build.sysclk_flags=-DCATENA_CFG_SYSCLK=24
 mcci_catena_4612.menu.sysclk.hsi16m.build.sysclk_flags=-DCATENA_CFG_SYSCLK=16
 mcci_catena_4612.menu.sysclk.msi4194k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=4
 mcci_catena_4612.menu.sysclk.msi2097k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=2
+
+#
+# menu.bootloader
+mcci_catena_4612.menu.boot.basic=Basic
+mcci_catena_4612.menu.boot.trusted=MCCI Trusted Boot
+
+# the flags
+mcci_catena_4612.menu.boot.basic.build.ldscript=../mcci-ldscript-basic.ld
+mcci_catena_4612.menu.boot.trusted.build.ldscript=../mcci-ldscript-trusted.ld
 
 #
 # menu.opt
@@ -762,7 +800,7 @@ mcci_catena_4617.build.series=STM32L0xx
 mcci_catena_4617.build.variant=CATENA_461x
 mcci_catena_4617.build.variant_extra_flags=-DMCCI_CATENA_461x_PA0_SWITCHES_VDD=1
 mcci_catena_4617.build.cmsis_lib_gcc=arm_cortexM0l_math
-mcci_catena_4617.build.ldscript=../mcci-ldscript.ld
+mcci_catena_4617.build.ldscript=
 mcci_catena_4617.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line}  -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
 # mcci_catena_4617.build.c.Werror=
 # mcci_catena_4617.build.cpp.Werror=
@@ -810,6 +848,15 @@ mcci_catena_4617.menu.sysclk.pll24m.build.sysclk_flags=-DCATENA_CFG_SYSCLK=24
 mcci_catena_4617.menu.sysclk.hsi16m.build.sysclk_flags=-DCATENA_CFG_SYSCLK=16
 mcci_catena_4617.menu.sysclk.msi4194k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=4
 mcci_catena_4617.menu.sysclk.msi2097k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=2
+
+#
+# menu.bootloader
+mcci_catena_4617.menu.boot.basic=Basic
+mcci_catena_4617.menu.boot.trusted=MCCI Trusted Boot
+
+# the flags
+mcci_catena_4617.menu.boot.basic.build.ldscript=../mcci-ldscript-basic.ld
+mcci_catena_4617.menu.boot.trusted.build.ldscript=../mcci-ldscript-trusted.ld
 
 #
 # menu.opt
@@ -937,7 +984,7 @@ mcci_catena_4618.build.series=STM32L0xx
 mcci_catena_4618.build.variant=CATENA_461x
 mcci_catena_4618.build.variant_extra_flags=-DMCCI_CATENA_461x_PA0_SWITCHES_VDD=1
 mcci_catena_4618.build.cmsis_lib_gcc=arm_cortexM0l_math
-mcci_catena_4618.build.ldscript=../mcci-ldscript.ld
+mcci_catena_4618.build.ldscript=
 mcci_catena_4618.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line}  -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
 # mcci_catena_4618.build.c.Werror=
 # mcci_catena_4618.build.cpp.Werror=
@@ -985,6 +1032,15 @@ mcci_catena_4618.menu.sysclk.pll24m.build.sysclk_flags=-DCATENA_CFG_SYSCLK=24
 mcci_catena_4618.menu.sysclk.hsi16m.build.sysclk_flags=-DCATENA_CFG_SYSCLK=16
 mcci_catena_4618.menu.sysclk.msi4194k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=4
 mcci_catena_4618.menu.sysclk.msi2097k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=2
+
+#
+# menu.bootloader
+mcci_catena_4618.menu.boot.basic=Basic
+mcci_catena_4618.menu.boot.trusted=MCCI Trusted Boot
+
+# the flags
+mcci_catena_4618.menu.boot.basic.build.ldscript=../mcci-ldscript-basic.ld
+mcci_catena_4618.menu.boot.trusted.build.ldscript=../mcci-ldscript-trusted.ld
 
 #
 # menu.opt
@@ -1112,7 +1168,7 @@ mcci_catena_4630.build.series=STM32L0xx
 mcci_catena_4630.build.variant=CATENA_4630
 mcci_catena_4630.build.variant_extra_flags=-DMCCI_CATENA_4630_PA0_SWITCHES_VDD=1
 mcci_catena_4630.build.cmsis_lib_gcc=arm_cortexM0l_math
-mcci_catena_4630.build.ldscript=../mcci-ldscript.ld
+mcci_catena_4630.build.ldscript=
 mcci_catena_4630.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line}  -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
 # mcci_catena_4630.build.c.Werror=
 # mcci_catena_4630.build.cpp.Werror=
@@ -1160,6 +1216,15 @@ mcci_catena_4630.menu.sysclk.pll24m.build.sysclk_flags=-DCATENA_CFG_SYSCLK=24
 mcci_catena_4630.menu.sysclk.hsi16m.build.sysclk_flags=-DCATENA_CFG_SYSCLK=16
 mcci_catena_4630.menu.sysclk.msi4194k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=4
 mcci_catena_4630.menu.sysclk.msi2097k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=2
+
+#
+# menu.bootloader
+mcci_catena_4630.menu.boot.basic=Basic
+mcci_catena_4630.menu.boot.trusted=MCCI Trusted Boot
+
+# the flags
+mcci_catena_4630.menu.boot.basic.build.ldscript=../mcci-ldscript-basic.ld
+mcci_catena_4630.menu.boot.trusted.build.ldscript=../mcci-ldscript-trusted.ld
 
 #
 # menu.opt
@@ -1281,7 +1346,7 @@ mcci_catena_4801.build.series=STM32L0xx
 mcci_catena_4801.build.variant=CATENA_4801
 mcci_catena_4801.build.variant_extra_flags=
 mcci_catena_4801.build.cmsis_lib_gcc=arm_cortexM0l_math
-mcci_catena_4801.build.ldscript=../mcci-ldscript.ld
+mcci_catena_4801.build.ldscript=
 mcci_catena_4801.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line}  -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
 # mcci_catena_4801.build.c.Werror=
 # mcci_catena_4801.build.cpp.Werror=
@@ -1319,6 +1384,15 @@ mcci_catena_4801.menu.sysclk.pll24m.build.sysclk_flags=-DCATENA_CFG_SYSCLK=24
 mcci_catena_4801.menu.sysclk.hsi16m.build.sysclk_flags=-DCATENA_CFG_SYSCLK=16
 mcci_catena_4801.menu.sysclk.msi4194k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=4
 mcci_catena_4801.menu.sysclk.msi2097k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=2
+
+#
+# menu.bootloader
+mcci_catena_4801.menu.boot.basic=Basic
+mcci_catena_4801.menu.boot.trusted=MCCI Trusted Boot
+
+# the flags
+mcci_catena_4801.menu.boot.basic.build.ldscript=../mcci-ldscript-basic.ld
+mcci_catena_4801.menu.boot.trusted.build.ldscript=../mcci-ldscript-trusted.ld
 
 #
 # menu.opt
@@ -1440,7 +1514,7 @@ mcci_catena_4802.build.series=STM32L0xx
 mcci_catena_4802.build.variant=CATENA_4802
 mcci_catena_4802.build.variant_extra_flags=
 mcci_catena_4802.build.cmsis_lib_gcc=arm_cortexM0l_math
-mcci_catena_4802.build.ldscript=../mcci-ldscript.ld
+mcci_catena_4802.build.ldscript=
 mcci_catena_4802.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line}  -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
 # mcci_catena_4802.build.c.Werror=
 # mcci_catena_4802.build.cpp.Werror=
@@ -1478,6 +1552,15 @@ mcci_catena_4802.menu.sysclk.pll24m.build.sysclk_flags=-DCATENA_CFG_SYSCLK=24
 mcci_catena_4802.menu.sysclk.hsi16m.build.sysclk_flags=-DCATENA_CFG_SYSCLK=16
 mcci_catena_4802.menu.sysclk.msi4194k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=4
 mcci_catena_4802.menu.sysclk.msi2097k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=2
+
+#
+# menu.bootloader
+mcci_catena_4802.menu.boot.basic=Basic
+mcci_catena_4802.menu.boot.trusted=MCCI Trusted Boot
+
+# the flags
+mcci_catena_4802.menu.boot.basic.build.ldscript=../mcci-ldscript-basic.ld
+mcci_catena_4802.menu.boot.trusted.build.ldscript=../mcci-ldscript-trusted.ld
 
 #
 # menu.opt
