@@ -65,6 +65,9 @@ Reset_Handler:
    ldr   r0, =_estack
    mov   sp, r0          /* set stack pointer */
 
+/* interrupts are enabled after hardware reset! but not necessarily if you jump here */
+  cpsie i                /* enable interrupts */
+
 /* Copy the data segment initializers from flash to SRAM */
   movs  r1, #0
   b  LoopCopyDataInit
