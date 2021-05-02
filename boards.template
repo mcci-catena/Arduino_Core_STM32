@@ -127,8 +127,8 @@ $section xserial
 
 #
 # menu.bootloader
-{{board}}.menu.boot.basic=Basic
 {{board}}.menu.boot.trusted=MCCI Trusted Boot
+{{board}}.menu.boot.basic=Basic (no bootloader)
 
 # convert boot selections to settings
 {{board}}.menu.boot.basic.build.ldscript=../mcci-ldscript-basic.ld
