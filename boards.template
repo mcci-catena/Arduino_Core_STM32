@@ -5,7 +5,7 @@
 #	Input to generate_boards.bri, produces Arduino IDE boards.txt.
 #
 # Copyright:
-#	Copyright (c) 2018-2020 MCCI Corporation
+#	Copyright (c) 2018-2021 MCCI Corporation
 #
 #	This library is free software; you can redistribute it and/or
 #	modify it under the terms of the GNU Lesser General Public
@@ -32,7 +32,7 @@
 #	Define all the boards for this board support package to the Arduino IDE
 #
 # Copyright:
-#	Copyright (c) 2018-2020 MCCI Corporation
+#	Copyright (c) 2018-2021 MCCI Corporation
 #
 #	This library is free software; you can redistribute it and/or
 #	modify it under the terms of the GNU Lesser General Public
@@ -130,9 +130,11 @@ $section xserial
 {{board}}.menu.boot.basic=Basic
 {{board}}.menu.boot.trusted=MCCI Trusted Boot
 
-# the flags
+# convert boot selections to settings
 {{board}}.menu.boot.basic.build.ldscript=../mcci-ldscript-basic.ld
+{{board}}.menu.boot.basic.build.baseaddr=0x08000000
 {{board}}.menu.boot.trusted.build.ldscript=../mcci-ldscript-trusted.ld
+{{board}}.menu.boot.trusted.build.baseaddr=0x08005000
 
 #
 # menu.opt

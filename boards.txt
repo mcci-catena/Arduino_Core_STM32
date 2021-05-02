@@ -5,7 +5,7 @@
 #	Define all the boards for this board support package to the Arduino IDE
 #
 # Copyright:
-#	Copyright (c) 2018-2020 MCCI Corporation
+#	Copyright (c) 2018-2021 MCCI Corporation
 #
 #	This library is free software; you can redistribute it and/or
 #	modify it under the terms of the GNU Lesser General Public
@@ -118,9 +118,11 @@ mcci_catena_4551.menu.sysclk.msi2097k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=2
 mcci_catena_4551.menu.boot.basic=Basic
 mcci_catena_4551.menu.boot.trusted=MCCI Trusted Boot
 
-# the flags
+# convert boot selections to settings
 mcci_catena_4551.menu.boot.basic.build.ldscript=../mcci-ldscript-basic.ld
+mcci_catena_4551.menu.boot.basic.build.baseaddr=0x08000000
 mcci_catena_4551.menu.boot.trusted.build.ldscript=../mcci-ldscript-trusted.ld
+mcci_catena_4551.menu.boot.trusted.build.baseaddr=0x08005000
 
 #
 # menu.opt
@@ -302,9 +304,11 @@ mcci_catena_4610.menu.sysclk.msi2097k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=2
 mcci_catena_4610.menu.boot.basic=Basic
 mcci_catena_4610.menu.boot.trusted=MCCI Trusted Boot
 
-# the flags
+# convert boot selections to settings
 mcci_catena_4610.menu.boot.basic.build.ldscript=../mcci-ldscript-basic.ld
+mcci_catena_4610.menu.boot.basic.build.baseaddr=0x08000000
 mcci_catena_4610.menu.boot.trusted.build.ldscript=../mcci-ldscript-trusted.ld
+mcci_catena_4610.menu.boot.trusted.build.baseaddr=0x08005000
 
 #
 # menu.opt
@@ -486,9 +490,11 @@ mcci_catena_4611.menu.sysclk.msi2097k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=2
 mcci_catena_4611.menu.boot.basic=Basic
 mcci_catena_4611.menu.boot.trusted=MCCI Trusted Boot
 
-# the flags
+# convert boot selections to settings
 mcci_catena_4611.menu.boot.basic.build.ldscript=../mcci-ldscript-basic.ld
+mcci_catena_4611.menu.boot.basic.build.baseaddr=0x08000000
 mcci_catena_4611.menu.boot.trusted.build.ldscript=../mcci-ldscript-trusted.ld
+mcci_catena_4611.menu.boot.trusted.build.baseaddr=0x08005000
 
 #
 # menu.opt
@@ -670,9 +676,11 @@ mcci_catena_4612.menu.sysclk.msi2097k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=2
 mcci_catena_4612.menu.boot.basic=Basic
 mcci_catena_4612.menu.boot.trusted=MCCI Trusted Boot
 
-# the flags
+# convert boot selections to settings
 mcci_catena_4612.menu.boot.basic.build.ldscript=../mcci-ldscript-basic.ld
+mcci_catena_4612.menu.boot.basic.build.baseaddr=0x08000000
 mcci_catena_4612.menu.boot.trusted.build.ldscript=../mcci-ldscript-trusted.ld
+mcci_catena_4612.menu.boot.trusted.build.baseaddr=0x08005000
 
 #
 # menu.opt
@@ -854,9 +862,11 @@ mcci_catena_4617.menu.sysclk.msi2097k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=2
 mcci_catena_4617.menu.boot.basic=Basic
 mcci_catena_4617.menu.boot.trusted=MCCI Trusted Boot
 
-# the flags
+# convert boot selections to settings
 mcci_catena_4617.menu.boot.basic.build.ldscript=../mcci-ldscript-basic.ld
+mcci_catena_4617.menu.boot.basic.build.baseaddr=0x08000000
 mcci_catena_4617.menu.boot.trusted.build.ldscript=../mcci-ldscript-trusted.ld
+mcci_catena_4617.menu.boot.trusted.build.baseaddr=0x08005000
 
 #
 # menu.opt
@@ -1038,9 +1048,11 @@ mcci_catena_4618.menu.sysclk.msi2097k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=2
 mcci_catena_4618.menu.boot.basic=Basic
 mcci_catena_4618.menu.boot.trusted=MCCI Trusted Boot
 
-# the flags
+# convert boot selections to settings
 mcci_catena_4618.menu.boot.basic.build.ldscript=../mcci-ldscript-basic.ld
+mcci_catena_4618.menu.boot.basic.build.baseaddr=0x08000000
 mcci_catena_4618.menu.boot.trusted.build.ldscript=../mcci-ldscript-trusted.ld
+mcci_catena_4618.menu.boot.trusted.build.baseaddr=0x08005000
 
 #
 # menu.opt
@@ -1222,9 +1234,11 @@ mcci_catena_4630.menu.sysclk.msi2097k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=2
 mcci_catena_4630.menu.boot.basic=Basic
 mcci_catena_4630.menu.boot.trusted=MCCI Trusted Boot
 
-# the flags
+# convert boot selections to settings
 mcci_catena_4630.menu.boot.basic.build.ldscript=../mcci-ldscript-basic.ld
+mcci_catena_4630.menu.boot.basic.build.baseaddr=0x08000000
 mcci_catena_4630.menu.boot.trusted.build.ldscript=../mcci-ldscript-trusted.ld
+mcci_catena_4630.menu.boot.trusted.build.baseaddr=0x08005000
 
 #
 # menu.opt
@@ -1390,9 +1404,11 @@ mcci_catena_4801.menu.sysclk.msi2097k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=2
 mcci_catena_4801.menu.boot.basic=Basic
 mcci_catena_4801.menu.boot.trusted=MCCI Trusted Boot
 
-# the flags
+# convert boot selections to settings
 mcci_catena_4801.menu.boot.basic.build.ldscript=../mcci-ldscript-basic.ld
+mcci_catena_4801.menu.boot.basic.build.baseaddr=0x08000000
 mcci_catena_4801.menu.boot.trusted.build.ldscript=../mcci-ldscript-trusted.ld
+mcci_catena_4801.menu.boot.trusted.build.baseaddr=0x08005000
 
 #
 # menu.opt
@@ -1558,9 +1574,11 @@ mcci_catena_4802.menu.sysclk.msi2097k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=2
 mcci_catena_4802.menu.boot.basic=Basic
 mcci_catena_4802.menu.boot.trusted=MCCI Trusted Boot
 
-# the flags
+# convert boot selections to settings
 mcci_catena_4802.menu.boot.basic.build.ldscript=../mcci-ldscript-basic.ld
+mcci_catena_4802.menu.boot.basic.build.baseaddr=0x08000000
 mcci_catena_4802.menu.boot.trusted.build.ldscript=../mcci-ldscript-trusted.ld
+mcci_catena_4802.menu.boot.trusted.build.baseaddr=0x08005000
 
 #
 # menu.opt
