@@ -5,7 +5,7 @@
 #	Input to generate_boards.bri, produces Arduino IDE boards.txt.
 #
 # Copyright:
-#	Copyright (c) 2018-2020 MCCI Corporation
+#	Copyright (c) 2018-2021 MCCI Corporation
 #
 #	This library is free software; you can redistribute it and/or
 #	modify it under the terms of the GNU Lesser General Public
@@ -32,7 +32,7 @@
 #	Define all the boards for this board support package to the Arduino IDE
 #
 # Copyright:
-#	Copyright (c) 2018-2020 MCCI Corporation
+#	Copyright (c) 2018-2021 MCCI Corporation
 #
 #	This library is free software; you can redistribute it and/or
 #	modify it under the terms of the GNU Lesser General Public
@@ -63,6 +63,8 @@ menu.lorawan_subband=LoRaWAN Subband
 menu.xserial=Serial interface
 menu.sysclk=System clock
 
+menu.boot=Trusted boot
+
 menu.opt=Optimize
 menu.upload_method=Upload method
 
@@ -87,6 +89,7 @@ $section usb
 {{board}}.build.variant={{build_variant}}
 {{board}}.build.variant_extra_flags={{build_variant_extra_flags}}
 {{board}}.build.cmsis_lib_gcc=arm_cortexM0l_math
+{{board}}.build.ldscript=
 {{board}}.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line} {{build_board_old_flags}} -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
 # {{board}}.build.c.Werror=
 # {{board}}.build.cpp.Werror=
@@ -121,6 +124,17 @@ $section xserial
 {{board}}.menu.sysclk.hsi16m.build.sysclk_flags=-DCATENA_CFG_SYSCLK=16
 {{board}}.menu.sysclk.msi4194k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=4
 {{board}}.menu.sysclk.msi2097k.build.sysclk_flags=-DCATENA_CFG_SYSCLK=2
+
+#
+# menu.bootloader
+{{board}}.menu.boot.trusted=MCCI Trusted Boot
+{{board}}.menu.boot.basic=Basic (no bootloader)
+
+# convert boot selections to settings
+{{board}}.menu.boot.basic.build.ldscript=../mcci-ldscript-basic.ld
+{{board}}.menu.boot.basic.build.baseaddr=0x08000000
+{{board}}.menu.boot.trusted.build.ldscript=../mcci-ldscript-trusted.ld
+{{board}}.menu.boot.trusted.build.baseaddr=0x08005000
 
 #
 # menu.opt

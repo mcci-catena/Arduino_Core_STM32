@@ -2,10 +2,11 @@
 *****************************************************************************
 **
 
-**  File        : LinkerScript.ld
+**  File        : mcci-ldscript-stage3.ld
 **
 **  Abstract    : Linker script for STM32L082CZYx Device with
-**                192KByte FLASH, 20KByte RAM
+**                192KByte FLASH, 20KByte RAM, when using MCCI Trusted
+**		  bootloader.
 **
 **                Set heap size, stack size and stack location according
 **                to application requirements.
@@ -22,7 +23,7 @@
 ** @attention
 **
 ** <h2><center>&copy; COPYRIGHT(c) 2014 Ac6</center></h2>
-** <h2><center>Portions &copy; COPYRIGHT(c) 2019 MCCI Corporation</center></h2>
+** <h2><center>Portions &copy; COPYRIGHT(c) 2019-2021 MCCI Corporation</center></h2>
 **
 ** Redistribution and use in source and binary forms, with or without modification,
 ** are permitted provided that the following conditions are met:
@@ -58,11 +59,20 @@ _estack = 0x20005000;    /* end of RAM */
 _Min_Heap_Size = 0x200;      /* required amount of heap  */
 _Min_Stack_Size = 0x400; /* required amount of stack */
 
+/* symbols driving layout */
+_McciBootloader_FlashBase	= 0x08000000;
+_McciBootloader_FlashAvail	= 192K;
+_McciBootloader_AppBase		= _McciBootloader_FlashBase + 20K;
+_McciBootloader_AppAvail	= 192K - 24K;
+
+/* note that you really want -Wl,z,max-page-size=4096 in your link command */
+
 /* Specify the memory areas */
 MEMORY
 {
-FLASH (rx)      : ORIGIN = 0x8000000, LENGTH = 192K
-RAM (xrw)      : ORIGIN = 0x20000000, LENGTH = 20K
+FLASH (rx)      : ORIGIN = _McciBootloader_AppBase,
+                  LENGTH = _McciBootloader_AppAvail
+RAM (xrw)       : ORIGIN = 0x20000000, LENGTH = 20K
 }
 
 /* Define output sections */
@@ -175,7 +185,14 @@ SECTIONS
     . = ALIGN(8);
   } >RAM
 
-  
+  /* insert the application signature block */
+  .McciBootloader_Signature :
+    {
+    _McciBootloader_AppImageTop = .;
+    _McciBootloader_AppImageSize = _McciBootloader_AppImageTop - _McciBootloader_AppBase;
+    KEEP(*(.McciBootloader_Signature))
+    } > FLASH
+
 
   /* Remove information from the standard libraries */
   /DISCARD/ :

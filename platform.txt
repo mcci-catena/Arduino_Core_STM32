@@ -60,6 +60,7 @@ compiler.platform.path.linux={runtime.platform.path}/tools/linux/
 # These can be overriden in boards.txt
 build.extra_flags=
 build.ldscript=ldscript.ld
+build.baseaddr=0x08000000
 build.c.Werror=
 build.cpp.Werror=
 build.S.Werror=
@@ -103,6 +104,9 @@ recipe.hooks.prebuild.1.pattern.windows=cmd /c if not exist "{build.opt.sourcepa
 recipe.hooks.prebuild.1.pattern.linux=bash -c "[ -f {build.opt.sourcepath} ] || (mkdir -p {build.path}/sketch && touch {build.opt.path})"
 recipe.hooks.prebuild.1.pattern.macosx=bash -c "[ -f {build.opt.sourcepath} ] || (mkdir -p {build.path}/sketch && touch {build.opt.path})"
 
+# sign the output file [harmless even if not using trusted bootloader]
+recipe.hooks.linking.postlink.1.pattern="{mccibootloader_image.path}/{mccibootloader_image.cmd}" -v -t --sign --keyfile "{mccibootloader_keys.path}/{mccibootloader_keys.test}" --patch "{build.path}/{build.project_name}.elf"
+
 # compile patterns
 # ---------------------
 
@@ -119,7 +123,7 @@ recipe.S.o.pattern="{compiler.path}{compiler.S.cmd}" {compiler.S.flags} -D{build
 recipe.ar.pattern="{compiler.path}{compiler.ar.cmd}" {compiler.ar.flags} {compiler.ar.extra_flags} "{archive_file_path}" "{object_file}"
 
 ## Combine gc-sections, archives, and objects
-recipe.c.combine.pattern="{compiler.path}{compiler.c.elf.cmd}" {compiler.c.elf.flags} "-T{build.variant.path}/{build.ldscript}" "-Wl,-Map,{build.path}/{build.project_name}.map" {compiler.ldflags} {compiler.arm.cmsis.ldflags} -o "{build.path}/{build.project_name}.elf" "-L{build.path}" -Wl,--start-group {object_files} {compiler.libraries.ldflags} -Wl,--whole-archive "{archive_file_path}" -Wl,--no-whole-archive {compiler.c.elf.extra_flags} -lc -Wl,--end-group -lm -lgcc -lstdc++ --specs=nano.specs
+recipe.c.combine.pattern="{compiler.path}{compiler.c.elf.cmd}" {compiler.c.elf.flags} "-T{build.variant.path}/{build.ldscript}" "-Wl,-z,max-page-size=4096" "-Wl,-Map,{build.path}/{build.project_name}.map" {compiler.ldflags} {compiler.arm.cmsis.ldflags} -o "{build.path}/{build.project_name}.elf" "-L{build.path}" -Wl,--start-group {object_files} {compiler.libraries.ldflags} -Wl,--whole-archive "{archive_file_path}" -Wl,--no-whole-archive {compiler.c.elf.extra_flags} -lc -Wl,--end-group -lm -lgcc -lstdc++ --specs=nano.specs
 
 ## Create output (dfu file)
 recipe.objcopy.dfu.pattern="{compiler.path}{compiler.elf2hex.cmd}" {compiler.elf2hex.bin.flags} {compiler.elf2hex.extra_flags} "{build.path}/{build.project_name}.elf" "{build.path}/{build.project_name}.dfu"
@@ -173,10 +177,18 @@ tools.stm32l0_dfu.path.macosx={runtime.platform.path}/tools/macosx
 tools.stm32l0_dfu.path.linux={runtime.platform.path}/tools/linux
 tools.stm32l0_dfu.upload.params.verbose=-v
 tools.stm32l0_dfu.upload.params.quiet=
-tools.stm32l0_dfu.upload.pattern="{path}/{cmd}" "{build.vid}" "{build.pid}" "{build.path}/{build.project_name}.dfu"
+tools.stm32l0_dfu.upload.pattern="{path}/{cmd}" "{build.vid}" "{build.pid}" "{build.path}/{build.project_name}.dfu" "{build.baseaddr}"
 tools.stm32l0_dfu.program.params.verbose=-v
 tools.stm32l0_dfu.program.params.quiet=
-tools.stm32l0_dfu.program.pattern="{path}/{cmd}" "{build.vid}" "{build.pid}" "{build.path}/{build.project_name}.dfu"
+tools.stm32l0_dfu.program.pattern="{path}/{cmd}" "{build.vid}" "{build.pid}" "{build.path}/{build.project_name}.dfu" "{build.baseaddr}"
 tools.stm32l0_dfu.erase.params.verbose=-v
 tools.stm32l0_dfu.erase.params.quiet=
 tools.stm32l0_dfu.erase.pattern=
+
+# mcccibootloader_image
+mccibootloader_image.cmd=mccibootloader_image
+mccibootloader_image.path.windows={runtime.platform.path}/tools/mccibootloader/windows
+mccibootloader_image.path.macosx={runtime.platform.path}/tools/mccibootloader/macosx
+mccibootloader_image.path.linux={runtime.platform.path}/tools/mccibootloader/linux
+mccibootloader_keys.path={runtime.platform.path}/tools/mccibootloader/keys
+mccibootloader_keys.test=mcci-test.pem

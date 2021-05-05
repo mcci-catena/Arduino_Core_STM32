@@ -15,10 +15,10 @@ For general information, please check the stm32duino [README.md](https://github.
 - [Getting Started](#getting-started)
 - [Features](#features)
 - [Supported Boards and CPUs](#supported-boards-and-cpus)
-    - [Catena 461x Series](#catena-461x-series)
-        - [Sensors on Catena 4612, 4617, and 4618](#sensors-on-catena-4612-4617-and-4618)
-    - [Catena 4630 Features](#catena-4630-features)
-    - [Catena 480x Features](#catena-480x-features)
+	- [Catena 461x Series](#catena-461x-series)
+		- [Sensors on Catena 4612, 4617, and 4618](#sensors-on-catena-4612-4617-and-4618)
+	- [Catena 4630 Features](#catena-4630-features)
+	- [Catena 480x Features](#catena-480x-features)
 - [Troubleshooting](#troubleshooting)
 - [Installing a Development Copy of this BSP](#installing-a-development-copy-of-this-bsp)
 - [Release History](#release-history)
@@ -155,6 +155,8 @@ If you want to develop and test changes to this package, we suggest the followin
 Remember to restart the IDE whenever you change `platform.txt`, `boards.txt` or `programmers.txt`.
 
 ## Release History
+
+- HEAD: Switch to true semantic versioning [#150](https://github.com/mcci-catena/Arduino_Core_STM32/issues/150. add support for MCCI trusted bootloader. This will be V3.0 when released; version is (semantic) 3.0.0-1 (pre-release 1).
 
 - [v2.8.0](https://github.com/mcci-catena/Arduino_Core_STM32/releases/tag/v2.8.0) Added support for new board: 4802, [#143](https://github.com/mcci-catena/Arduino_Core_STM32/issues/143).
 

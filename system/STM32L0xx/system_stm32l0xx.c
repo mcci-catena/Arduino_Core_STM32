@@ -91,14 +91,7 @@
 /** @addtogroup STM32L0xx_System_Private_Defines
   * @{
   */
-/************************* Miscellaneous Configuration ************************/
 
-/*!< Uncomment the following line if you need to relocate your vector Table in
-     Internal SRAM. */
-/* #define VECT_TAB_SRAM */
-#define VECT_TAB_OFFSET  0x00U /*!< Vector Table base offset field. 
-                                   This value must be a multiple of 0x200. */
-/******************************************************************************/
 /**
   * @}
   */
@@ -149,7 +142,9 @@
   * @retval None
   */
 void SystemInit (void)
-{    
+{
+  extern void *_HAL_g_pfnVectors;
+
 /*!< Set MSION bit */
   RCC->CR |= (uint32_t)0x00000100U;
 
@@ -171,12 +166,8 @@ void SystemInit (void)
   /*!< Disable all interrupts */
   RCC->CIER = 0x00000000U;
   
-  /* Configure the Vector Table location add offset address ------------------*/
-#ifdef VECT_TAB_SRAM
-  SCB->VTOR = SRAM_BASE | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal SRAM */
-#else
-  SCB->VTOR = FLASH_BASE | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal FLASH */
-#endif
+  /* Configure the Vector Table location -- this should already be done, but belt-and-suspenders */
+  SCB->VTOR = (uint32_t) &_HAL_g_pfnVectors;
 }
 
 /**
