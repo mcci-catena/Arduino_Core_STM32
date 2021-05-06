@@ -4,9 +4,11 @@
 #	[ -v for verbose, -nv for quiet; -vx / -nvx same, but exit cmd on error ]
 #	vid
 # pid
-#	path to image to download
+#	path to image to upload
 #	base address
 #	[optional] bootloader file
+
+PNAME="$(basename "$0")"
 
 VERBOSE=0
 case "$1" in
@@ -17,6 +19,12 @@ case "$1" in
   *) true;;
 esac
 
+function _usage {
+  echo "$PNAME:" "$@"
+  echo "usage: $PNAME [-v/-nv/-vx/-nvx] vid pid fileToUpload baseAddress [bootloaderFile]"
+  exit 1
+}
+
 TOOLDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
 
 VIDPID=
@@ -24,28 +32,24 @@ if [[ "$1" != "-" ]]; then
   if [[ "$2" != "-" ]]; then
     VIDPID="$1:$2,"
   else
-    echo "First two args are vid/pid; both must be '-' if either is"
-    exit 1
+    _usage "First two args are vid/pid; both must be '-' if either is"
   fi
 elif [[ "$2" != "-" ]]; then
-  echo "First two args are vid/pid; bost must be '-' if either is"
-  exit 1
+  _usage "First two args are vid/pid; bost must be '-' if either is"
 fi
 
 FILE="$3"
 if [[ "$FILE" = "" ]]; then
-  echo "Must provide image name"
-  exit 1
+  _usage "Must provide image name"
 fi
 if [[ ! -r "$FILE" ]]; then
-  echo "can't find file: $FILE"
+  echo "$PNAME: can't find file to upload: $FILE"
   exit 1
 fi
 
 BASEADDR="$4"
 if [[ "$BASEADDR" = "" ]]; then
-  echo "must provide base address as argument 4"
-  exit 1
+  _usage "must provide base address as argument 4"
 fi
 
 BOOTLOADER="$5"
@@ -55,7 +59,7 @@ fi
 
 if [[ "$BOOTLOADER" != "-" ]]; then
   if [[ ! -r "$BOOTLOADER" ]]; then
-    echo "can't find bootloader: $BOOTLOADER"
+    echo "$PNAME: can't find bootloader to upload: $BOOTLOADER"
     exit 1
   fi
 fi
@@ -68,13 +72,13 @@ if [[ "$BOOTLOADER" != "-" ]]; then
     exit 1
   fi
   OPTREPLACING=1
-elif [[ "$BASEADDR" = "0x08005000" ]]; then
+elif [[ "$BASEADDR" != "0x08005000" ]]; then
   OPTREPLACING=1
 fi
 
 if [[ $VERBOSE -ne 0 ]]; then
   echo "Program file:   $FILE"
-  echo "Board VID:PID:  $VIDPID"
+  echo "Board VID:PID:  ${VIDPID%,}"
   echo "Base address:   $BASEADDR"
   if [[ "$BOOTLOADER" != "-" ]]; then
     echo "Bootloader:     $BOOTLOADER"
@@ -102,21 +106,21 @@ done
 
 
 if [[ $FOUND -eq 0 ]]; then
-  echo "FAIL"
+  echo "Didn't find device for upload"
   exit 1
 fi
 
-# download
+# upload
 if [[ "$BOOTLOADER" != "-" ]]; then
-  # download the bootloader, and leave in download mode.
+  # upload the bootloader, and leave in upload mode.
   if ! "$TOOLDIR"/dfu-util -d "VIDPID"0x0483:0xdf11 -a 0 -s 0x08000000 -D "$BOOTLOADER"; then
-    echo "bootloader download failed"
+    echo "bootloader upload failed"
     exit 1
   fi
 fi
 
 if ! "$TOOLDIR"/dfu-util -d "VIDPID"0x0483:0xdf11 -a 0 -s "$BASEADDR:leave" -D "$FILE" ; then
-  echo "main download failed"
+  echo "main upload failed"
   exit 1
 fi
 

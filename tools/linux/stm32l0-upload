@@ -1,26 +1,128 @@
 #!/bin/bash
+#
+# arguments:
+#	[ -v for verbose, -nv for quiet; -vx / -nvx same, but exit cmd on error ]
+#	vid
+# pid
+#	path to image to upload
+#	base address
+#	[optional] bootloader file
+
+PNAME="$(basename "$0")"
+
+VERBOSE=0
+case "$1" in
+  -v) VERBOSE=1; shift;;
+  -nv) shift;;
+  -vx) VERBOSE=1; shift;;
+  -nvx) shift;;
+  *) true;;
+esac
+
+function _usage {
+  echo "$PNAME:" "$@"
+  echo "usage: $PNAME [-v/-nv/-vx/-nvx] vid pid fileToUpload baseAddress [bootloaderFile]"
+  exit 1
+}
 
 TOOLDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
-BASEADDR="$4"
-if [ X"$BASEADDR" = X ]; then
-  echo "Need to pass in base address as argument 4!"
+
+VIDPID=
+if [[ "$1" != "-" ]]; then
+  if [[ "$2" != "-" ]]; then
+    VIDPID="$1:$2,"
+  else
+    _usage "First two args are vid/pid; both must be '-' if either is"
+  fi
+elif [[ "$2" != "-" ]]; then
+  _usage "First two args are vid/pid; bost must be '-' if either is"
+fi
+
+FILE="$3"
+if [[ "$FILE" = "" ]]; then
+  _usage "Must provide image name"
+fi
+if [[ ! -r "$FILE" ]]; then
+  echo "$PNAME: can't find file to upload: $FILE"
   exit 1
 fi
 
-RETRIES=10
+BASEADDR="$4"
+if [[ "$BASEADDR" = "" ]]; then
+  _usage "must provide base address as argument 4"
+fi
 
-while [ $RETRIES -gt 0 ]
+BOOTLOADER="$5"
+if [[ X"$BOOTLOADER" = X ]]; then
+  BOOTLOADER='-'
+fi
+
+if [[ "$BOOTLOADER" != "-" ]]; then
+  if [[ ! -r "$BOOTLOADER" ]]; then
+    echo "$PNAME: can't find bootloader to upload: $BOOTLOADER"
+    exit 1
+  fi
+fi
+
+OPTREPLACING=0
+if [[ "$BOOTLOADER" != "-" ]]; then
+  # make sure load address is right.
+  if [[ "$BASEADDR" != "0x08005000" ]]; then
+    echo "can't install bootloader if you select 'basic/no bootloader' in Tools/Trusted boot"
+    exit 1
+  fi
+  OPTREPLACING=1
+elif [[ "$BASEADDR" != "0x08005000" ]]; then
+  OPTREPLACING=1
+fi
+
+if [[ $VERBOSE -ne 0 ]]; then
+  echo "Program file:   $FILE"
+  echo "Board VID:PID:  ${VIDPID%,}"
+  echo "Base address:   $BASEADDR"
+  if [[ "$BOOTLOADER" != "-" ]]; then
+    echo "Bootloader:     $BOOTLOADER"
+  elif [[ $OPTREPLACING -ne 0 ]]; then
+    echo "Bootloader:     overwriting"
+  else
+    echo "Bootloader:     using existing bootloader"
+  fi
+fi
+
+RETRIES=10
+FOUND=0
+
+while [[ $RETRIES -gt 0 ]]
 do
-    if [ "$("$TOOLDIR"/dfu-util -l 2>/dev/null | grep 0483:df11)" != "" ]
+    if [[ "$("$TOOLDIR"/dfu-util -l 2>/dev/null | grep 0483:df11)" != "" ]]
     then
-      "$TOOLDIR"/dfu-util -d "$1":"$2",0x0483:0xdf11 -a 0 -s "$BASEADDR:leave" -D "$3"
-      echo "OK"
-      exit 0
+      FOUND=1
+      break
     fi
     echo $RETRIES
     RETRIES=$((RETRIES - 1))
     sleep 1;
 done
 
-echo "FAIL"
+
+if [[ $FOUND -eq 0 ]]; then
+  echo "Didn't find device for upload"
+  exit 1
+fi
+
+# upload
+if [[ "$BOOTLOADER" != "-" ]]; then
+  # upload the bootloader, and leave in upload mode.
+  if ! "$TOOLDIR"/dfu-util -d "VIDPID"0x0483:0xdf11 -a 0 -s 0x08000000 -D "$BOOTLOADER"; then
+    echo "bootloader upload failed"
+    exit 1
+  fi
+fi
+
+if ! "$TOOLDIR"/dfu-util -d "VIDPID"0x0483:0xdf11 -a 0 -s "$BASEADDR:leave" -D "$FILE" ; then
+  echo "main upload failed"
+  exit 1
+fi
+
+echo "OK"
 exit 0
