@@ -1,18 +1,27 @@
 @echo off
 rem
 rem arguments:
-rem	[ -v for verbose, -nv for quiet ]
+rem	[ -v for verbose, -nv for quiet; -vx / -nvx same, but exit cmd on error ]
 rem	full path with drive letter to STLINK tools
 rem	path to image to download
 rem	base address
-rem
+rem	[optional] bootloader file
 
 set VERBOSE=0
+set EXITFLAG=/b
 if "%1" == "-v" (
 	set VERBOSE=1
 	shift
 ) else if "%1" == "-nv" (
 	set VERBOSE=0
+	shift
+) else if "%1" == "-vx" (
+	set VERBOSE=1
+	set EXITFLAG=
+	shift
+) else if "%1" == "-nvx" (
+	set VERBOSE=0
+	set EXITFLAG=
 	shift
 )
 
@@ -26,25 +35,65 @@ set file=%2
 set file=%file:/=\%
 if "%2" == "" (
 	echo Must provide image name
-	goto :eof
+	exit %EXITFLAG% 1
 )
 if not exist %file% (
 	echo can't find file: %file%
-	goto :eof
+	exit %EXITFLAG% 1
 )
 if "%3" == "" (
 	echo must provide base address
-	goto :eof
+	exit %EXITFLAG% 1
 )
 set baseaddr=%3
+if "%baseaddr%" == "" (
+	echo must provide baseaddr
+	exit %EXITFLAG% 1
+)
+set bootloader=%4
+if "%bootloader%" == "" (
+	set bootloader=-
+)
+set bootloader=%bootloader:/=\%
+
+if not "%bootloader%" == "-" (
+	if not exist %bootloader% (
+		echo can't find bootloader %bootloader%
+		exit %EXITFLAG% 1
+	)
+)
+set bootloaderflags=
+set OPTREPLACING=0
+if not "%bootloader%" == "-" (
+	rem make sure load address is right
+	if not "%baseaddr%" == "0x08005000" (
+		echo can't install bootloader if you select 'basic/no bootloader' in Tools/Trusted boot
+		exit 1
+	)
+	set OPTREPLACING=1
+	set bootloaderflags=-P "%bootloader%"
+) else if "%baseaddr%" == "0x08005000" (
+	set OPTREPLACING=1
+)
 
 if %VERBOSE% GTR 0 (
 	echo Program file:   %file%
 	echo Path to tools:  %1
 	echo Base address:   %baseaddr%
+	if not "%bootloader%" == "-" (
+	 echo Bootloader:     %bootloader%
+	) else if %OPTREPLACING% GTR 0 (
+	 echo Bootloader:     using existing bootloader
+	) else (
+	 echo Bootloader:     overwriting -- no bootloader
+	)
 )
 
 rem: ------------- use STLINK CLI
 rem: echo "" is mandatory to exit ST-Link_CLI tools w 3.0.0.0 when "-Run" option is used,
 rem: it now wait Enter key press to quit.
-echo "" | stlink\ST-LINK_CLI.exe -c SWD UR -P %file% %baseaddr% -Rst -Run
+echo "" | stlink\ST-LINK_CLI.exe -c SWD UR %bootloaderflags% -P %file% %baseaddr% -Rst -Run
+
+if %ERRORLEVEL% GTR 0 (
+	exit %EXITFLAG% %ERRORLEVEL%
+)

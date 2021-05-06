@@ -164,15 +164,25 @@ tools.stlink_upload.cmd.windows=stlink_upload.bat
 tools.stlink_upload.path.windows={runtime.platform.path}/tools/windows
 tools.stlink_upload.path.macosx={runtime.platform.path}/tools/macosx
 tools.stlink_upload.path.linux={runtime.platform.path}/tools/linux
-tools.stlink_upload.upload.params.verbose=-v
-tools.stlink_upload.upload.params.quiet=-nv
+tools.stlink_upload.upload.params.verbose=-vx
+tools.stlink_upload.upload.params.quiet=-nvx
 tools.stlink_upload.upload.pattern="{path}/{cmd}" {upload.verbose} "{runtime.tools.STM32Tools.path}" "{build.path}/{build.project_name}.bin" {build.baseaddr}
-tools.stlink_upload.bootloader.params.verbose=-v
-tools.stlink_upload.bootloader.params.quiet=-nv
+tools.stlink_upload.bootloader.params.verbose=-vx
+tools.stlink_upload.bootloader.params.quiet=-nvx
 tools.stlink_upload.bootloader.pattern="{path}/{cmd}" {bootloader.verbose} "{runtime.tools.STM32Tools.path}" "{runtime.platform.path}/bootloaders/{bootloader.file}.bin" 0x08000000
 tools.stlink_upload.erase.params.verbose=
 tools.stlink_upload.erase.params.quiet=
 tools.stlink_upload.erase.pattern=
+
+# ST-Link image + bootloader
+tools.stlink_upload_bootloader.cmd=stlink_upload
+tools.stlink_upload_bootloader.cmd.windows=stlink_upload.bat
+tools.stlink_upload_bootloader.path.windows={runtime.platform.path}/tools/windows
+tools.stlink_upload_bootloader.path.macosx={runtime.platform.path}/tools/macosx
+tools.stlink_upload_bootloader.path.linux={runtime.platform.path}/tools/linux
+tools.stlink_upload_bootloader.upload.params.verbose=-vx
+tools.stlink_upload_bootloader.upload.params.quiet=-nvx
+tools.stlink_upload_bootloader.upload.pattern="{path}/{cmd}" {upload.verbose} "{runtime.tools.STM32Tools.path}" "{build.path}/{build.project_name}.bin" {build.baseaddr} "{runtime.platform.path}/bootloaders/{bootloader.file}.bin"
 
 # DFU
 tools.stm32l0_dfu.cmd=stm32l0-upload
@@ -180,18 +190,28 @@ tools.stm32l0_dfu.cmd.windows=stm32l0-upload.bat
 tools.stm32l0_dfu.path={runtime.platform.path}/tools/windows
 tools.stm32l0_dfu.path.macosx={runtime.platform.path}/tools/windows
 tools.stm32l0_dfu.path.linux={runtime.platform.path}/tools/linux
-tools.stm32l0_dfu.upload.params.verbose=-v
-tools.stm32l0_dfu.upload.params.quiet=
-tools.stm32l0_dfu.upload.pattern="{path}/{cmd}" "{build.vid}" "{build.pid}" "{build.path}/{build.project_name}.dfu" "{build.baseaddr}"
-tools.stm32l0_dfu.program.params.verbose=-v
-tools.stm32l0_dfu.program.params.quiet=
-tools.stm32l0_dfu.program.pattern="{path}/{cmd}" "{build.vid}" "{build.pid}" "{build.path}/{build.project_name}.dfu" "{build.baseaddr}"
-tools.stm32l0_dfu.bootloader.params.verbose=-v
-tools.stm32l0_dfu.bootloader.params.quiet=
-tools.stm32l0_dfu.bootloader.pattern="{path}/{cmd}" "{build.vid}" "{build.pid}" "{runtime.platform.path}/bootloaders/{bootloader.file}.bin" 0x08000000
+tools.stm32l0_dfu.upload.params.verbose=-vx
+tools.stm32l0_dfu.upload.params.quiet=-nvx
+tools.stm32l0_dfu.upload.pattern="{path}/{cmd}" {upload.verbose} "{build.vid}" "{build.pid}" "{build.path}/{build.project_name}.dfu" "{build.baseaddr}"
+tools.stm32l0_dfu.program.params.verbose=-vx
+tools.stm32l0_dfu.program.params.quiet=-nvx
+tools.stm32l0_dfu.program.pattern="{path}/{cmd}" {program.verbose} "{build.vid}" "{build.pid}" "{build.path}/{build.project_name}.dfu" "{build.baseaddr}"
+tools.stm32l0_dfu.bootloader.params.verbose=-vx
+tools.stm32l0_dfu.bootloader.params.quiet=-nvx
+tools.stm32l0_dfu.bootloader.pattern="{path}/{cmd}" {bootloader.verbose} "{build.vid}" "{build.pid}" "{runtime.platform.path}/bootloaders/{bootloader.file}.bin" 0x08000000
 tools.stm32l0_dfu.erase.params.verbose=
 tools.stm32l0_dfu.erase.params.quiet=
 tools.stm32l0_dfu.erase.pattern=
+
+# DFU plus bootloader (if enabled)
+tools.stm32l0_dfu_bootloader.cmd=stm32l0-upload
+tools.stm32l0_dfu_bootloader.cmd.windows=stm32l0-upload.bat
+tools.stm32l0_dfu_bootloader.path={runtime.platform.path}/tools/windows
+tools.stm32l0_dfu_bootloader.path.macosx={runtime.platform.path}/tools/windows
+tools.stm32l0_dfu_bootloader.path.linux={runtime.platform.path}/tools/linux
+tools.stm32l0_dfu_bootloader.upload.params.verbose=-vx
+tools.stm32l0_dfu_bootloader.upload.params.quiet=-nvx
+tools.stm32l0_dfu_bootloader.upload.pattern="{path}/{cmd}" {upload.verbose} "{build.vid}" "{build.pid}" "{build.path}/{build.project_name}.dfu" "{build.baseaddr}" "{runtime.platform.path}/bootloaders/{bootloader.file}.bin"
 
 # mcccibootloader_image
 mccibootloader_image.cmd=mccibootloader_image

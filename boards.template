@@ -106,6 +106,10 @@ $section DFU
 {{board}}.menu.upload_method.STLink.upload.protocol=STLink
 {{board}}.menu.upload_method.STLink.upload.tool=stlink_upload
 
+{{board}}.menu.upload_method.STLink_bl=STLink (include bootloader)
+{{board}}.menu.upload_method.STLink_bl.upload.protocol=STLink
+{{board}}.menu.upload_method.STLink_bl.upload.tool=stlink_upload_bootloader
+
 #{{board}}.menu.upload_method.Serial=Serial
 #{{board}}.menu.upload_method.Serial.upload.protocol=Serial
 #{{board}}.menu.upload_method.Serial.upload.tool=serial_upload
@@ -258,6 +262,12 @@ $section xserial
 {{board}}.menu.upload_method.DFU.upload.protocol=dfu
 {{board}}.menu.upload_method.DFU.upload.maximum_size=196608
 {{board}}.menu.upload_method.DFU.upload.maximum_data_size=20480
+
+{{board}}.menu.upload_method.DFU_bl=DFU (include bootloader)
+{{board}}.menu.upload_method.DFU_bl.upload.tool=stm32l0_dfu_bootloader
+{{board}}.menu.upload_method.DFU_bl.upload.protocol=dfu
+{{board}}.menu.upload_method.DFU_bl.upload.maximum_size=196608
+{{board}}.menu.upload_method.DFU_bl.upload.maximum_data_size=20480
 %%-DFU
 
 %%+MassStorage
