@@ -1,0 +1,111 @@
+#!/bin/bash
+#
+# arguments:
+#	[ -v for verbose, -nv for quiet; -vx / -nvx same, but exit cmd on error ]
+#	full path to STLINK tools
+#	path to image to download
+#	base address
+#	[optional] bootloader file
+
+VERBOSE=0
+case "$1" in
+  -v) VERBOSE=1; shift;;
+  -nv) shift;;
+  -vx) VERBOSE=1; shift;;
+  -nvx) shift;;
+  *) true;;
+esac
+
+# exit on uncaught error
+set -e
+
+TOOLDIR="$1/tools"
+if [[ "$(uname)" = "Darwin" ]]; then
+    TOOLDIR="$TOOLDIR/macosx"
+else
+    TOOLDIR="$TOOLDIR/linux"
+fi
+
+FILE="$2"
+if [[ "$FILE" = "" ]]; then
+  echo "Must provide image name"
+  exit 1
+fi
+if [[ ! -r "$FILE" ]]; then
+  echo "can't find file: $FILE"
+  exit 1
+fi
+
+BASEADDR="$3"
+if [[ "$BASEADDR" = "" ]]; then
+  echo "must provide base address as argument 3"
+  exit 1
+fi
+
+BOOTLOADER="$4"
+if [[ X"$BOOTLOADER" = X ]]; then
+  BOOTLOADER='-'
+fi
+
+if [[ "$BOOTLOADER" != "-" ]]; then
+  if [[ ! -r "$BOOTLOADER" ]]; then
+    echo "can't find bootloader: $BOOTLOADER"
+    exit 1
+  fi
+fi
+
+BOOTLOADERFLAGS=
+OPTREPLACING=0
+if [[ "$BOOTLOADER" != "-" ]]; then
+    # make sure load address is right
+    if [[ "$BASEADDR" != 0x0x08000000 ]]; then
+        echo "can't install bootloader if you select 'basic/no bootloader' in Tools/Trusted boot"
+        exit 1
+    fi
+    OPTREPLACING=1
+    BOOTLOADERFLAGS="-P $BOOTLOADER"
+elif [[ "$BASEADDR" = 0x08000000 ]]; then
+    OPTREPLACING=1
+fi
+
+if [[ $VERBOSE -ne 0 ]]; then
+  echo "Program file:   $FILE"
+  echo "Path to tools:  $TOOLDIR"
+  echo "Base address:   $BASEADDR"
+  if [[ "$BOOTLOADER" != "-" ]]; then
+    echo "Bootloader:     $BOOTLOADER"
+  elif [[ $OPTREPLACING -ne 0 ]]; then
+    echo "Bootloader:     overwriting"
+  else
+    echo "Bootloader:     using existing bootloader"
+  fi
+fi
+
+# cater to system differences
+if [[ "$(uname)" = "Darwin" ]]; then
+    DYLD_LIBRARY_PATH="$TOOLDIR/stlink/lib"
+elif [[ "$(uname -m)" = "x86_64" ]]; then
+    TOOLDIR="$(dirname "$TOOLDIR")/linux64"
+fi
+
+# upload the bootloader
+if [[ "$BOOTLOADER" != "-" ]]; then
+    if ! "$TOOLDIR"/stlink/st-flash write "$BOOTLOADER" 0x0x08000000; then
+        echo "Error uploading bootloader"
+        exit 1
+    fi
+fi
+
+# upload the main file
+if ! "$TOOLDIR"/stlink/st-flash write "$FILE" "$BASEADDR"; then
+    echo "Error uploading $FILE"
+    exit 1
+fi
+
+# report to user
+if [[ $VERBOSE -ne 0 ]]; then
+    echo "OK"
+fi
+
+exit 0
+### all done ###
