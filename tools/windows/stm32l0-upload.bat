@@ -32,6 +32,9 @@ set VIDPID=
 if not "%1" == "-" (
     if not "%2" == "-" (
         set VIDPID=%1:%2,
+    ) else (
+        echo First two args are vid/pid and both must be - if either is
+        exit %EXITFLAG% 1
     )
 ) else if not "%2" == "-" (
     echo First two args are vid/pid and both must be - if either is
@@ -90,9 +93,9 @@ if %VERBOSE% GTR 0 (
 	if not "%bootloader%" == "-" (
 	 echo Bootloader:     %bootloader%
 	) else if %OPTREPLACING% GTR 0 (
-	 echo Bootloader:     using existing bootloader
-	) else (
 	 echo Bootloader:     overwriting
+	) else (
+	 echo Bootloader:     using existing bootloader
 	)
 )
 
