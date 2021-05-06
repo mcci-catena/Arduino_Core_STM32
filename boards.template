@@ -258,9 +258,6 @@ $section xserial
 {{board}}.menu.upload_method.DFU.upload.protocol=dfu
 {{board}}.menu.upload_method.DFU.upload.maximum_size=196608
 {{board}}.menu.upload_method.DFU.upload.maximum_data_size=20480
-{{board}}.menu.upload_method.DFU.upload.use_1200bps_touch=true
-{{board}}.menu.upload_method.DFU.upload.wait_for_upload_port=false
-{{board}}.menu.upload_method.DFU.upload.native_usb=false
 %%-DFU
 
 %%+MassStorage
