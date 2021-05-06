@@ -70,13 +70,13 @@ BOOTLOADERFLAGS=
 OPTREPLACING=0
 if [[ "$BOOTLOADER" != "-" ]]; then
     # make sure load address is right
-    if [[ "$BASEADDR" != 0x0x08000000 ]]; then
+    if [[ "$BASEADDR" != 0x08005000 ]]; then
         echo "can't install bootloader if you select 'basic/no bootloader' in Tools/Trusted boot"
         exit 1
     fi
     OPTREPLACING=1
     BOOTLOADERFLAGS="-P $BOOTLOADER"
-elif [[ "$BASEADDR" = 0x08000000 ]]; then
+elif [[ "$BASEADDR" != 0x08005000 ]]; then
     OPTREPLACING=1
 fi
 
