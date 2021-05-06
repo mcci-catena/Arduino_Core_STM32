@@ -94,6 +94,8 @@ $section usb
 # {{board}}.build.c.Werror=
 # {{board}}.build.cpp.Werror=
 # {{board}}.build.S.Werror=
+{{board}}.bootloader.tool={{bootloader_tool}}
+{{board}}.bootloader.file={{bootloader_file}}
 
 #
 # menu.upload_method

@@ -8,6 +8,8 @@
 		"build_variant": 	"CATENA_{{modelnumber}}",
 		"build_variant_extra_flags": "",
 		"build_board_old_flags": "",
+		"bootloader_file":	"McciBootloader_46xx",
+		"bootloader_tool":	"stm32l0_dfu",
 		"extra_sections":	[ 
 			{ "name": "usb" }, 
 			{ "name": "DFU" },
@@ -77,6 +79,8 @@
 			{
 			"modelnumber": 	"4801",
 			"build_variant": "CATENA_4801",
+			"bootloader_file":	"McciBootloader_4801",
+			"bootloader_tool":	"stlink_upload",
 			"extra_sections": [ 
 				{ "name": "xserial",
 				  "using": "xserial_nousb"
@@ -87,6 +91,8 @@
 			{
 			"modelnumber": 	"4802",
 			"build_variant": "CATENA_4802",
+			"bootloader_file":	"McciBootloader_4801",
+			"bootloader_tool":	"stlink_upload",
 			"extra_sections": [ 
 				{ "name": "xserial",
 				  "using": "xserial_nousb"

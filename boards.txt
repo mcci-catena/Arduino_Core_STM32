@@ -69,6 +69,8 @@ mcci_catena_4551.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DAR
 # mcci_catena_4551.build.c.Werror=
 # mcci_catena_4551.build.cpp.Werror=
 # mcci_catena_4551.build.S.Werror=
+mcci_catena_4551.bootloader.tool=stm32l0_dfu
+mcci_catena_4551.bootloader.file=McciBootloader_46xx
 
 #
 # menu.upload_method
@@ -255,6 +257,8 @@ mcci_catena_4610.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DAR
 # mcci_catena_4610.build.c.Werror=
 # mcci_catena_4610.build.cpp.Werror=
 # mcci_catena_4610.build.S.Werror=
+mcci_catena_4610.bootloader.tool=stm32l0_dfu
+mcci_catena_4610.bootloader.file=McciBootloader_46xx
 
 #
 # menu.upload_method
@@ -441,6 +445,8 @@ mcci_catena_4611.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DAR
 # mcci_catena_4611.build.c.Werror=
 # mcci_catena_4611.build.cpp.Werror=
 # mcci_catena_4611.build.S.Werror=
+mcci_catena_4611.bootloader.tool=stm32l0_dfu
+mcci_catena_4611.bootloader.file=McciBootloader_46xx
 
 #
 # menu.upload_method
@@ -627,6 +633,8 @@ mcci_catena_4612.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DAR
 # mcci_catena_4612.build.c.Werror=
 # mcci_catena_4612.build.cpp.Werror=
 # mcci_catena_4612.build.S.Werror=
+mcci_catena_4612.bootloader.tool=stm32l0_dfu
+mcci_catena_4612.bootloader.file=McciBootloader_46xx
 
 #
 # menu.upload_method
@@ -813,6 +821,8 @@ mcci_catena_4617.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DAR
 # mcci_catena_4617.build.c.Werror=
 # mcci_catena_4617.build.cpp.Werror=
 # mcci_catena_4617.build.S.Werror=
+mcci_catena_4617.bootloader.tool=stm32l0_dfu
+mcci_catena_4617.bootloader.file=McciBootloader_46xx
 
 #
 # menu.upload_method
@@ -999,6 +1009,8 @@ mcci_catena_4618.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DAR
 # mcci_catena_4618.build.c.Werror=
 # mcci_catena_4618.build.cpp.Werror=
 # mcci_catena_4618.build.S.Werror=
+mcci_catena_4618.bootloader.tool=stm32l0_dfu
+mcci_catena_4618.bootloader.file=McciBootloader_46xx
 
 #
 # menu.upload_method
@@ -1185,6 +1197,8 @@ mcci_catena_4630.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DAR
 # mcci_catena_4630.build.c.Werror=
 # mcci_catena_4630.build.cpp.Werror=
 # mcci_catena_4630.build.S.Werror=
+mcci_catena_4630.bootloader.tool=stm32l0_dfu
+mcci_catena_4630.bootloader.file=McciBootloader_46xx
 
 #
 # menu.upload_method
@@ -1365,6 +1379,8 @@ mcci_catena_4801.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DAR
 # mcci_catena_4801.build.c.Werror=
 # mcci_catena_4801.build.cpp.Werror=
 # mcci_catena_4801.build.S.Werror=
+mcci_catena_4801.bootloader.tool=stlink_upload
+mcci_catena_4801.bootloader.file=McciBootloader_4801
 
 #
 # menu.upload_method
@@ -1535,6 +1551,8 @@ mcci_catena_4802.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DAR
 # mcci_catena_4802.build.c.Werror=
 # mcci_catena_4802.build.cpp.Werror=
 # mcci_catena_4802.build.S.Werror=
+mcci_catena_4802.bootloader.tool=stlink_upload
+mcci_catena_4802.bootloader.file=McciBootloader_4801
 
 #
 # menu.upload_method
