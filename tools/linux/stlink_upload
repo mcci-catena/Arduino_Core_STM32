@@ -95,7 +95,7 @@ fi
 
 # cater to system differences
 if [[ "$(uname)" = "Darwin" ]]; then
-    export DYLD_LIBRARY_PATH="$TOOLDIR/stlink/lib"
+    DYLD_LIBRARY_PATH="$TOOLDIR/stlink/lib"
 else
   if [[ "$(uname -m)" = "x86_64" ]]; then
     TOOLDIR="$(dirname "$TOOLDIR")/linux64"
@@ -105,14 +105,14 @@ fi
 
 # upload the bootloader
 if [[ "$BOOTLOADER" != "-" ]]; then
-    if ! "$TOOLDIR"/stlink/st-flash write "$BOOTLOADER" 0x0x08000000; then
+    if ! "$TOOLDIR"/stlink/st-flash --format binary write "$BOOTLOADER" 0x08000000 ; then
         echo "Error uploading bootloader"
         exit 1
     fi
 fi
 
 # upload the main file
-if ! "$TOOLDIR"/stlink/st-flash write "$FILE" "$BASEADDR"; then
+if ! "$TOOLDIR"/stlink/st-flash --format binary write "$FILE" "$BASEADDR" ; then
     echo "Error uploading $FILE"
     exit 1
 fi
