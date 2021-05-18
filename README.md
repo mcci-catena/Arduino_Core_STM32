@@ -4,7 +4,7 @@ This repository is MCCI's version of [Arduino_Core_STM32](https://github.com/stm
 
 For general information, please check the stm32duino [README.md](https://github.com/stm32duino/Arduino_Core_STM32#arduino-core-support-for-stm32-based-boards), especially the [Getting Started](https://github.com/stm32duino/Arduino_Core_STM32#getting-started) section.
 
-[![GitHub release](https://img.shields.io/github/release/mcci-catena/Arduino_Core_STM32.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/releases/latest) [![GitHub commits](https://img.shields.io/github/commits-since/mcci-catena/Arduino_Core_STM32/latest.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/compare/v2.8.0...master)
+[![GitHub release](https://img.shields.io/github/release/mcci-catena/Arduino_Core_STM32.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/releases/latest) [![GitHub commits](https://img.shields.io/github/commits-since/mcci-catena/Arduino_Core_STM32/latest.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/compare/v3.0.0...master)
 
 **Contents:**
 <!-- markdownlint-disable MD033 -->
@@ -156,7 +156,7 @@ Remember to restart the IDE whenever you change `platform.txt`, `boards.txt` or 
 
 ## Release History
 
-- HEAD: Switch to true semantic versioning [#150](https://github.com/mcci-catena/Arduino_Core_STM32/issues/150. add support for MCCI trusted bootloader. This will be V3.0 when released; version is (semantic) 3.0.0-1 (pre-release 1).
+- [v3.0.0](https://github.com/mcci-catena/Arduino_Core_STM32/releases/tag/v3.0.0) Switch to true semantic versioning [#150](https://github.com/mcci-catena/Arduino_Core_STM32/issues/150). Add support for MCCI trusted bootloader [#148](https://github.com/mcci-catena/Arduino_Core_STM32/issues/148), [#149](https://github.com/mcci-catena/Arduino_Core_STM32/issues/149), [#151](https://github.com/mcci-catena/Arduino_Core_STM32/issues/151), [#153](https://github.com/mcci-catena/Arduino_Core_STM32/issues/153). Enable interrupts on entry to reset vector for consistency with ST bootloader.
 
 - [v2.8.0](https://github.com/mcci-catena/Arduino_Core_STM32/releases/tag/v2.8.0) Added support for new board: 4802, [#143](https://github.com/mcci-catena/Arduino_Core_STM32/issues/143).
 
