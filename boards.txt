@@ -74,25 +74,29 @@ mcci_catena_4551.bootloader.file=McciBootloader_46xx
 
 #
 # menu.upload_method
+mcci_catena_4551.menu.upload_method.DFU_bl=DFU (include bootloader)
+mcci_catena_4551.menu.upload_method.DFU_bl.upload.tool=stm32l0_dfu_bootloader
+mcci_catena_4551.menu.upload_method.DFU_bl.upload.protocol=dfu
+mcci_catena_4551.menu.upload_method.DFU_bl.upload.maximum_size=172032
+mcci_catena_4551.menu.upload_method.DFU_bl.upload.maximum_data_size=20480
+
 mcci_catena_4551.menu.upload_method.DFU=DFU
 mcci_catena_4551.menu.upload_method.DFU.upload.tool=stm32l0_dfu
 mcci_catena_4551.menu.upload_method.DFU.upload.protocol=dfu
 mcci_catena_4551.menu.upload_method.DFU.upload.maximum_size=196608
 mcci_catena_4551.menu.upload_method.DFU.upload.maximum_data_size=20480
 
-mcci_catena_4551.menu.upload_method.DFU_bl=DFU (include bootloader)
-mcci_catena_4551.menu.upload_method.DFU_bl.upload.tool=stm32l0_dfu_bootloader
-mcci_catena_4551.menu.upload_method.DFU_bl.upload.protocol=dfu
-mcci_catena_4551.menu.upload_method.DFU_bl.upload.maximum_size=196608
-mcci_catena_4551.menu.upload_method.DFU_bl.upload.maximum_data_size=20480
+mcci_catena_4551.menu.upload_method.STLink_bl=STLink (include bootloader)
+mcci_catena_4551.menu.upload_method.STLink_bl.upload.protocol=STLink
+mcci_catena_4551.menu.upload_method.STLink_bl.upload.tool=stlink_upload_bootloader
+mcci_catena_4551.menu.upload_method.STLink_bl.upload.maximum_size=172032
+mcci_catena_4551.menu.upload_method.STLink_bl.upload.maximum_data_size=20480
 
 mcci_catena_4551.menu.upload_method.STLink=STLink
 mcci_catena_4551.menu.upload_method.STLink.upload.protocol=STLink
 mcci_catena_4551.menu.upload_method.STLink.upload.tool=stlink_upload
-
-mcci_catena_4551.menu.upload_method.STLink_bl=STLink (include bootloader)
-mcci_catena_4551.menu.upload_method.STLink_bl.upload.protocol=STLink
-mcci_catena_4551.menu.upload_method.STLink_bl.upload.tool=stlink_upload_bootloader
+mcci_catena_4551.menu.upload_method.STLink.upload.maximum_size=196608
+mcci_catena_4551.menu.upload_method.STLink.upload.maximum_data_size=20480
 
 #mcci_catena_4551.menu.upload_method.Serial=Serial
 #mcci_catena_4551.menu.upload_method.Serial.upload.protocol=Serial
@@ -269,25 +273,29 @@ mcci_catena_4610.bootloader.file=McciBootloader_46xx
 
 #
 # menu.upload_method
+mcci_catena_4610.menu.upload_method.DFU_bl=DFU (include bootloader)
+mcci_catena_4610.menu.upload_method.DFU_bl.upload.tool=stm32l0_dfu_bootloader
+mcci_catena_4610.menu.upload_method.DFU_bl.upload.protocol=dfu
+mcci_catena_4610.menu.upload_method.DFU_bl.upload.maximum_size=172032
+mcci_catena_4610.menu.upload_method.DFU_bl.upload.maximum_data_size=20480
+
 mcci_catena_4610.menu.upload_method.DFU=DFU
 mcci_catena_4610.menu.upload_method.DFU.upload.tool=stm32l0_dfu
 mcci_catena_4610.menu.upload_method.DFU.upload.protocol=dfu
 mcci_catena_4610.menu.upload_method.DFU.upload.maximum_size=196608
 mcci_catena_4610.menu.upload_method.DFU.upload.maximum_data_size=20480
 
-mcci_catena_4610.menu.upload_method.DFU_bl=DFU (include bootloader)
-mcci_catena_4610.menu.upload_method.DFU_bl.upload.tool=stm32l0_dfu_bootloader
-mcci_catena_4610.menu.upload_method.DFU_bl.upload.protocol=dfu
-mcci_catena_4610.menu.upload_method.DFU_bl.upload.maximum_size=196608
-mcci_catena_4610.menu.upload_method.DFU_bl.upload.maximum_data_size=20480
+mcci_catena_4610.menu.upload_method.STLink_bl=STLink (include bootloader)
+mcci_catena_4610.menu.upload_method.STLink_bl.upload.protocol=STLink
+mcci_catena_4610.menu.upload_method.STLink_bl.upload.tool=stlink_upload_bootloader
+mcci_catena_4610.menu.upload_method.STLink_bl.upload.maximum_size=172032
+mcci_catena_4610.menu.upload_method.STLink_bl.upload.maximum_data_size=20480
 
 mcci_catena_4610.menu.upload_method.STLink=STLink
 mcci_catena_4610.menu.upload_method.STLink.upload.protocol=STLink
 mcci_catena_4610.menu.upload_method.STLink.upload.tool=stlink_upload
-
-mcci_catena_4610.menu.upload_method.STLink_bl=STLink (include bootloader)
-mcci_catena_4610.menu.upload_method.STLink_bl.upload.protocol=STLink
-mcci_catena_4610.menu.upload_method.STLink_bl.upload.tool=stlink_upload_bootloader
+mcci_catena_4610.menu.upload_method.STLink.upload.maximum_size=196608
+mcci_catena_4610.menu.upload_method.STLink.upload.maximum_data_size=20480
 
 #mcci_catena_4610.menu.upload_method.Serial=Serial
 #mcci_catena_4610.menu.upload_method.Serial.upload.protocol=Serial
@@ -464,25 +472,29 @@ mcci_catena_4611.bootloader.file=McciBootloader_46xx
 
 #
 # menu.upload_method
+mcci_catena_4611.menu.upload_method.DFU_bl=DFU (include bootloader)
+mcci_catena_4611.menu.upload_method.DFU_bl.upload.tool=stm32l0_dfu_bootloader
+mcci_catena_4611.menu.upload_method.DFU_bl.upload.protocol=dfu
+mcci_catena_4611.menu.upload_method.DFU_bl.upload.maximum_size=172032
+mcci_catena_4611.menu.upload_method.DFU_bl.upload.maximum_data_size=20480
+
 mcci_catena_4611.menu.upload_method.DFU=DFU
 mcci_catena_4611.menu.upload_method.DFU.upload.tool=stm32l0_dfu
 mcci_catena_4611.menu.upload_method.DFU.upload.protocol=dfu
 mcci_catena_4611.menu.upload_method.DFU.upload.maximum_size=196608
 mcci_catena_4611.menu.upload_method.DFU.upload.maximum_data_size=20480
 
-mcci_catena_4611.menu.upload_method.DFU_bl=DFU (include bootloader)
-mcci_catena_4611.menu.upload_method.DFU_bl.upload.tool=stm32l0_dfu_bootloader
-mcci_catena_4611.menu.upload_method.DFU_bl.upload.protocol=dfu
-mcci_catena_4611.menu.upload_method.DFU_bl.upload.maximum_size=196608
-mcci_catena_4611.menu.upload_method.DFU_bl.upload.maximum_data_size=20480
+mcci_catena_4611.menu.upload_method.STLink_bl=STLink (include bootloader)
+mcci_catena_4611.menu.upload_method.STLink_bl.upload.protocol=STLink
+mcci_catena_4611.menu.upload_method.STLink_bl.upload.tool=stlink_upload_bootloader
+mcci_catena_4611.menu.upload_method.STLink_bl.upload.maximum_size=172032
+mcci_catena_4611.menu.upload_method.STLink_bl.upload.maximum_data_size=20480
 
 mcci_catena_4611.menu.upload_method.STLink=STLink
 mcci_catena_4611.menu.upload_method.STLink.upload.protocol=STLink
 mcci_catena_4611.menu.upload_method.STLink.upload.tool=stlink_upload
-
-mcci_catena_4611.menu.upload_method.STLink_bl=STLink (include bootloader)
-mcci_catena_4611.menu.upload_method.STLink_bl.upload.protocol=STLink
-mcci_catena_4611.menu.upload_method.STLink_bl.upload.tool=stlink_upload_bootloader
+mcci_catena_4611.menu.upload_method.STLink.upload.maximum_size=196608
+mcci_catena_4611.menu.upload_method.STLink.upload.maximum_data_size=20480
 
 #mcci_catena_4611.menu.upload_method.Serial=Serial
 #mcci_catena_4611.menu.upload_method.Serial.upload.protocol=Serial
@@ -659,25 +671,29 @@ mcci_catena_4612.bootloader.file=McciBootloader_46xx
 
 #
 # menu.upload_method
+mcci_catena_4612.menu.upload_method.DFU_bl=DFU (include bootloader)
+mcci_catena_4612.menu.upload_method.DFU_bl.upload.tool=stm32l0_dfu_bootloader
+mcci_catena_4612.menu.upload_method.DFU_bl.upload.protocol=dfu
+mcci_catena_4612.menu.upload_method.DFU_bl.upload.maximum_size=172032
+mcci_catena_4612.menu.upload_method.DFU_bl.upload.maximum_data_size=20480
+
 mcci_catena_4612.menu.upload_method.DFU=DFU
 mcci_catena_4612.menu.upload_method.DFU.upload.tool=stm32l0_dfu
 mcci_catena_4612.menu.upload_method.DFU.upload.protocol=dfu
 mcci_catena_4612.menu.upload_method.DFU.upload.maximum_size=196608
 mcci_catena_4612.menu.upload_method.DFU.upload.maximum_data_size=20480
 
-mcci_catena_4612.menu.upload_method.DFU_bl=DFU (include bootloader)
-mcci_catena_4612.menu.upload_method.DFU_bl.upload.tool=stm32l0_dfu_bootloader
-mcci_catena_4612.menu.upload_method.DFU_bl.upload.protocol=dfu
-mcci_catena_4612.menu.upload_method.DFU_bl.upload.maximum_size=196608
-mcci_catena_4612.menu.upload_method.DFU_bl.upload.maximum_data_size=20480
+mcci_catena_4612.menu.upload_method.STLink_bl=STLink (include bootloader)
+mcci_catena_4612.menu.upload_method.STLink_bl.upload.protocol=STLink
+mcci_catena_4612.menu.upload_method.STLink_bl.upload.tool=stlink_upload_bootloader
+mcci_catena_4612.menu.upload_method.STLink_bl.upload.maximum_size=172032
+mcci_catena_4612.menu.upload_method.STLink_bl.upload.maximum_data_size=20480
 
 mcci_catena_4612.menu.upload_method.STLink=STLink
 mcci_catena_4612.menu.upload_method.STLink.upload.protocol=STLink
 mcci_catena_4612.menu.upload_method.STLink.upload.tool=stlink_upload
-
-mcci_catena_4612.menu.upload_method.STLink_bl=STLink (include bootloader)
-mcci_catena_4612.menu.upload_method.STLink_bl.upload.protocol=STLink
-mcci_catena_4612.menu.upload_method.STLink_bl.upload.tool=stlink_upload_bootloader
+mcci_catena_4612.menu.upload_method.STLink.upload.maximum_size=196608
+mcci_catena_4612.menu.upload_method.STLink.upload.maximum_data_size=20480
 
 #mcci_catena_4612.menu.upload_method.Serial=Serial
 #mcci_catena_4612.menu.upload_method.Serial.upload.protocol=Serial
@@ -854,25 +870,29 @@ mcci_catena_4617.bootloader.file=McciBootloader_46xx
 
 #
 # menu.upload_method
+mcci_catena_4617.menu.upload_method.DFU_bl=DFU (include bootloader)
+mcci_catena_4617.menu.upload_method.DFU_bl.upload.tool=stm32l0_dfu_bootloader
+mcci_catena_4617.menu.upload_method.DFU_bl.upload.protocol=dfu
+mcci_catena_4617.menu.upload_method.DFU_bl.upload.maximum_size=172032
+mcci_catena_4617.menu.upload_method.DFU_bl.upload.maximum_data_size=20480
+
 mcci_catena_4617.menu.upload_method.DFU=DFU
 mcci_catena_4617.menu.upload_method.DFU.upload.tool=stm32l0_dfu
 mcci_catena_4617.menu.upload_method.DFU.upload.protocol=dfu
 mcci_catena_4617.menu.upload_method.DFU.upload.maximum_size=196608
 mcci_catena_4617.menu.upload_method.DFU.upload.maximum_data_size=20480
 
-mcci_catena_4617.menu.upload_method.DFU_bl=DFU (include bootloader)
-mcci_catena_4617.menu.upload_method.DFU_bl.upload.tool=stm32l0_dfu_bootloader
-mcci_catena_4617.menu.upload_method.DFU_bl.upload.protocol=dfu
-mcci_catena_4617.menu.upload_method.DFU_bl.upload.maximum_size=196608
-mcci_catena_4617.menu.upload_method.DFU_bl.upload.maximum_data_size=20480
+mcci_catena_4617.menu.upload_method.STLink_bl=STLink (include bootloader)
+mcci_catena_4617.menu.upload_method.STLink_bl.upload.protocol=STLink
+mcci_catena_4617.menu.upload_method.STLink_bl.upload.tool=stlink_upload_bootloader
+mcci_catena_4617.menu.upload_method.STLink_bl.upload.maximum_size=172032
+mcci_catena_4617.menu.upload_method.STLink_bl.upload.maximum_data_size=20480
 
 mcci_catena_4617.menu.upload_method.STLink=STLink
 mcci_catena_4617.menu.upload_method.STLink.upload.protocol=STLink
 mcci_catena_4617.menu.upload_method.STLink.upload.tool=stlink_upload
-
-mcci_catena_4617.menu.upload_method.STLink_bl=STLink (include bootloader)
-mcci_catena_4617.menu.upload_method.STLink_bl.upload.protocol=STLink
-mcci_catena_4617.menu.upload_method.STLink_bl.upload.tool=stlink_upload_bootloader
+mcci_catena_4617.menu.upload_method.STLink.upload.maximum_size=196608
+mcci_catena_4617.menu.upload_method.STLink.upload.maximum_data_size=20480
 
 #mcci_catena_4617.menu.upload_method.Serial=Serial
 #mcci_catena_4617.menu.upload_method.Serial.upload.protocol=Serial
@@ -1049,25 +1069,29 @@ mcci_catena_4618.bootloader.file=McciBootloader_46xx
 
 #
 # menu.upload_method
+mcci_catena_4618.menu.upload_method.DFU_bl=DFU (include bootloader)
+mcci_catena_4618.menu.upload_method.DFU_bl.upload.tool=stm32l0_dfu_bootloader
+mcci_catena_4618.menu.upload_method.DFU_bl.upload.protocol=dfu
+mcci_catena_4618.menu.upload_method.DFU_bl.upload.maximum_size=172032
+mcci_catena_4618.menu.upload_method.DFU_bl.upload.maximum_data_size=20480
+
 mcci_catena_4618.menu.upload_method.DFU=DFU
 mcci_catena_4618.menu.upload_method.DFU.upload.tool=stm32l0_dfu
 mcci_catena_4618.menu.upload_method.DFU.upload.protocol=dfu
 mcci_catena_4618.menu.upload_method.DFU.upload.maximum_size=196608
 mcci_catena_4618.menu.upload_method.DFU.upload.maximum_data_size=20480
 
-mcci_catena_4618.menu.upload_method.DFU_bl=DFU (include bootloader)
-mcci_catena_4618.menu.upload_method.DFU_bl.upload.tool=stm32l0_dfu_bootloader
-mcci_catena_4618.menu.upload_method.DFU_bl.upload.protocol=dfu
-mcci_catena_4618.menu.upload_method.DFU_bl.upload.maximum_size=196608
-mcci_catena_4618.menu.upload_method.DFU_bl.upload.maximum_data_size=20480
+mcci_catena_4618.menu.upload_method.STLink_bl=STLink (include bootloader)
+mcci_catena_4618.menu.upload_method.STLink_bl.upload.protocol=STLink
+mcci_catena_4618.menu.upload_method.STLink_bl.upload.tool=stlink_upload_bootloader
+mcci_catena_4618.menu.upload_method.STLink_bl.upload.maximum_size=172032
+mcci_catena_4618.menu.upload_method.STLink_bl.upload.maximum_data_size=20480
 
 mcci_catena_4618.menu.upload_method.STLink=STLink
 mcci_catena_4618.menu.upload_method.STLink.upload.protocol=STLink
 mcci_catena_4618.menu.upload_method.STLink.upload.tool=stlink_upload
-
-mcci_catena_4618.menu.upload_method.STLink_bl=STLink (include bootloader)
-mcci_catena_4618.menu.upload_method.STLink_bl.upload.protocol=STLink
-mcci_catena_4618.menu.upload_method.STLink_bl.upload.tool=stlink_upload_bootloader
+mcci_catena_4618.menu.upload_method.STLink.upload.maximum_size=196608
+mcci_catena_4618.menu.upload_method.STLink.upload.maximum_data_size=20480
 
 #mcci_catena_4618.menu.upload_method.Serial=Serial
 #mcci_catena_4618.menu.upload_method.Serial.upload.protocol=Serial
@@ -1244,25 +1268,29 @@ mcci_catena_4630.bootloader.file=McciBootloader_46xx
 
 #
 # menu.upload_method
+mcci_catena_4630.menu.upload_method.DFU_bl=DFU (include bootloader)
+mcci_catena_4630.menu.upload_method.DFU_bl.upload.tool=stm32l0_dfu_bootloader
+mcci_catena_4630.menu.upload_method.DFU_bl.upload.protocol=dfu
+mcci_catena_4630.menu.upload_method.DFU_bl.upload.maximum_size=172032
+mcci_catena_4630.menu.upload_method.DFU_bl.upload.maximum_data_size=20480
+
 mcci_catena_4630.menu.upload_method.DFU=DFU
 mcci_catena_4630.menu.upload_method.DFU.upload.tool=stm32l0_dfu
 mcci_catena_4630.menu.upload_method.DFU.upload.protocol=dfu
 mcci_catena_4630.menu.upload_method.DFU.upload.maximum_size=196608
 mcci_catena_4630.menu.upload_method.DFU.upload.maximum_data_size=20480
 
-mcci_catena_4630.menu.upload_method.DFU_bl=DFU (include bootloader)
-mcci_catena_4630.menu.upload_method.DFU_bl.upload.tool=stm32l0_dfu_bootloader
-mcci_catena_4630.menu.upload_method.DFU_bl.upload.protocol=dfu
-mcci_catena_4630.menu.upload_method.DFU_bl.upload.maximum_size=196608
-mcci_catena_4630.menu.upload_method.DFU_bl.upload.maximum_data_size=20480
+mcci_catena_4630.menu.upload_method.STLink_bl=STLink (include bootloader)
+mcci_catena_4630.menu.upload_method.STLink_bl.upload.protocol=STLink
+mcci_catena_4630.menu.upload_method.STLink_bl.upload.tool=stlink_upload_bootloader
+mcci_catena_4630.menu.upload_method.STLink_bl.upload.maximum_size=172032
+mcci_catena_4630.menu.upload_method.STLink_bl.upload.maximum_data_size=20480
 
 mcci_catena_4630.menu.upload_method.STLink=STLink
 mcci_catena_4630.menu.upload_method.STLink.upload.protocol=STLink
 mcci_catena_4630.menu.upload_method.STLink.upload.tool=stlink_upload
-
-mcci_catena_4630.menu.upload_method.STLink_bl=STLink (include bootloader)
-mcci_catena_4630.menu.upload_method.STLink_bl.upload.protocol=STLink
-mcci_catena_4630.menu.upload_method.STLink_bl.upload.tool=stlink_upload_bootloader
+mcci_catena_4630.menu.upload_method.STLink.upload.maximum_size=196608
+mcci_catena_4630.menu.upload_method.STLink.upload.maximum_data_size=20480
 
 #mcci_catena_4630.menu.upload_method.Serial=Serial
 #mcci_catena_4630.menu.upload_method.Serial.upload.protocol=Serial
@@ -1434,13 +1462,17 @@ mcci_catena_4801.bootloader.file=McciBootloader_4801
 #
 # menu.upload_method
 
-mcci_catena_4801.menu.upload_method.STLink=STLink
-mcci_catena_4801.menu.upload_method.STLink.upload.protocol=STLink
-mcci_catena_4801.menu.upload_method.STLink.upload.tool=stlink_upload
-
 mcci_catena_4801.menu.upload_method.STLink_bl=STLink (include bootloader)
 mcci_catena_4801.menu.upload_method.STLink_bl.upload.protocol=STLink
 mcci_catena_4801.menu.upload_method.STLink_bl.upload.tool=stlink_upload_bootloader
+mcci_catena_4801.menu.upload_method.STLink_bl.upload.maximum_size=172032
+mcci_catena_4801.menu.upload_method.STLink_bl.upload.maximum_data_size=20480
+
+mcci_catena_4801.menu.upload_method.STLink=STLink
+mcci_catena_4801.menu.upload_method.STLink.upload.protocol=STLink
+mcci_catena_4801.menu.upload_method.STLink.upload.tool=stlink_upload
+mcci_catena_4801.menu.upload_method.STLink.upload.maximum_size=196608
+mcci_catena_4801.menu.upload_method.STLink.upload.maximum_data_size=20480
 
 #mcci_catena_4801.menu.upload_method.Serial=Serial
 #mcci_catena_4801.menu.upload_method.Serial.upload.protocol=Serial
@@ -1610,13 +1642,17 @@ mcci_catena_4802.bootloader.file=McciBootloader_4801
 #
 # menu.upload_method
 
-mcci_catena_4802.menu.upload_method.STLink=STLink
-mcci_catena_4802.menu.upload_method.STLink.upload.protocol=STLink
-mcci_catena_4802.menu.upload_method.STLink.upload.tool=stlink_upload
-
 mcci_catena_4802.menu.upload_method.STLink_bl=STLink (include bootloader)
 mcci_catena_4802.menu.upload_method.STLink_bl.upload.protocol=STLink
 mcci_catena_4802.menu.upload_method.STLink_bl.upload.tool=stlink_upload_bootloader
+mcci_catena_4802.menu.upload_method.STLink_bl.upload.maximum_size=172032
+mcci_catena_4802.menu.upload_method.STLink_bl.upload.maximum_data_size=20480
+
+mcci_catena_4802.menu.upload_method.STLink=STLink
+mcci_catena_4802.menu.upload_method.STLink.upload.protocol=STLink
+mcci_catena_4802.menu.upload_method.STLink.upload.tool=stlink_upload
+mcci_catena_4802.menu.upload_method.STLink.upload.maximum_size=196608
+mcci_catena_4802.menu.upload_method.STLink.upload.maximum_data_size=20480
 
 #mcci_catena_4802.menu.upload_method.Serial=Serial
 #mcci_catena_4802.menu.upload_method.Serial.upload.protocol=Serial
