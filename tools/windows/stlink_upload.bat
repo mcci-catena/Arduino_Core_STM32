@@ -1,11 +1,27 @@
-@echo off
 rem
-rem arguments:
-rem	[ -v for verbose, -nv for quiet; -vx / -nvx same, but exit cmd on error ]
-rem	full path with drive letter to STLINK tools
-rem	path to image to download
-rem	base address
-rem	[optional] bootloader file
+rem File: stm32l0-upload.bat
+rem
+rem Function:
+rem	Upload image (optionally plus bootloader) using DFU.
+rem
+rem Copyright & License:
+rem	See accompanying license file
+rem
+rem Author:
+rem	Terry Moore, MCCI	May 2021
+rem
+rem Arguments:
+rem	stlink_upload [flags] {tools} {image} {base} {bootloader}
+rem
+rem	[flags]		-v for verbose, -nv for quiet; -vx / -nvx same, but exit cmd on error
+rem	{tools}		full path with drive letter to STLINK tools
+rem	{image}		path to image to download
+rem	{base}		base address, 0x08000000 or 0x08005000
+rem	{bootloader}	[optional] bootloader file
+rem
+rem	Script is currently very fragile and only intended to be
+rem	called from Arduino IDE platform.txt.
+rem
 
 set VERBOSE=0
 set EXITFLAG=/b
@@ -71,7 +87,7 @@ if not "%bootloader%" == "-" (
 		exit 1
 	)
 	set OPTREPLACING=1
-	set bootloaderflags=-P "%bootloader%"
+	set bootloaderflags=-P "%bootloader%" 0x08000000
 ) else if "%baseaddr%" == "0x08005000" (
 	set OPTREPLACING=1
 )
