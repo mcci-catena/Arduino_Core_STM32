@@ -71,7 +71,7 @@ if not "%bootloader%" == "-" (
 		exit 1
 	)
 	set OPTREPLACING=1
-	set bootloaderflags=-P "%bootloader%"
+	set bootloaderflags=-P "%bootloader%" 0x08000000
 ) else if "%baseaddr%" == "0x08005000" (
 	set OPTREPLACING=1
 )
