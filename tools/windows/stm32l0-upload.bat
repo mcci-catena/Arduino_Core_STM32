@@ -119,7 +119,7 @@ set count=1
 
 :download
     if not "%bootloader%" == "-" (
-	    "%.\dfu-util.exe" -d %VIDPID%0x0483:0xdf11 -a 0 -s 0x08000000 -D "%bootloader%"
+	".\dfu-util.exe" -d %VIDPID%0x0483:0xdf11 -a 0 -s 0x08000000 -D "%bootloader%"
         if %ERRORLEVEL% GTR 0 (
             exit %EXITFLAG% %ERRORLEVEL%
         )
