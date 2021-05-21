@@ -4,7 +4,7 @@ This repository is MCCI's version of [Arduino_Core_STM32](https://github.com/stm
 
 For general information, please check the stm32duino [README.md](https://github.com/stm32duino/Arduino_Core_STM32#arduino-core-support-for-stm32-based-boards), especially the [Getting Started](https://github.com/stm32duino/Arduino_Core_STM32#getting-started) section.
 
-[![GitHub release](https://img.shields.io/github/release/mcci-catena/Arduino_Core_STM32.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/releases/latest) [![GitHub commits](https://img.shields.io/github/commits-since/mcci-catena/Arduino_Core_STM32/latest.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/compare/v3.0.0...master)
+[![GitHub release](https://img.shields.io/github/release/mcci-catena/Arduino_Core_STM32.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/releases/latest) [![GitHub commits](https://img.shields.io/github/commits-since/mcci-catena/Arduino_Core_STM32/latest.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/compare/v3.0.1...master)
 
 **Contents:**
 <!-- markdownlint-disable MD033 -->
@@ -155,6 +155,8 @@ If you want to develop and test changes to this package, we suggest the followin
 Remember to restart the IDE whenever you change `platform.txt`, `boards.txt` or `programmers.txt`.
 
 ## Release History
+
+- [v3.0.1](https://github.com/mcci-catena/Arduino_Core_STM32/releases/tag/v3.0.1) Patch release. Make "download with bootloader" the default choice in the IDE ([#158](https://github.com/mcci-catena/Arduino_Core_STM32/issues/158)). Windows "download with bootloader was broken for DFU ([#164](https://github.com/mcci-catena/Arduino_Core_STM32/issues/164)) and STLink ([#167](https://github.com/mcci-catena/Arduino_Core_STM32/issues/167)).
 
 - [v3.0.0](https://github.com/mcci-catena/Arduino_Core_STM32/releases/tag/v3.0.0) Switch to true semantic versioning [#150](https://github.com/mcci-catena/Arduino_Core_STM32/issues/150). Add support for MCCI trusted bootloader [#148](https://github.com/mcci-catena/Arduino_Core_STM32/issues/148), [#149](https://github.com/mcci-catena/Arduino_Core_STM32/issues/149), [#151](https://github.com/mcci-catena/Arduino_Core_STM32/issues/151), [#153](https://github.com/mcci-catena/Arduino_Core_STM32/issues/153). Enable interrupts on entry to reset vector for consistency with ST bootloader.
 
