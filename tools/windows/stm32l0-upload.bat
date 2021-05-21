@@ -1,12 +1,29 @@
 @echo off
-
 rem
-rem arguments:
+rem File: stm32l0-upload.bat
+rem
+rem Function:
+rem	Upload image (optionally plus bootloader) using DFU.
+rem
+rem Copyright & License:
+rem	See accompanying license file
+rem
+rem Author:
+rem	Original imported by Velmurugan, MCCI	June 2018
+rem	Substantialy rewritten by Terry Moore, MCCI May 2021
+rem
+rem Arguments:
+rem	stm32l0-upload [flags] {vid} {pid} {image} {base} {bootloader}
+rem
 rem	[ -v for verbose, -nv for quiet; -vx / -nvx same, but exit cmd on error ]
-rem	full path with drive letter to STLINK tools
-rem	path to image to download
-rem	base address
-rem	[optional] bootloader file
+rem	{vid} {pid} 	hex vendor id/product id of device when running.
+rem	{image}		path to image to download
+rem	{base}		base address, 0x08000000 or 0x08005000
+rem	{bootloader}	optional bootloader file; specify as '-' to explicitly omit.
+rem
+rem	Script is currently very fragile and only intended to be
+rem	called from Arduino IDE platform.txt.
+rem
 
 cd /d %~dp0
 
@@ -119,7 +136,7 @@ set count=1
 
 :download
     if not "%bootloader%" == "-" (
-	    "%.\dfu-util.exe" -d %VIDPID%0x0483:0xdf11 -a 0 -s 0x08000000 -D "%bootloader%"
+	".\dfu-util.exe" -d %VIDPID%0x0483:0xdf11 -a 0 -s 0x08000000 -D "%bootloader%"
         if %ERRORLEVEL% GTR 0 (
             exit %EXITFLAG% %ERRORLEVEL%
         )
