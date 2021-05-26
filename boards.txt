@@ -173,8 +173,8 @@ mcci_catena_4551.menu.opt.ogstd.build.flags.ldspecs=
 # menu.technology
 mcci_catena_4551.menu.technology.lorawan=LoRaWAN
 mcci_catena_4551.menu.technology.sigfox=Sigfox
-mcci_catena_4551.menu.technology.lorawan.build.technology_flags=-DARDUINO_LORAWAN
-mcci_catena_4551.menu.technology.sigfox.build.technology_flags=-DARDUINO_SIGFOX
+mcci_catena_4551.menu.technology.lorawan.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_LORAWAN
+mcci_catena_4551.menu.technology.sigfox.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_SIGFOX
 
 #
 # menu.lorawan_region
@@ -379,8 +379,8 @@ mcci_catena_4610.menu.opt.ogstd.build.flags.ldspecs=
 # menu.technology
 mcci_catena_4610.menu.technology.lorawan=LoRaWAN
 mcci_catena_4610.menu.technology.sigfox=Sigfox
-mcci_catena_4610.menu.technology.lorawan.build.technology_flags=-DARDUINO_LORAWAN
-mcci_catena_4610.menu.technology.sigfox.build.technology_flags=-DARDUINO_SIGFOX
+mcci_catena_4610.menu.technology.lorawan.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_LORAWAN
+mcci_catena_4610.menu.technology.sigfox.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_SIGFOX
 
 #
 # menu.lorawan_region
@@ -585,8 +585,8 @@ mcci_catena_4611.menu.opt.ogstd.build.flags.ldspecs=
 # menu.technology
 mcci_catena_4611.menu.technology.lorawan=LoRaWAN
 mcci_catena_4611.menu.technology.sigfox=Sigfox
-mcci_catena_4611.menu.technology.lorawan.build.technology_flags=-DARDUINO_LORAWAN
-mcci_catena_4611.menu.technology.sigfox.build.technology_flags=-DARDUINO_SIGFOX
+mcci_catena_4611.menu.technology.lorawan.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_LORAWAN
+mcci_catena_4611.menu.technology.sigfox.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_SIGFOX
 
 #
 # menu.lorawan_region
@@ -791,8 +791,8 @@ mcci_catena_4612.menu.opt.ogstd.build.flags.ldspecs=
 # menu.technology
 mcci_catena_4612.menu.technology.lorawan=LoRaWAN
 mcci_catena_4612.menu.technology.sigfox=Sigfox
-mcci_catena_4612.menu.technology.lorawan.build.technology_flags=-DARDUINO_LORAWAN
-mcci_catena_4612.menu.technology.sigfox.build.technology_flags=-DARDUINO_SIGFOX
+mcci_catena_4612.menu.technology.lorawan.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_LORAWAN
+mcci_catena_4612.menu.technology.sigfox.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_SIGFOX
 
 #
 # menu.lorawan_region
@@ -997,8 +997,8 @@ mcci_catena_4617.menu.opt.ogstd.build.flags.ldspecs=
 # menu.technology
 mcci_catena_4617.menu.technology.lorawan=LoRaWAN
 mcci_catena_4617.menu.technology.sigfox=Sigfox
-mcci_catena_4617.menu.technology.lorawan.build.technology_flags=-DARDUINO_LORAWAN
-mcci_catena_4617.menu.technology.sigfox.build.technology_flags=-DARDUINO_SIGFOX
+mcci_catena_4617.menu.technology.lorawan.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_LORAWAN
+mcci_catena_4617.menu.technology.sigfox.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_SIGFOX
 
 #
 # menu.lorawan_region
@@ -1203,8 +1203,8 @@ mcci_catena_4618.menu.opt.ogstd.build.flags.ldspecs=
 # menu.technology
 mcci_catena_4618.menu.technology.lorawan=LoRaWAN
 mcci_catena_4618.menu.technology.sigfox=Sigfox
-mcci_catena_4618.menu.technology.lorawan.build.technology_flags=-DARDUINO_LORAWAN
-mcci_catena_4618.menu.technology.sigfox.build.technology_flags=-DARDUINO_SIGFOX
+mcci_catena_4618.menu.technology.lorawan.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_LORAWAN
+mcci_catena_4618.menu.technology.sigfox.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_SIGFOX
 
 #
 # menu.lorawan_region
@@ -1409,8 +1409,8 @@ mcci_catena_4630.menu.opt.ogstd.build.flags.ldspecs=
 # menu.technology
 mcci_catena_4630.menu.technology.lorawan=LoRaWAN
 mcci_catena_4630.menu.technology.sigfox=Sigfox
-mcci_catena_4630.menu.technology.lorawan.build.technology_flags=-DARDUINO_LORAWAN
-mcci_catena_4630.menu.technology.sigfox.build.technology_flags=-DARDUINO_SIGFOX
+mcci_catena_4630.menu.technology.lorawan.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_LORAWAN
+mcci_catena_4630.menu.technology.sigfox.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_SIGFOX
 
 #
 # menu.lorawan_region
@@ -1596,8 +1596,8 @@ mcci_catena_4801.menu.opt.ogstd.build.flags.ldspecs=
 # menu.technology
 mcci_catena_4801.menu.technology.lorawan=LoRaWAN
 mcci_catena_4801.menu.technology.sigfox=Sigfox
-mcci_catena_4801.menu.technology.lorawan.build.technology_flags=-DARDUINO_LORAWAN
-mcci_catena_4801.menu.technology.sigfox.build.technology_flags=-DARDUINO_SIGFOX
+mcci_catena_4801.menu.technology.lorawan.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_LORAWAN
+mcci_catena_4801.menu.technology.sigfox.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_SIGFOX
 
 #
 # menu.lorawan_region
@@ -1783,8 +1783,8 @@ mcci_catena_4802.menu.opt.ogstd.build.flags.ldspecs=
 # menu.technology
 mcci_catena_4802.menu.technology.lorawan=LoRaWAN
 mcci_catena_4802.menu.technology.sigfox=Sigfox
-mcci_catena_4802.menu.technology.lorawan.build.technology_flags=-DARDUINO_LORAWAN
-mcci_catena_4802.menu.technology.sigfox.build.technology_flags=-DARDUINO_SIGFOX
+mcci_catena_4802.menu.technology.lorawan.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_LORAWAN
+mcci_catena_4802.menu.technology.sigfox.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_SIGFOX
 
 #
 # menu.lorawan_region
