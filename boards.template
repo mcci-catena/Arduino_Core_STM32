@@ -178,8 +178,8 @@ $section xserial
 # menu.technology
 {{board}}.menu.technology.lorawan=LoRaWAN
 {{board}}.menu.technology.sigfox=Sigfox
-{{board}}.menu.technology.lorawan.build.technology_flags=-DARDUINO_LORAWAN
-{{board}}.menu.technology.sigfox.build.technology_flags=-DARDUINO_SIGFOX
+{{board}}.menu.technology.lorawan.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_LORAWAN
+{{board}}.menu.technology.sigfox.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_SIGFOX
 
 #
 # menu.lorawan_region
