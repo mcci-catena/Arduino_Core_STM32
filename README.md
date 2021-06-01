@@ -157,11 +157,14 @@ Remember to restart the IDE whenever you change `platform.txt`, `boards.txt` or 
 
 ## Release History
 
+- HEAD: Added support to Sigfox Technology, also added an option Technology to the menu, [#145](https://github.com/mcci-catena/Arduino_Core_STM32/issues/145).
+
 - [v3.0.2](https://github.com/mcci-catena/Arduino_Core_STM32/releases/tag/v3.0.2) Patch release. Update `mccibootloader_image` tool to v0.4.0 ([#171](https://github.com/mcci-catena/Arduino_Core_STM32/issues/171)) to fix problem with ELF files with unusual number of program headers.
 
 - [v3.0.1](https://github.com/mcci-catena/Arduino_Core_STM32/releases/tag/v3.0.1) Patch release. Make "download with bootloader" the default choice in the IDE ([#158](https://github.com/mcci-catena/Arduino_Core_STM32/issues/158)). Windows "download with bootloader was broken for DFU ([#164](https://github.com/mcci-catena/Arduino_Core_STM32/issues/164)) and STLink ([#167](https://github.com/mcci-catena/Arduino_Core_STM32/issues/167)).
 
 - [v3.0.0](https://github.com/mcci-catena/Arduino_Core_STM32/releases/tag/v3.0.0) Switch to true semantic versioning [#150](https://github.com/mcci-catena/Arduino_Core_STM32/issues/150). Add support for MCCI trusted bootloader [#148](https://github.com/mcci-catena/Arduino_Core_STM32/issues/148), [#149](https://github.com/mcci-catena/Arduino_Core_STM32/issues/149), [#151](https://github.com/mcci-catena/Arduino_Core_STM32/issues/151), [#153](https://github.com/mcci-catena/Arduino_Core_STM32/issues/153). Enable interrupts on entry to reset vector for consistency with ST bootloader.
+- HEAD: Added support to Sigfox Technology, also added an option Technology to the menu, [#145](https://github.com/mcci-catena/Arduino_Core_STM32/issues/145).
 
 - [v2.8.0](https://github.com/mcci-catena/Arduino_Core_STM32/releases/tag/v2.8.0) Added support for new board: 4802, [#143](https://github.com/mcci-catena/Arduino_Core_STM32/issues/143).
 
