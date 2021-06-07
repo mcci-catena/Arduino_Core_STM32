@@ -29,6 +29,8 @@
 #
 
 # Additional menu items
+menu.technology=Technology
+
 menu.lorawan_region=LoRaWAN Region
 menu.lorawan_network=LoRaWAN Network
 menu.lorawan_subband=LoRaWAN Subband
@@ -65,7 +67,7 @@ mcci_catena_4551.build.variant=CATENA_4551
 mcci_catena_4551.build.variant_extra_flags=
 mcci_catena_4551.build.cmsis_lib_gcc=arm_cortexM0l_math
 mcci_catena_4551.build.ldscript=
-mcci_catena_4551.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line} -DARDUINO_CATENA_4551 -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
+mcci_catena_4551.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line} -DARDUINO_CATENA_4551 -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.technology_flags} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
 # mcci_catena_4551.build.c.Werror=
 # mcci_catena_4551.build.cpp.Werror=
 # mcci_catena_4551.build.S.Werror=
@@ -168,6 +170,15 @@ mcci_catena_4551.menu.opt.ogstd.build.flags.optimize=-Og -gdwarf-2
 mcci_catena_4551.menu.opt.ogstd.build.flags.ldspecs=
 
 #
+# menu.technology
+mcci_catena_4551.menu.technology.none=None
+mcci_catena_4551.menu.technology.lorawan=LoRaWAN
+mcci_catena_4551.menu.technology.sigfox=Sigfox
+mcci_catena_4551.menu.technology.none.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_None
+mcci_catena_4551.menu.technology.lorawan.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_LORAWAN
+mcci_catena_4551.menu.technology.sigfox.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_SIGFOX
+
+#
 # menu.lorawan_region
 mcci_catena_4551.menu.lorawan_region.us915=North America 915 MHz
 mcci_catena_4551.menu.lorawan_region.eu868=Europe 868 MHz
@@ -264,7 +275,7 @@ mcci_catena_4610.build.variant=CATENA_461x
 mcci_catena_4610.build.variant_extra_flags=-DMCCI_CATENA_461x_PA0_SWITCHES_VDD=0
 mcci_catena_4610.build.cmsis_lib_gcc=arm_cortexM0l_math
 mcci_catena_4610.build.ldscript=
-mcci_catena_4610.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line}  -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
+mcci_catena_4610.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line}  -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.technology_flags} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
 # mcci_catena_4610.build.c.Werror=
 # mcci_catena_4610.build.cpp.Werror=
 # mcci_catena_4610.build.S.Werror=
@@ -367,6 +378,15 @@ mcci_catena_4610.menu.opt.ogstd.build.flags.optimize=-Og -gdwarf-2
 mcci_catena_4610.menu.opt.ogstd.build.flags.ldspecs=
 
 #
+# menu.technology
+mcci_catena_4610.menu.technology.none=None
+mcci_catena_4610.menu.technology.lorawan=LoRaWAN
+mcci_catena_4610.menu.technology.sigfox=Sigfox
+mcci_catena_4610.menu.technology.none.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_None
+mcci_catena_4610.menu.technology.lorawan.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_LORAWAN
+mcci_catena_4610.menu.technology.sigfox.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_SIGFOX
+
+#
 # menu.lorawan_region
 mcci_catena_4610.menu.lorawan_region.us915=North America 915 MHz
 mcci_catena_4610.menu.lorawan_region.eu868=Europe 868 MHz
@@ -463,7 +483,7 @@ mcci_catena_4611.build.variant=CATENA_461x
 mcci_catena_4611.build.variant_extra_flags=-DMCCI_CATENA_461x_PA0_SWITCHES_VDD=0
 mcci_catena_4611.build.cmsis_lib_gcc=arm_cortexM0l_math
 mcci_catena_4611.build.ldscript=
-mcci_catena_4611.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line} -DARDUINO_CATENA_4611 -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
+mcci_catena_4611.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line} -DARDUINO_CATENA_4611 -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.technology_flags} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
 # mcci_catena_4611.build.c.Werror=
 # mcci_catena_4611.build.cpp.Werror=
 # mcci_catena_4611.build.S.Werror=
@@ -566,6 +586,15 @@ mcci_catena_4611.menu.opt.ogstd.build.flags.optimize=-Og -gdwarf-2
 mcci_catena_4611.menu.opt.ogstd.build.flags.ldspecs=
 
 #
+# menu.technology
+mcci_catena_4611.menu.technology.none=None
+mcci_catena_4611.menu.technology.lorawan=LoRaWAN
+mcci_catena_4611.menu.technology.sigfox=Sigfox
+mcci_catena_4611.menu.technology.none.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_None
+mcci_catena_4611.menu.technology.lorawan.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_LORAWAN
+mcci_catena_4611.menu.technology.sigfox.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_SIGFOX
+
+#
 # menu.lorawan_region
 mcci_catena_4611.menu.lorawan_region.us915=North America 915 MHz
 mcci_catena_4611.menu.lorawan_region.eu868=Europe 868 MHz
@@ -662,7 +691,7 @@ mcci_catena_4612.build.variant=CATENA_461x
 mcci_catena_4612.build.variant_extra_flags=-DMCCI_CATENA_461x_PA0_SWITCHES_VDD=1
 mcci_catena_4612.build.cmsis_lib_gcc=arm_cortexM0l_math
 mcci_catena_4612.build.ldscript=
-mcci_catena_4612.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line} -DARDUINO_CATENA_4612 -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
+mcci_catena_4612.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line} -DARDUINO_CATENA_4612 -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.technology_flags} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
 # mcci_catena_4612.build.c.Werror=
 # mcci_catena_4612.build.cpp.Werror=
 # mcci_catena_4612.build.S.Werror=
@@ -765,6 +794,15 @@ mcci_catena_4612.menu.opt.ogstd.build.flags.optimize=-Og -gdwarf-2
 mcci_catena_4612.menu.opt.ogstd.build.flags.ldspecs=
 
 #
+# menu.technology
+mcci_catena_4612.menu.technology.none=None
+mcci_catena_4612.menu.technology.lorawan=LoRaWAN
+mcci_catena_4612.menu.technology.sigfox=Sigfox
+mcci_catena_4612.menu.technology.none.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_None
+mcci_catena_4612.menu.technology.lorawan.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_LORAWAN
+mcci_catena_4612.menu.technology.sigfox.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_SIGFOX
+
+#
 # menu.lorawan_region
 mcci_catena_4612.menu.lorawan_region.us915=North America 915 MHz
 mcci_catena_4612.menu.lorawan_region.eu868=Europe 868 MHz
@@ -861,7 +899,7 @@ mcci_catena_4617.build.variant=CATENA_461x
 mcci_catena_4617.build.variant_extra_flags=-DMCCI_CATENA_461x_PA0_SWITCHES_VDD=1
 mcci_catena_4617.build.cmsis_lib_gcc=arm_cortexM0l_math
 mcci_catena_4617.build.ldscript=
-mcci_catena_4617.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line}  -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
+mcci_catena_4617.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line}  -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.technology_flags} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
 # mcci_catena_4617.build.c.Werror=
 # mcci_catena_4617.build.cpp.Werror=
 # mcci_catena_4617.build.S.Werror=
@@ -964,6 +1002,15 @@ mcci_catena_4617.menu.opt.ogstd.build.flags.optimize=-Og -gdwarf-2
 mcci_catena_4617.menu.opt.ogstd.build.flags.ldspecs=
 
 #
+# menu.technology
+mcci_catena_4617.menu.technology.none=None
+mcci_catena_4617.menu.technology.lorawan=LoRaWAN
+mcci_catena_4617.menu.technology.sigfox=Sigfox
+mcci_catena_4617.menu.technology.none.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_None
+mcci_catena_4617.menu.technology.lorawan.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_LORAWAN
+mcci_catena_4617.menu.technology.sigfox.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_SIGFOX
+
+#
 # menu.lorawan_region
 mcci_catena_4617.menu.lorawan_region.us915=North America 915 MHz
 mcci_catena_4617.menu.lorawan_region.eu868=Europe 868 MHz
@@ -1060,7 +1107,7 @@ mcci_catena_4618.build.variant=CATENA_461x
 mcci_catena_4618.build.variant_extra_flags=-DMCCI_CATENA_461x_PA0_SWITCHES_VDD=1
 mcci_catena_4618.build.cmsis_lib_gcc=arm_cortexM0l_math
 mcci_catena_4618.build.ldscript=
-mcci_catena_4618.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line}  -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
+mcci_catena_4618.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line}  -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.technology_flags} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
 # mcci_catena_4618.build.c.Werror=
 # mcci_catena_4618.build.cpp.Werror=
 # mcci_catena_4618.build.S.Werror=
@@ -1163,6 +1210,15 @@ mcci_catena_4618.menu.opt.ogstd.build.flags.optimize=-Og -gdwarf-2
 mcci_catena_4618.menu.opt.ogstd.build.flags.ldspecs=
 
 #
+# menu.technology
+mcci_catena_4618.menu.technology.none=None
+mcci_catena_4618.menu.technology.lorawan=LoRaWAN
+mcci_catena_4618.menu.technology.sigfox=Sigfox
+mcci_catena_4618.menu.technology.none.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_None
+mcci_catena_4618.menu.technology.lorawan.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_LORAWAN
+mcci_catena_4618.menu.technology.sigfox.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_SIGFOX
+
+#
 # menu.lorawan_region
 mcci_catena_4618.menu.lorawan_region.us915=North America 915 MHz
 mcci_catena_4618.menu.lorawan_region.eu868=Europe 868 MHz
@@ -1259,7 +1315,7 @@ mcci_catena_4630.build.variant=CATENA_4630
 mcci_catena_4630.build.variant_extra_flags=-DMCCI_CATENA_4630_PA0_SWITCHES_VDD=1
 mcci_catena_4630.build.cmsis_lib_gcc=arm_cortexM0l_math
 mcci_catena_4630.build.ldscript=
-mcci_catena_4630.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line}  -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
+mcci_catena_4630.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line}  -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.technology_flags} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
 # mcci_catena_4630.build.c.Werror=
 # mcci_catena_4630.build.cpp.Werror=
 # mcci_catena_4630.build.S.Werror=
@@ -1362,6 +1418,15 @@ mcci_catena_4630.menu.opt.ogstd.build.flags.optimize=-Og -gdwarf-2
 mcci_catena_4630.menu.opt.ogstd.build.flags.ldspecs=
 
 #
+# menu.technology
+mcci_catena_4630.menu.technology.none=None
+mcci_catena_4630.menu.technology.lorawan=LoRaWAN
+mcci_catena_4630.menu.technology.sigfox=Sigfox
+mcci_catena_4630.menu.technology.none.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_None
+mcci_catena_4630.menu.technology.lorawan.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_LORAWAN
+mcci_catena_4630.menu.technology.sigfox.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_SIGFOX
+
+#
 # menu.lorawan_region
 mcci_catena_4630.menu.lorawan_region.us915=North America 915 MHz
 mcci_catena_4630.menu.lorawan_region.eu868=Europe 868 MHz
@@ -1452,7 +1517,7 @@ mcci_catena_4801.build.variant=CATENA_4801
 mcci_catena_4801.build.variant_extra_flags=
 mcci_catena_4801.build.cmsis_lib_gcc=arm_cortexM0l_math
 mcci_catena_4801.build.ldscript=
-mcci_catena_4801.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line}  -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
+mcci_catena_4801.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line}  -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.technology_flags} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
 # mcci_catena_4801.build.c.Werror=
 # mcci_catena_4801.build.cpp.Werror=
 # mcci_catena_4801.build.S.Werror=
@@ -1540,6 +1605,15 @@ mcci_catena_4801.menu.opt.o3std.build.flags.ldspecs=
 mcci_catena_4801.menu.opt.ogstd=Debug (-g)
 mcci_catena_4801.menu.opt.ogstd.build.flags.optimize=-Og -gdwarf-2
 mcci_catena_4801.menu.opt.ogstd.build.flags.ldspecs=
+
+#
+# menu.technology
+mcci_catena_4801.menu.technology.none=None
+mcci_catena_4801.menu.technology.lorawan=LoRaWAN
+mcci_catena_4801.menu.technology.sigfox=Sigfox
+mcci_catena_4801.menu.technology.none.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_None
+mcci_catena_4801.menu.technology.lorawan.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_LORAWAN
+mcci_catena_4801.menu.technology.sigfox.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_SIGFOX
 
 #
 # menu.lorawan_region
@@ -1632,7 +1706,7 @@ mcci_catena_4802.build.variant=CATENA_4802
 mcci_catena_4802.build.variant_extra_flags=
 mcci_catena_4802.build.cmsis_lib_gcc=arm_cortexM0l_math
 mcci_catena_4802.build.ldscript=
-mcci_catena_4802.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line}  -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
+mcci_catena_4802.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARDUINO_{build.product_line}  -D{build.product_line} {build.sysclk_flags} {build.xSerial} -D__CORTEX_SC=0 -D{build.board} {build.technology_flags} {build.lorawan_flags} {build.lorawan_network_flags} {build.lorawan_subband_flags} {build.variant_extra_flags}
 # mcci_catena_4802.build.c.Werror=
 # mcci_catena_4802.build.cpp.Werror=
 # mcci_catena_4802.build.S.Werror=
@@ -1720,6 +1794,15 @@ mcci_catena_4802.menu.opt.o3std.build.flags.ldspecs=
 mcci_catena_4802.menu.opt.ogstd=Debug (-g)
 mcci_catena_4802.menu.opt.ogstd.build.flags.optimize=-Og -gdwarf-2
 mcci_catena_4802.menu.opt.ogstd.build.flags.ldspecs=
+
+#
+# menu.technology
+mcci_catena_4802.menu.technology.none=None
+mcci_catena_4802.menu.technology.lorawan=LoRaWAN
+mcci_catena_4802.menu.technology.sigfox=Sigfox
+mcci_catena_4802.menu.technology.none.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_None
+mcci_catena_4802.menu.technology.lorawan.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_LORAWAN
+mcci_catena_4802.menu.technology.sigfox.build.technology_flags=-DMCCI_ARDUINO_LPWAN_TECHNOLOGY_SIGFOX
 
 #
 # menu.lorawan_region
