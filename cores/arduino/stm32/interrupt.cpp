@@ -251,6 +251,24 @@ void stm32_interrupt_disable(GPIO_TypeDef *port, uint16_t pin)
   HAL_NVIC_DisableIRQ(gpio_irq_conf[id].irqnb);
 }
 
+#ifdef __cplusplus
+	extern "C"
+#endif
+
+/**
+  * @brief  This function enable the interruption on the selected port/pin from the C code
+  * @param  port : one of the gpio port
+  * @param  pin : one of the gpio pin
+  **@param  callback : callback to call when the interrupt falls
+  * @param  mode : one of the supported interrupt mode defined in stm32_hal_gpio
+  * @retval None
+  */
+void stm32_interrupt_enable_forC(GPIO_TypeDef *port, uint16_t pin, void (*callback)(void), uint32_t mode)
+{
+std::function<void(void)> _c = callback;
+stm32_interrupt_enable(port,pin,_c,mode);
+}
+
 /**
   * @brief This function his called by the HAL if the IRQ is valid
   * @param  GPIO_Pin : one of the gpio pin
