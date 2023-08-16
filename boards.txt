@@ -2004,7 +2004,7 @@ mcci_model_4917.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DARD
 # mcci_model_4917.build.cpp.Werror=
 # mcci_model_4917.build.S.Werror=
 mcci_model_4917.bootloader.tool=stm32l0_dfu
-mcci_model_4917.bootloader.file=McciBootloader_46xx
+mcci_model_4917.bootloader.file=McciBootloader_4801
 
 #
 # menu.upload_method
