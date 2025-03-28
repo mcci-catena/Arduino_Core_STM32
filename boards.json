@@ -141,5 +141,16 @@
 				}
 			]
 			},
+
+			{
+			"modelnumber": 	"4933",
+			"board":	"mcci_model_{{modelnumber}}",
+			"name": 	"MCCI Model {{modelnumber}}",
+			"pid": 		"0216",
+			"build_board": 		"MCCI_MODEL_{{modelnumber}}",
+			"build_variant": "MODEL_4933",
+			"bootloader_file":	"McciBootloader_4801",
+			"build_board_old_flags":	"-DARDUINO_MODEL_{{modelnumber}}"
+			},
 		]
 }
