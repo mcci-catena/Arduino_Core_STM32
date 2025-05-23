@@ -3,7 +3,7 @@ Module: PeripheralPins.c
 Function:
         Defines the special-function pins for this board.
 Copyright Notice:
-        Copyright (c) 2023, MCCI Corporation
+        Copyright (c) 2025, MCCI Corporation
         Copyright (c) 2016, STMicroelectronics
         All rights reserved.
         Redistribution and use in source and binary forms, with or without

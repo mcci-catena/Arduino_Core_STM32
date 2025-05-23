@@ -6,7 +6,7 @@ Function:
         Override USBD_LL_ConnectionState() function for CATENA_4933 variant.
 
 Copyright notice and license information:
-        Copyright 2018-2023 MCCI Corporation. All rights reserved.
+        Copyright 2018-2025 MCCI Corporation. All rights reserved.
 
         This library is free software; you can redistribute it and/or
         modify it under the terms of the GNU Lesser General Public
