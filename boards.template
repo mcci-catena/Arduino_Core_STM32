@@ -80,7 +80,7 @@ $section usb
 
 {{board}}.build.core=arduino
 {{board}}.build.board={{build_board}}
-{{board}}.build.product_line=STM32L082xx
+{{board}}.build.product_line={{product_line}}
 
 {{board}}.upload.maximum_size=196608
 {{board}}.upload.maximum_data_size=20480
@@ -186,13 +186,13 @@ $section xserial
 {{board}}.menu.lorawan_region.kr920=Korea 920 MHz
 {{board}}.menu.lorawan_region.in866=India 866 MHz
 {{board}}.menu.lorawan_region.projcfg=Use arduino-lmic/project_config/lmic_project_lmic_config_preconditions.h
-{{board}}.menu.lorawan_region.us915.build.lorawan_flags=-DCFG_us915=1 -DCFG_sx1276_radio=1 -DARDUINO_LMIC_PROJECT_CONFIG_H=lmic_config_preconditions.h
-{{board}}.menu.lorawan_region.eu868.build.lorawan_flags=-DCFG_eu868=1 -DCFG_sx1276_radio=1 -DARDUINO_LMIC_PROJECT_CONFIG_H=lmic_config_preconditions.h
-{{board}}.menu.lorawan_region.au915.build.lorawan_flags=-DCFG_au921=1 -DCFG_au915=1 -DCFG_sx1276_radio=1 -DARDUINO_LMIC_PROJECT_CONFIG_H=lmic_config_preconditions.h
-{{board}}.menu.lorawan_region.as923.build.lorawan_flags=-DCFG_as923=1 -DCFG_sx1276_radio=1 -DARDUINO_LMIC_PROJECT_CONFIG_H=lmic_config_preconditions.h
-{{board}}.menu.lorawan_region.as923jp.build.lorawan_flags=-DCFG_as923=1 -DLMIC_COUNTRY_CODE=LMIC_COUNTRY_CODE_JP -DCFG_sx1276_radio=1 -DARDUINO_LMIC_PROJECT_CONFIG_H=lmic_config_preconditions.h
-{{board}}.menu.lorawan_region.kr920.build.lorawan_flags=-DCFG_kr920=1 -DCFG_sx1276_radio=1 -DARDUINO_LMIC_PROJECT_CONFIG_H=lmic_config_preconditions.h
-{{board}}.menu.lorawan_region.in866.build.lorawan_flags=-DCFG_in866=1 -DCFG_sx1276_radio=1 -DARDUINO_LMIC_PROJECT_CONFIG_H=lmic_config_preconditions.h
+{{board}}.menu.lorawan_region.us915.build.lorawan_flags=-DCFG_us915=1 -DCFG_{{radio}}_radio=1 -DARDUINO_LMIC_PROJECT_CONFIG_H=lmic_config_preconditions.h
+{{board}}.menu.lorawan_region.eu868.build.lorawan_flags=-DCFG_eu868=1 -DCFG_{{radio}}_radio=1 -DARDUINO_LMIC_PROJECT_CONFIG_H=lmic_config_preconditions.h
+{{board}}.menu.lorawan_region.au915.build.lorawan_flags=-DCFG_au921=1 -DCFG_au915=1 -DCFG_{{radio}}_radio=1 -DARDUINO_LMIC_PROJECT_CONFIG_H=lmic_config_preconditions.h
+{{board}}.menu.lorawan_region.as923.build.lorawan_flags=-DCFG_as923=1 -DCFG_{{radio}}_radio=1 -DARDUINO_LMIC_PROJECT_CONFIG_H=lmic_config_preconditions.h
+{{board}}.menu.lorawan_region.as923jp.build.lorawan_flags=-DCFG_as923=1 -DLMIC_COUNTRY_CODE=LMIC_COUNTRY_CODE_JP -DCFG_{{radio}}_radio=1 -DARDUINO_LMIC_PROJECT_CONFIG_H=lmic_config_preconditions.h
+{{board}}.menu.lorawan_region.kr920.build.lorawan_flags=-DCFG_kr920=1 -DCFG_{{radio}}_radio=1 -DARDUINO_LMIC_PROJECT_CONFIG_H=lmic_config_preconditions.h
+{{board}}.menu.lorawan_region.in866.build.lorawan_flags=-DCFG_in866=1 -DCFG_{{radio}}_radio=1 -DARDUINO_LMIC_PROJECT_CONFIG_H=lmic_config_preconditions.h
 {{board}}.menu.lorawan_region.projcfg.build.lorawan_flags=
 
 #

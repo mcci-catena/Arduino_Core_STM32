@@ -106,4 +106,12 @@ class TwoWire : public Stream
 
 extern TwoWire Wire;
 
+#if defined(PIN_WIRE_SDA_2) && defined(PIN_WIRE_SCL_2)
+extern TwoWire Wire2;
+#endif
+
+#if defined(PIN_WIRE_PMIC_SDA) && defined(PIN_WIRE_PMIC_SCL)
+extern TwoWire WirePMIC;
+#endif
+
 #endif
