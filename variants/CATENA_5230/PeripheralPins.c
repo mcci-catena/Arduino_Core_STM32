@@ -6,7 +6,7 @@ Function:
         Defines the special-function pins for this board.
 
 Copyright Notice:
-        Copyright (c) 2025, MCCI Corporation
+        Copyright (c) 2026, MCCI Corporation
         Copyright (c) 2016, STMicroelectronics
         All rights reserved.
 
