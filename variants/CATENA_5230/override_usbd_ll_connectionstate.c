@@ -32,7 +32,10 @@ Author:
 #include <usbd_conf.h>
 #include "pmic.h"
 
-
+// VBUS reads near 0 mV with no USB host present and near 5000 mV when
+// one is; this threshold, roughly half of nominal VBUS, distinguishes
+// the two with margin for cable/ADC tolerance.
+#define USB_VBUS_PRESENT_THRESHOLD_MV  2500
 
 #ifdef USBCON
 
@@ -50,7 +53,7 @@ vBus = readBusVoltage();
 // convert the voltage to millivoltage
 float vBusMilli = vBus * 1000;
 
-return (vBusMilli < 2500) ? 0 : 1;
+return (vBusMilli < USB_VBUS_PRESENT_THRESHOLD_MV) ? 0 : 1;
 }
 
 #endif // USBCON
