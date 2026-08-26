@@ -121,6 +121,7 @@
 			"pid": 		"00F1",
 			"build_board": 		"MCCI_MODEL_{{modelnumber}}",
 			"build_variant": "MODEL_4917",
+			"bootloader_file":	"McciBootloader_4801",
 			"build_variant_extra_flags":	"-DMCCI_MODEL_4917_PA0_SWITCHES_VDD=1",
 			"build_board_old_flags":	"-DARDUINO_MODEL_{{modelnumber}}"
 			},
