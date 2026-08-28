@@ -112,14 +112,45 @@ void uart_init(serial_t *obj)
   USART_TypeDef *uart_tx = pinmap_peripheral(obj->pin_tx, PinMap_UART_TX);
   USART_TypeDef *uart_rx = pinmap_peripheral(obj->pin_rx, PinMap_UART_RX);
 
-  //Pins Rx/Tx must not be NP
-  if(uart_rx == NP || uart_tx == NP) {
+  // Some boards' schematics connect a UART's TX/RX signals to the wrong
+  // physical pin relative to the chip's fixed alternate-function (AF)
+  // assignment -- e.g. on the MCCI Catena 5220 Rev-A, PA_0/PA_1 are
+  // USART4's only AF6-capable pins (silicon-fixed: PA_0 = TX, PA_1 = RX),
+  // but the board wires PA_0 to the RS485 transceiver's RX net and PA_1
+  // to its TX net. No amount of AF/GPIO configuration can fix that on its
+  // own, because the AF selector only chooses *which peripheral*, not
+  // *which direction*, is routed to a pin.
+  //
+  // The STM32 UART peripheral has a register bit for exactly this
+  // (USART_CR2_SWAP, exposed by the HAL as AdvancedInit.Swap) that swaps,
+  // internally, which of its two AF pins the TX shifter drives and which
+  // the RX sampler reads -- with no change to either pin's GPIO/AF
+  // configuration. Detect the swapped case here by also checking whether
+  // pin_tx/pin_rx match the *opposite* PinMap table, and if so, use that
+  // feature instead of failing outright. For every board where the pins
+  // already match directly (the common case), this is a no-op: obj->swap
+  // stays 0 and the code below takes the exact same path as before.
+  USART_TypeDef *uart_tx_swap = pinmap_peripheral(obj->pin_tx, PinMap_UART_RX);
+  USART_TypeDef *uart_rx_swap = pinmap_peripheral(obj->pin_rx, PinMap_UART_TX);
+
+  //Pins Rx/Tx must not be NP in either orientation
+  if((uart_tx == NP && uart_tx_swap == NP) || (uart_rx == NP && uart_rx_swap == NP)) {
     printf("ERROR: at least one UART pin has no peripheral\n");
     return;
   }
 
-  // Get the peripheral name (UART_1, UART_2, ...) from the pin and assign it to the object
+  // Get the peripheral name (UART_1, UART_2, ...) from the pin and assign it to the object.
+  // Try the normal (non-swapped) pin assignment first...
   obj->uart = pinmap_merge_peripheral(uart_tx, uart_rx);
+  obj->swap = 0;
+
+  // ...and fall back to the swapped assignment if that didn't resolve to a
+  // single peripheral (either because a pin only matches the opposite table,
+  // or because the direct pins belong to two different peripherals).
+  if(obj->uart == NP) {
+    obj->uart = pinmap_merge_peripheral(uart_tx_swap, uart_rx_swap);
+    obj->swap = 1;
+  }
 
   if(obj->uart == NP) {
     printf("ERROR: UART pins mismatch\n");
@@ -250,9 +281,11 @@ void uart_init(serial_t *obj)
 #endif
 
   //Configure GPIOs
-  //RX
+  //RX -- if obj->swap is set, this pin is actually wired to the peripheral's
+  //TX alternate function (see the swap detection above), so look up its AF
+  //number in PinMap_UART_TX instead of PinMap_UART_RX.
   port = set_GPIO_Port_Clock(STM_PORT(obj->pin_rx));
-  function = pinmap_function(obj->pin_rx, PinMap_UART_RX);
+  function = pinmap_function(obj->pin_rx, obj->swap ? PinMap_UART_TX : PinMap_UART_RX);
   GPIO_InitStruct.Pin         = STM_GPIO_PIN(obj->pin_rx);
   GPIO_InitStruct.Mode        = STM_PIN_MODE(function);
   GPIO_InitStruct.Speed       = GPIO_SPEED_FREQ_HIGH;
@@ -264,9 +297,9 @@ void uart_init(serial_t *obj)
 #endif /* STM32F1xx */
   HAL_GPIO_Init(port, &GPIO_InitStruct);
 
-  //TX
+  //TX -- same reasoning as above, but reversed.
   port = set_GPIO_Port_Clock(STM_PORT(obj->pin_tx));
-  function = pinmap_function(obj->pin_tx, PinMap_UART_TX);
+  function = pinmap_function(obj->pin_tx, obj->swap ? PinMap_UART_RX : PinMap_UART_TX);
   GPIO_InitStruct.Pin         = STM_GPIO_PIN(obj->pin_tx);
   GPIO_InitStruct.Mode        = STM_PIN_MODE(function);
   GPIO_InitStruct.Speed       = GPIO_SPEED_FREQ_HIGH;
@@ -289,6 +322,11 @@ void uart_init(serial_t *obj)
   huart->Init.HwFlowCtl    = UART_HWCONTROL_NONE;
   huart->Init.OverSampling = UART_OVERSAMPLING_16;
   // huart->Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+
+#if defined(UART_ADVFEATURE_SWAP_INIT)
+  huart->AdvancedInit.AdvFeatureInit = obj->swap ? UART_ADVFEATURE_SWAP_INIT : UART_ADVFEATURE_NO_INIT;
+  huart->AdvancedInit.Swap           = obj->swap ? UART_ADVFEATURE_SWAP_ENABLE : UART_ADVFEATURE_SWAP_DISABLE;
+#endif
 
   if(HAL_UART_Init(huart) != HAL_OK) {
     return;

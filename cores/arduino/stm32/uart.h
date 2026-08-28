@@ -196,6 +196,8 @@ struct serial_s {
   uint32_t parity;
   PinName pin_tx;
   PinName pin_rx;
+  uint8_t swap;     /* set if pin_tx/pin_rx only match the opposite PinMap table:
+                       requests HAL TX/RX pin swap instead of a mismatch error */
   IRQn_Type irq;
   uint8_t *rx_buff;
   volatile uint16_t rx_head;
