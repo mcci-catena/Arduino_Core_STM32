@@ -35,7 +35,9 @@ Author:
 // VBUS reads near 0 mV with no USB host present and near 5000 mV when
 // one is; this threshold, roughly half of nominal VBUS, distinguishes
 // the two with margin for cable/ADC tolerance.
+#ifndef USB_VBUS_PRESENT_THRESHOLD_MV
 #define USB_VBUS_PRESENT_THRESHOLD_MV  2500
+#endif
 
 #ifdef USBCON
 
