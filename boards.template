@@ -320,3 +320,16 @@ $section xserial
 {{board}}.menu.xserial.none.build.xSerial=-DARDUINO_BSP_CONFIG_SERIAL_MASK=0x0
 {{board}}.menu.xserial.two.build.xSerial=-DARDUINO_BSP_CONFIG_SERIAL_MASK=0x6
 %%-xserial_nousb_serial1
+
+%%+xserial_nousb_rs485
+# "rs485" adds USART4 (bit 4, 0x10) to the serial mask, enabling the RS485
+# port (Serial4) on boards such as the MCCI Catena 5220 that route it there.
+{{board}}.menu.xserial.generic=Generic Serial
+{{board}}.menu.xserial.two=Two HW Serial
+{{board}}.menu.xserial.rs485=Generic Serial + RS485
+{{board}}.menu.xserial.none=No Serial
+{{board}}.menu.xserial.generic.build.xSerial=-DARDUINO_BSP_CONFIG_SERIAL_MASK=0x2
+{{board}}.menu.xserial.two.build.xSerial=-DARDUINO_BSP_CONFIG_SERIAL_MASK=0x6
+{{board}}.menu.xserial.rs485.build.xSerial=-DARDUINO_BSP_CONFIG_SERIAL_MASK=0x12
+{{board}}.menu.xserial.none.build.xSerial=-DARDUINO_BSP_CONFIG_SERIAL_MASK=0x0
+%%-xserial_nousb_rs485

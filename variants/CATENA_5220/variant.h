@@ -129,6 +129,13 @@ enum {
 
 // UART Definitions
 
+// RS485 port. PA_0 (D17/A3) is wired to the transceiver's RX net and
+// PA_1 (D18/A4) to its TX net -- backwards relative to the STM32L072's
+// USART4 AF6 assignment -- so uart_init() detects the mismatch and enables
+// the UART's internal TX/RX swap automatically.
+#define PIN_SERIAL_RS485_RX      D17
+#define PIN_SERIAL_RS485_TX      D18
+
 #ifdef __cplusplus
 } // extern "C"
 #endif

@@ -174,7 +174,7 @@
 			"radio":	"sx1262",
 			"extra_sections": [
 				{ "name": "xserial",
-				  "using": "xserial_nousb"
+				  "using": "xserial_nousb_rs485"
 				}
 			]
 			},

@@ -2819,12 +2819,16 @@ mcci_catena_5220.menu.upload_method.STLink.upload.maximum_data_size=20480
 
 #
 # menu.xserial
+# "rs485" adds USART4 (bit 4, 0x10) to the serial mask, enabling the RS485
+# port (Serial4) on boards such as the MCCI Catena 5220 that route it there.
 mcci_catena_5220.menu.xserial.generic=Generic Serial
 mcci_catena_5220.menu.xserial.two=Two HW Serial
+mcci_catena_5220.menu.xserial.rs485=Generic Serial + RS485
 mcci_catena_5220.menu.xserial.none=No Serial
 mcci_catena_5220.menu.xserial.generic.build.xSerial=-DARDUINO_BSP_CONFIG_SERIAL_MASK=0x2
-mcci_catena_5220.menu.xserial.none.build.xSerial=-DARDUINO_BSP_CONFIG_SERIAL_MASK=0x0
 mcci_catena_5220.menu.xserial.two.build.xSerial=-DARDUINO_BSP_CONFIG_SERIAL_MASK=0x6
+mcci_catena_5220.menu.xserial.rs485.build.xSerial=-DARDUINO_BSP_CONFIG_SERIAL_MASK=0x12
+mcci_catena_5220.menu.xserial.none.build.xSerial=-DARDUINO_BSP_CONFIG_SERIAL_MASK=0x0
 
 #
 # menu.sysclk
