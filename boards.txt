@@ -2580,9 +2580,9 @@ mcci_model_4933.menu.lorawan_subband.sb11.build.lorawan_subband_flags=-DARDUINO_
 #
 mcci_catena_5230.name=MCCI Catena 5230
 mcci_catena_5230.build.vid=0x040E
-mcci_catena_5230.build.pid=0x1234
+mcci_catena_5230.build.pid=0x0230
 mcci_catena_5230.vid.0=0x040E
-mcci_catena_5230.pid.0=0x1234
+mcci_catena_5230.pid.0=0x0230
 mcci_catena_5230.build.usb_product="MCCI Catena 5230"
 mcci_catena_5230.build.usb_manufacturer="MCCI Corporation"
 

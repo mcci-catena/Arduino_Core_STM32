@@ -157,7 +157,7 @@
 
 			{
 			"modelnumber": 	"5230",
-			"pid": 		"1234",
+			"pid": 		"0230",
 			"build_variant": "CATENA_5230",
 			"build_variant_extra_flags":	"-DMCCI_CATENA_5230_PA0_SWITCHES_VDD=0",
 			"product_line":	"STM32L072xx",
