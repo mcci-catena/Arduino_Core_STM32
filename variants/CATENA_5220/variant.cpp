@@ -72,15 +72,16 @@ const PinName digitalPin[] = {
 // Serial4, when enabled via the "xserial" board menu, defaults to picking
 // whichever pin is listed first in each of PinMap_UART_TX/RX for USART4 --
 // PA_0 for TX, PA_1 for RX -- which is backwards from how this board's RS485
-// transceiver is actually wired (PA_0 = RX net, PA_1 = TX net). Override the
-// pins here, before setup() runs, so uart_init() sees the mismatch and
-// enables the chip's internal TX/RX swap instead of transmitting/receiving
-// on the wrong lines.
+// transceiver is actually wired (PA_0 = RX net, PA_1 = TX net). Set the pins
+// to match the true physical wiring, and declare the swap explicitly, before
+// setup() runs, so uart_init() enables the chip's internal TX/RX swap
+// instead of transmitting/receiving on the wrong lines.
 void initVariant(void)
 {
 #if defined(HAVE_HWSERIAL4)
     Serial4.setRx(PIN_SERIAL_RS485_RX);
     Serial4.setTx(PIN_SERIAL_RS485_TX);
+    Serial4.setSwapTxRx(true);
 #endif
 }
 
