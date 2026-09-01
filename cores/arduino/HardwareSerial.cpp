@@ -387,5 +387,9 @@ void HardwareSerial::setRx(PinName _rx) {
 void HardwareSerial::setTx(PinName _tx){
   _serial.pin_tx = _tx;
 }
+
+void HardwareSerial::setSwapTxRx(bool _swap) {
+  _serial.swap_pin_tx_rx = _swap;
+}
 #endif // HAVE_HWSERIALx
 #endif // !NO_HWSERIAL

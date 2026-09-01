@@ -196,8 +196,11 @@ struct serial_s {
   uint32_t parity;
   PinName pin_tx;
   PinName pin_rx;
-  uint8_t swap;     /* set if pin_tx/pin_rx only match the opposite PinMap table:
-                       requests HAL TX/RX pin swap instead of a mismatch error */
+  uint8_t swap_pin_tx_rx; /* set by HardwareSerial::setSwapTxRx() for boards whose
+                              schematic wires a UART's TX/RX pins to the opposite
+                              physical pin from the chip's AF assignment; tells
+                              uart_init() to swap them back via the peripheral's
+                              built-in TX/RX swap feature. Defaults to 0. */
   IRQn_Type irq;
   uint8_t *rx_buff;
   volatile uint16_t rx_head;
