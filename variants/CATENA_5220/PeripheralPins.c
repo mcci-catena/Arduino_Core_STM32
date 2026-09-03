@@ -143,11 +143,13 @@ const PinMap PinMap_PWM[] = {
 // USART4 on PA_0/PA_1 is the RS485 port. This lists PA_0 as USART4_TX and
 // PA_1 as USART4_RX, matching the STM32L072's fixed AF6 assignment for
 // this pin pair -- do not "fix" this to match the board's actual (backwards)
-// wiring; these tables describe what the silicon can do, not the PCB.
-// The Rev-A schematic swap is compensated for entirely in firmware: see
-// HardwareSerial::setSwapTxRx() and uart_init() in cores/arduino/stm32/
-// uart.c/HardwareSerial.cpp, declared for this port by PIN_SERIAL_RS485_RX/TX
-// in variant.h and the initVariant() override in variant.cpp.
+// wiring; these tables describe what the silicon can do, not the PCB, and
+// the AF6 GPIO configuration is identical either way (same AF number, mode,
+// and pull for both entries). The Rev-A schematic swap is compensated for
+// entirely by the chip's internal TX/RX swap feature, enabled via
+// Serial4.setSwapTxRx(true) in variant.cpp's initVariant() -- see
+// HardwareSerial::setSwapTxRx() and uart_init() in cores/arduino/
+// HardwareSerial.cpp / stm32/uart.c.
 #ifdef HAL_UART_MODULE_ENABLED
 const PinMap PinMap_UART_TX[] = {
     {PA_0,  USART4,  STM_PIN_DATA(STM_MODE_AF_PP, GPIO_PULLUP, GPIO_AF6_USART4)},
