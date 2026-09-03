@@ -108,30 +108,9 @@ void uart_init(serial_t *obj)
   GPIO_TypeDef *port;
   uint32_t function = (uint32_t)NC;
 
-  // Some boards' schematics connect a UART's TX/RX signals to the wrong
-  // physical pin relative to the chip's fixed alternate-function (AF)
-  // assignment -- e.g. on the MCCI Catena 5220 Rev-A, PA_0/PA_1 are
-  // USART4's only AF6-capable pins (silicon-fixed: PA_0 = TX, PA_1 = RX),
-  // but the board wires PA_0 to the RS485 transceiver's RX net and PA_1
-  // to its TX net. No amount of AF/GPIO configuration can fix that on its
-  // own, because the AF selector only chooses *which peripheral*, not
-  // *which direction*, is routed to a pin.
-  //
-  // The STM32 UART peripheral has a register bit for exactly this
-  // (USART_CR2_SWAP, exposed by the HAL as AdvancedInit.Swap) that swaps,
-  // internally, which of its two AF pins the TX shifter drives and which
-  // the RX sampler reads -- with no change to either pin's GPIO/AF
-  // configuration. A board that needs this declares it explicitly, via
-  // HardwareSerial::setSwapTxRx(true) in its initVariant() (see e.g.
-  // variants/CATENA_5220/variant.cpp); obj->swap_pin_tx_rx defaults to 0
-  // for every other board, which takes the exact same path as before this
-  // feature was added.
-  const PinMap *txTable = obj->swap_pin_tx_rx ? PinMap_UART_RX : PinMap_UART_TX;
-  const PinMap *rxTable = obj->swap_pin_tx_rx ? PinMap_UART_TX : PinMap_UART_RX;
-
   // Determine the UART to use (UART_1, UART_2, ...)
-  USART_TypeDef *uart_tx = pinmap_peripheral(obj->pin_tx, txTable);
-  USART_TypeDef *uart_rx = pinmap_peripheral(obj->pin_rx, rxTable);
+  USART_TypeDef *uart_tx = pinmap_peripheral(obj->pin_tx, PinMap_UART_TX);
+  USART_TypeDef *uart_rx = pinmap_peripheral(obj->pin_rx, PinMap_UART_RX);
 
   //Pins Rx/Tx must not be NP
   if(uart_rx == NP || uart_tx == NP) {
@@ -271,10 +250,9 @@ void uart_init(serial_t *obj)
 #endif
 
   //Configure GPIOs
-  //RX -- use rxTable (see swap declaration above) so a swapped pin's AF
-  //number is looked up in the table it actually appears in.
+  //RX
   port = set_GPIO_Port_Clock(STM_PORT(obj->pin_rx));
-  function = pinmap_function(obj->pin_rx, rxTable);
+  function = pinmap_function(obj->pin_rx, PinMap_UART_RX);
   GPIO_InitStruct.Pin         = STM_GPIO_PIN(obj->pin_rx);
   GPIO_InitStruct.Mode        = STM_PIN_MODE(function);
   GPIO_InitStruct.Speed       = GPIO_SPEED_FREQ_HIGH;
@@ -286,9 +264,9 @@ void uart_init(serial_t *obj)
 #endif /* STM32F1xx */
   HAL_GPIO_Init(port, &GPIO_InitStruct);
 
-  //TX -- same reasoning as above, using txTable.
+  //TX
   port = set_GPIO_Port_Clock(STM_PORT(obj->pin_tx));
-  function = pinmap_function(obj->pin_tx, txTable);
+  function = pinmap_function(obj->pin_tx, PinMap_UART_TX);
   GPIO_InitStruct.Pin         = STM_GPIO_PIN(obj->pin_tx);
   GPIO_InitStruct.Mode        = STM_PIN_MODE(function);
   GPIO_InitStruct.Speed       = GPIO_SPEED_FREQ_HIGH;
