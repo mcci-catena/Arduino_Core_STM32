@@ -1,6 +1,6 @@
 /*
   Copyright (c) 2011 Arduino.  All right reserved.
-  Copyright (c) 2025 MCCI Corporation.  All rights reserved.
+  Copyright (c) 2026 MCCI Corporation.  All rights reserved.
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -61,12 +61,10 @@ const PinName digitalPin[] = {
   PA_1,  //D29     RADIO_ANT_SWITCH_RX       CRF1
   PC_1,  //D30     RADIO_ANT_SWITCH_TX_BOOST CRF3
   PC_2,  //D31     RADIO_ANT_SWITCH_TX_RFO   CRF2
-  NC,  //D32     Flash Write-Protect (not supported these platforms)
+  NC,    //D32     Flash Write-Protect (not supported these platforms)
   PA_8,  //D33     RADIO_TCXO      TCXO VDD, possibly VDD boost enable.
 };
 
 #ifdef __cplusplus
 }
 #endif
-
-// -------------------------------------------------

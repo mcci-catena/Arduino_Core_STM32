@@ -3,7 +3,7 @@
 Module: override_usbd_ll_connectionstate.c
 
 Function:
-        Override USBD_LL_ConnectionState() function for CATENA_4917 variant.
+        Override USBD_LL_ConnectionState() function for MODEL_4917 variant.
 
 Copyright notice and license information:
         Copyright 2018-2023 MCCI Corporation. All rights reserved.
@@ -31,6 +31,13 @@ Author:
 #include <Arduino.h>
 #include <usbd_conf.h>
 
+// analogRead() reads near 0 with no USB host present and rises well above
+// this threshold when VBUS is driven; this is a raw ADC count, not a
+// voltage, since no HAL conversion is applied here.
+#ifndef USB_VBUS_PRESENT_THRESHOLD_ADC
+#define USB_VBUS_PRESENT_THRESHOLD_ADC 270
+#endif
+
 #ifdef USBCON
 
 /**
@@ -43,7 +50,7 @@ USBD_LL_ConnectionState_WEAK uint32_t USBD_LL_ConnectionState(void)
   uint32_t vBus;
 
   vBus = analogRead(18);
-  return vBus > 270 ? 1 : 0;
+  return vBus > USB_VBUS_PRESENT_THRESHOLD_ADC ? 1 : 0;
 }
 
 #endif // USBCON

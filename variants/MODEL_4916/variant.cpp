@@ -61,7 +61,7 @@ const PinName digitalPin[] = {
   PA_1,  //D29     RADIO_ANT_SWITCH_RX       CRF1
   PC_1,  //D30     RADIO_ANT_SWITCH_TX_BOOST CRF3
   PC_2,  //D31     RADIO_ANT_SWITCH_TX_RFO   CRF2
-  NC,  //D32     Flash Write-Protect (not supported these platforms)
+  NC,    //D32     Flash Write-Protect (not supported these platforms)
   PA_8,  //D33     RADIO_TCXO      TCXO VDD, possibly VDD boost enable.
 };
 
