@@ -64,10 +64,10 @@ The Arduino IDE allows you to select the following items.
 | MCCI Catena 4630 | Murata CMWX1ZZABZ module, STM32L082 | [4630](#catena-4630-features) | LiPo battery,ZMOD4410, PMS7003 |
 | MCCI Catena 4801 | Murata CMWX1ZZABZ module, STM32L082 | [480x](#catena-480x-features) | Primary battery, Modbus |
 | MCCI Catena 4802 | Murata CMWX1ZZABZ module, STM32L082 | [480x](#catena-480x-features) | Primary battery, Modbus, SHT31-DIS-F, I2C Expander |
-| MCCI Model 4916 | Murata CMWX1ZZABZ module, STM32L082 | [4916](#model-4916-features) | Type-C battery, GPS, BME680, SHT31-DIS-F, IPS7100, Spec sensors, SCD30 |
+| MCCI Model 4916 | Murata CMWX1ZZABZ module, STM32L082 | [4916](#model-4916-features) | ER26500 C-size battery, GPS, BME680, SHT31-DIS-F, IPS7100, Spec sensors, SCD30 |
 | MCCI Model 4917 | Murata CMWX1ZZABZ module, STM32L082 | [4917](#model-4917-features) | Primary battery, JST-XH for OneWire sensor |
-| MCCI Model 4931 | Murata CMWX1ZZABZ module, STM32L082 | [4931](#model-4931-features) | Primary battery, SHT35, BMP581, OneWire sensor, MS10 soil sensor, Davis rain gauge, Pressure transducer, solar panel, SD card |
-| MCCI Model 4933 | Murata CMWX1ZZABZ module, STM32L082 | [4933](#model-4933-features) | Primary battery, GPS, BMP581, SHT35, IPS7100, Spec sensors |
+| MCCI Model 4931 | Murata CMWX1ZZABZ module, STM32L082 | [4931](#model-4931-features) | LiPo battery, SHT35, BMP581, OneWire sensor, MS10 soil sensor, Davis rain gauge, Pressure transducer, solar panel, SD card |
+| MCCI Model 4933 | Murata CMWX1ZZABZ module, STM32L082 | [4933](#model-4933-features) | LiPo battery, GPS, BMP581, SHT35, IPS7100, Spec sensors |
 
 ### Catena 461x Series
 
@@ -137,7 +137,7 @@ The 4916 is a dedicated board designed for monitoring air quality.
 | Feature | 4916 |
 |---------|------|
 | TCXO Control | Controlled by code |
-| Battery type | Primary (non-rechargeable) reference is Type-C battery |
+| Battery type | Primary (non-rechargeable) reference is ER26500 C-size battery |
 | System voltage | 3.0V to 3.5V, depending on whether boost regulator is enabled. |
 | Regulator control | EN output from CPU controls boost regulator. |
 | High-side switch for power for external sensors | Yes |
@@ -173,13 +173,13 @@ The 4931 is a dedicated board designed for sap flow monitoring.
 | Feature | 4931 |
 |---------|------|
 | TCXO Control | Controlled by code |
-| Battery type | Primary rechargeable Lipo battery |
-| System voltage | 3.3V
+| Battery type | Rechargeable LiPo battery |
+| System voltage | 3.3V |
 | High-side switch for power for external sensors | Yes |
 | Screw terminals for external sensors | Yes |
 | QWIIC for external sensors | Yes |
 | Feather physical compatibility | No |
-| USB | Yes, DFU download, runtime dat |
+| USB | Yes, DFU download, runtime data |
 | Sensors | BMP581, SHT35 |
 | External interfaces | TTL Serial, OneWire sensor, Davis rain gauge, MS10 soil sensor, Pressure transducer, Solar panel, SD card |
 
@@ -190,13 +190,13 @@ The 4933 is a dedicated board designed for monitoring air quality.
 | Feature | 4933 |
 |---------|------|
 | TCXO Control | Controlled by code |
-| Battery type | Primary rechargeable Lipo battery |
-| System voltage | 3.3V
+| Battery type | Rechargeable LiPo battery |
+| System voltage | 3.3V |
 | High-side switch for power for external sensors | Yes |
 | Screw terminals for external sensors | None |
 | QWIIC for external sensors | Yes |
 | Feather physical compatibility | No |
-| USB | Yes, DFU download, runtime dat |
+| USB | Yes, DFU download, runtime data |
 | Sensors | BMP581, SHT35, GPS |
 | External interfaces | TTL Serial, Spec Sensors, IPS7100 |
 
@@ -234,7 +234,7 @@ Remember to restart the IDE whenever you change `platform.txt`, `boards.txt` or 
 
 ## Release History
 
-- [HEAD](https://github.com/mcci-catena/Arduino_Core_STM32/). Added support for new board Model 4931 and Model 4933.
+- [HEAD](https://github.com/mcci-catena/Arduino_Core_STM32/). Added support for new boards Model 4931 and Model 4933 ([#208](https://github.com/mcci-catena/Arduino_Core_STM32/issues/208)). Model 4917 now uses `McciBootloader_4801` ([#206](https://github.com/mcci-catena/Arduino_Core_STM32/issues/206)), and Model 4933 Rev B uses `McciBootloader_46xx` ([#213](https://github.com/mcci-catena/Arduino_Core_STM32/issues/213)). USB VBUS detection on the Catena 4551, 461x and 4630 and the Model 4917, 4931 and 4933 reads the ADC at a fixed 12 bits, so a sketch that calls `analogReadResolution()` no longer breaks it ([#217](https://github.com/mcci-catena/Arduino_Core_STM32/issues/217)). The VBUS pin and threshold are now named and can be overridden ([#214](https://github.com/mcci-catena/Arduino_Core_STM32/issues/214)). Cleanup and consistency fixes for Model 4916, 4917, 4931 and 4933 ([#215](https://github.com/mcci-catena/Arduino_Core_STM32/issues/215)).
 
 - [v3.1.0](https://github.com/mcci-catena/Arduino_Core_STM32/releases/tag/v3.1.0). Feature enhancement. Added support for new board Model 4917 ([#196](https://github.com/mcci-catena/Arduino_Core_STM32/issues/196)) and Model 4916 ([#198](https://github.com/mcci-catena/Arduino_Core_STM32/issues/198)). Added Two HW Serial support for Catena 4630 ([#199](https://github.com/mcci-catena/Arduino_Core_STM32/issues/199)).
 
