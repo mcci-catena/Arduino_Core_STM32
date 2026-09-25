@@ -4,7 +4,7 @@ This repository is MCCI's version of [Arduino_Core_STM32](https://github.com/stm
 
 For general information, please check the stm32duino [README.md](https://github.com/stm32duino/Arduino_Core_STM32#arduino-core-support-for-stm32-based-boards), especially the [Getting Started](https://github.com/stm32duino/Arduino_Core_STM32#getting-started) section.
 
-[![GitHub release](https://img.shields.io/github/release/mcci-catena/Arduino_Core_STM32.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/releases/latest) [![GitHub commits](https://img.shields.io/github/commits-since/mcci-catena/Arduino_Core_STM32/latest.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/compare/v3.1.0...master)
+[![GitHub release](https://img.shields.io/github/release/mcci-catena/Arduino_Core_STM32.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/releases/latest) [![GitHub commits](https://img.shields.io/github/commits-since/mcci-catena/Arduino_Core_STM32/latest.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/compare/v3.2.0...main)
 
 **Contents:**
 <!-- markdownlint-disable MD033 -->
@@ -234,7 +234,7 @@ Remember to restart the IDE whenever you change `platform.txt`, `boards.txt` or 
 
 ## Release History
 
-- [HEAD](https://github.com/mcci-catena/Arduino_Core_STM32/). Added support for new boards Model 4931 and Model 4933 ([#208](https://github.com/mcci-catena/Arduino_Core_STM32/issues/208)). Model 4917 now uses `McciBootloader_4801` ([#206](https://github.com/mcci-catena/Arduino_Core_STM32/issues/206)), and Model 4933 Rev B uses `McciBootloader_46xx` ([#213](https://github.com/mcci-catena/Arduino_Core_STM32/issues/213)). USB VBUS detection on the Catena 4551, 461x and 4630 and the Model 4917, 4931 and 4933 reads the ADC at a fixed 12 bits, so a sketch that calls `analogReadResolution()` no longer breaks it ([#217](https://github.com/mcci-catena/Arduino_Core_STM32/issues/217)). The VBUS pin and threshold are now named and can be overridden ([#214](https://github.com/mcci-catena/Arduino_Core_STM32/issues/214)). Cleanup and consistency fixes for Model 4916, 4917, 4931 and 4933 ([#215](https://github.com/mcci-catena/Arduino_Core_STM32/issues/215)).
+- [v3.2.0](https://github.com/mcci-catena/Arduino_Core_STM32/releases/tag/v3.2.0). Added support for new boards Model 4931 and Model 4933 ([#208](https://github.com/mcci-catena/Arduino_Core_STM32/issues/208)). Model 4917 now uses `McciBootloader_4801` ([#206](https://github.com/mcci-catena/Arduino_Core_STM32/issues/206)), and Model 4933 Rev B uses `McciBootloader_46xx` ([#213](https://github.com/mcci-catena/Arduino_Core_STM32/issues/213)). USB VBUS detection on the Catena 4551, 461x and 4630 and the Model 4917, 4931 and 4933 reads the ADC at a fixed 12 bits, so a sketch that calls `analogReadResolution()` no longer breaks it ([#217](https://github.com/mcci-catena/Arduino_Core_STM32/issues/217)). The VBUS pin and threshold are now named and can be overridden ([#214](https://github.com/mcci-catena/Arduino_Core_STM32/issues/214)). Cleanup and consistency fixes for Model 4916, 4917, 4931 and 4933 ([#215](https://github.com/mcci-catena/Arduino_Core_STM32/issues/215)).
 
 - [v3.1.0](https://github.com/mcci-catena/Arduino_Core_STM32/releases/tag/v3.1.0). Feature enhancement. Added support for new board Model 4917 ([#196](https://github.com/mcci-catena/Arduino_Core_STM32/issues/196)) and Model 4916 ([#198](https://github.com/mcci-catena/Arduino_Core_STM32/issues/198)). Added Two HW Serial support for Catena 4630 ([#199](https://github.com/mcci-catena/Arduino_Core_STM32/issues/199)).
 

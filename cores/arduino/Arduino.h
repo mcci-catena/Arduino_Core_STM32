@@ -1,7 +1,7 @@
 /*
   Arduino.h - Main include file for the Arduino SDK
   Copyright (c) 2005-2013 Arduino Team.  All right reserved.
-  Copyright (c) 2019-2023 MCCI Corporation. All rights reserved.
+  Copyright (c) 2019-2026 MCCI Corporation. All rights reserved.
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -52,7 +52,7 @@
 ///     \ref _mcci_arduino_version_calc() to compare relative versions.
 ///
 #define	_mcci_arduino_version	\
-  _mcci_arduino_version_calc(3, 1, 0, 0)	/* v3.1.0 */
+  _mcci_arduino_version_calc(3, 2, 0, 0)	/* v3.2.0 */
 
 ///
 /// \brief get major version code from semantic version value
