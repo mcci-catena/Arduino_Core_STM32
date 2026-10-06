@@ -52,6 +52,10 @@ float vBus;
 
 // get the bus voltage
 vBus = readBusVoltage();
+// if the PMIC can't be read, assume USB is present, so the USB console
+// stays usable.
+if (vBus < 0)
+    return 1;
 // convert the voltage to millivoltage
 float vBusMilli = vBus * 1000;
 
