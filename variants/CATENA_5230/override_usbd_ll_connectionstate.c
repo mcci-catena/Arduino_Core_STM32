@@ -3,7 +3,7 @@
 Module: override_usbd_ll_connectionstate.c
 
 Function:
-        Override USBD_LL_ConnectionState() function for CATENA_4917 variant.
+        Override USBD_LL_ConnectionState() function for CATENA_5230 variant.
 
 Copyright notice and license information:
         Copyright 2018-2026 MCCI Corporation. All rights reserved.
