@@ -168,7 +168,7 @@
 			{
 			"modelnumber": 	"5220",
 			"build_variant": "CATENA_5220",
-			"bootloader_file":	"McciBootloader_4801",
+			"bootloader_file":	"McciBootloader_5220",
 			"bootloader_tool":	"stlink_upload",
 			"product_line":	"STM32L072xx",
 			"radio":	"sx1262",

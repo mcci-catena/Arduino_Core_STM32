@@ -2796,7 +2796,7 @@ mcci_catena_5220.build.extra_flags=-DARDUINO_STM32 -DARDUINO_{build.series} -DAR
 # mcci_catena_5220.build.cpp.Werror=
 # mcci_catena_5220.build.S.Werror=
 mcci_catena_5220.bootloader.tool=stlink_upload
-mcci_catena_5220.bootloader.file=McciBootloader_4801
+mcci_catena_5220.bootloader.file=McciBootloader_5220
 
 #
 # menu.upload_method
