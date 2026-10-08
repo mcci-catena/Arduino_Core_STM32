@@ -162,7 +162,17 @@
 			"build_variant_extra_flags":	"-DMCCI_CATENA_5230_PA0_SWITCHES_VDD=0",
 			"product_line":	"STM32L072xx",
 			"radio":	"sx1262",
-			"bootloader_file":	"McciBootloader_5230"
+			"bootloader_file":	"McciBootloader_5230",
+			"extra_sections": [
+				{ "name": "usb" },
+				{ "name": "DFU" },
+				{ "name": "xserial",
+				  "using": "xserial_usb"
+				},
+				{ "name": "toolchain",
+				  "using": "toolchain_v14"
+				}
+			]
 			},
 
 			{
@@ -175,6 +185,9 @@
 			"extra_sections": [
 				{ "name": "xserial",
 				  "using": "xserial_nousb_rs485"
+				},
+				{ "name": "toolchain",
+				  "using": "toolchain_v14"
 				}
 			]
 			},

@@ -238,6 +238,7 @@ mcci_catena_4551.menu.lorawan_subband.sb10.build.lorawan_subband_flags=-DARDUINO
 mcci_catena_4551.menu.lorawan_subband.sb11=sb11, ch 88~95 (CN470)
 mcci_catena_4551.menu.lorawan_subband.sb11.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=11
 
+
 #### end of configuration info for MCCI Catena 4551
 
 #
@@ -436,6 +437,7 @@ mcci_catena_4610.menu.lorawan_subband.sb10=sb10, ch 80~87 (CN470)
 mcci_catena_4610.menu.lorawan_subband.sb10.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=10
 mcci_catena_4610.menu.lorawan_subband.sb11=sb11, ch 88~95 (CN470)
 mcci_catena_4610.menu.lorawan_subband.sb11.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=11
+
 
 #### end of configuration info for MCCI Catena 4610
 
@@ -636,6 +638,7 @@ mcci_catena_4611.menu.lorawan_subband.sb10.build.lorawan_subband_flags=-DARDUINO
 mcci_catena_4611.menu.lorawan_subband.sb11=sb11, ch 88~95 (CN470)
 mcci_catena_4611.menu.lorawan_subband.sb11.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=11
 
+
 #### end of configuration info for MCCI Catena 4611
 
 #
@@ -834,6 +837,7 @@ mcci_catena_4612.menu.lorawan_subband.sb10=sb10, ch 80~87 (CN470)
 mcci_catena_4612.menu.lorawan_subband.sb10.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=10
 mcci_catena_4612.menu.lorawan_subband.sb11=sb11, ch 88~95 (CN470)
 mcci_catena_4612.menu.lorawan_subband.sb11.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=11
+
 
 #### end of configuration info for MCCI Catena 4612
 
@@ -1034,6 +1038,7 @@ mcci_catena_4617.menu.lorawan_subband.sb10.build.lorawan_subband_flags=-DARDUINO
 mcci_catena_4617.menu.lorawan_subband.sb11=sb11, ch 88~95 (CN470)
 mcci_catena_4617.menu.lorawan_subband.sb11.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=11
 
+
 #### end of configuration info for MCCI Catena 4617
 
 #
@@ -1232,6 +1237,7 @@ mcci_catena_4618.menu.lorawan_subband.sb10=sb10, ch 80~87 (CN470)
 mcci_catena_4618.menu.lorawan_subband.sb10.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=10
 mcci_catena_4618.menu.lorawan_subband.sb11=sb11, ch 88~95 (CN470)
 mcci_catena_4618.menu.lorawan_subband.sb11.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=11
+
 
 #### end of configuration info for MCCI Catena 4618
 
@@ -1434,6 +1440,7 @@ mcci_catena_4630.menu.lorawan_subband.sb10.build.lorawan_subband_flags=-DARDUINO
 mcci_catena_4630.menu.lorawan_subband.sb11=sb11, ch 88~95 (CN470)
 mcci_catena_4630.menu.lorawan_subband.sb11.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=11
 
+
 #### end of configuration info for MCCI Catena 4630
 
 #
@@ -1613,6 +1620,7 @@ mcci_catena_4801.menu.lorawan_subband.sb10=sb10, ch 80~87 (CN470)
 mcci_catena_4801.menu.lorawan_subband.sb10.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=10
 mcci_catena_4801.menu.lorawan_subband.sb11=sb11, ch 88~95 (CN470)
 mcci_catena_4801.menu.lorawan_subband.sb11.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=11
+
 
 #### end of configuration info for MCCI Catena 4801
 
@@ -1794,6 +1802,7 @@ mcci_catena_4802.menu.lorawan_subband.sb10.build.lorawan_subband_flags=-DARDUINO
 mcci_catena_4802.menu.lorawan_subband.sb11=sb11, ch 88~95 (CN470)
 mcci_catena_4802.menu.lorawan_subband.sb11.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=11
 
+
 #### end of configuration info for MCCI Catena 4802
 
 #
@@ -1972,6 +1981,7 @@ mcci_model_4916.menu.lorawan_subband.sb10=sb10, ch 80~87 (CN470)
 mcci_model_4916.menu.lorawan_subband.sb10.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=10
 mcci_model_4916.menu.lorawan_subband.sb11=sb11, ch 88~95 (CN470)
 mcci_model_4916.menu.lorawan_subband.sb11.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=11
+
 
 #### end of configuration info for MCCI Model 4916
 
@@ -2171,6 +2181,7 @@ mcci_model_4917.menu.lorawan_subband.sb10=sb10, ch 80~87 (CN470)
 mcci_model_4917.menu.lorawan_subband.sb10.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=10
 mcci_model_4917.menu.lorawan_subband.sb11=sb11, ch 88~95 (CN470)
 mcci_model_4917.menu.lorawan_subband.sb11.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=11
+
 
 #### end of configuration info for MCCI Model 4917
 
@@ -2373,6 +2384,7 @@ mcci_model_4931.menu.lorawan_subband.sb10.build.lorawan_subband_flags=-DARDUINO_
 mcci_model_4931.menu.lorawan_subband.sb11=sb11, ch 88~95 (CN470)
 mcci_model_4931.menu.lorawan_subband.sb11.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=11
 
+
 #### end of configuration info for MCCI Model 4931
 
 #
@@ -2571,6 +2583,7 @@ mcci_model_4933.menu.lorawan_subband.sb10=sb10, ch 80~87 (CN470)
 mcci_model_4933.menu.lorawan_subband.sb10.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=10
 mcci_model_4933.menu.lorawan_subband.sb11=sb11, ch 88~95 (CN470)
 mcci_model_4933.menu.lorawan_subband.sb11.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=11
+
 
 #### end of configuration info for MCCI Model 4933
 
@@ -2771,6 +2784,23 @@ mcci_catena_5230.menu.lorawan_subband.sb10.build.lorawan_subband_flags=-DARDUINO
 mcci_catena_5230.menu.lorawan_subband.sb11=sb11, ch 88~95 (CN470)
 mcci_catena_5230.menu.lorawan_subband.sb11.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=11
 
+# This board builds with arm-none-eabi-gcc 14.3.Rel1 instead of the
+# platform default (arm-none-eabi-gcc 6-2017-q2-update used by every board
+# through v3.2.0). Board Manager installs both toolchains: both are listed
+# in this package's tools dependencies.
+mcci_catena_5230.compiler.path={runtime.tools.arm-none-eabi-gcc-14.3.Rel1.path}/bin/
+mcci_catena_5230.compiler.c.std=gnu17
+mcci_catena_5230.compiler.cpp.std=gnu++17
+mcci_catena_5230.compiler.cpp.extra_flags=-fno-use-cxa-atexit
+# re-override per menu.opt choice: each one sets build.flags.ldspecs
+# directly (see the menu.opt block above), which takes precedence over
+# a plain mcci_catena_5230.build.flags.ldspecs setting.
+mcci_catena_5230.menu.opt.osstd.build.flags.ldspecs=--specs=nano.specs --specs=nosys.specs
+mcci_catena_5230.menu.opt.o1std.build.flags.ldspecs=--specs=nano.specs --specs=nosys.specs
+mcci_catena_5230.menu.opt.o2std.build.flags.ldspecs=--specs=nano.specs --specs=nosys.specs
+mcci_catena_5230.menu.opt.o3std.build.flags.ldspecs=--specs=nano.specs --specs=nosys.specs
+mcci_catena_5230.menu.opt.ogstd.build.flags.ldspecs=--specs=nano.specs --specs=nosys.specs
+
 #### end of configuration info for MCCI Catena 5230
 
 #
@@ -2954,6 +2984,23 @@ mcci_catena_5220.menu.lorawan_subband.sb10=sb10, ch 80~87 (CN470)
 mcci_catena_5220.menu.lorawan_subband.sb10.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=10
 mcci_catena_5220.menu.lorawan_subband.sb11=sb11, ch 88~95 (CN470)
 mcci_catena_5220.menu.lorawan_subband.sb11.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=11
+
+# This board builds with arm-none-eabi-gcc 14.3.Rel1 instead of the
+# platform default (arm-none-eabi-gcc 6-2017-q2-update used by every board
+# through v3.2.0). Board Manager installs both toolchains: both are listed
+# in this package's tools dependencies.
+mcci_catena_5220.compiler.path={runtime.tools.arm-none-eabi-gcc-14.3.Rel1.path}/bin/
+mcci_catena_5220.compiler.c.std=gnu17
+mcci_catena_5220.compiler.cpp.std=gnu++17
+mcci_catena_5220.compiler.cpp.extra_flags=-fno-use-cxa-atexit
+# re-override per menu.opt choice: each one sets build.flags.ldspecs
+# directly (see the menu.opt block above), which takes precedence over
+# a plain mcci_catena_5220.build.flags.ldspecs setting.
+mcci_catena_5220.menu.opt.osstd.build.flags.ldspecs=--specs=nano.specs --specs=nosys.specs
+mcci_catena_5220.menu.opt.o1std.build.flags.ldspecs=--specs=nano.specs --specs=nosys.specs
+mcci_catena_5220.menu.opt.o2std.build.flags.ldspecs=--specs=nano.specs --specs=nosys.specs
+mcci_catena_5220.menu.opt.o3std.build.flags.ldspecs=--specs=nano.specs --specs=nosys.specs
+mcci_catena_5220.menu.opt.ogstd.build.flags.ldspecs=--specs=nano.specs --specs=nosys.specs
 
 #### end of configuration info for MCCI Catena 5220
 

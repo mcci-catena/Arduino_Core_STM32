@@ -247,6 +247,8 @@ $section xserial
 {{board}}.menu.lorawan_subband.sb11=sb11, ch 88~95 (CN470)
 {{board}}.menu.lorawan_subband.sb11.build.lorawan_subband_flags=-DARDUINO_LMIC_CFG_SUBBAND=11
 
+$section toolchain
+
 #### end of configuration info for {{name}}
 
 %%-boards
@@ -333,3 +335,22 @@ $section xserial
 {{board}}.menu.xserial.rs485.build.xSerial=-DARDUINO_BSP_CONFIG_SERIAL_MASK=0x12
 {{board}}.menu.xserial.none.build.xSerial=-DARDUINO_BSP_CONFIG_SERIAL_MASK=0x0
 %%-xserial_nousb_rs485
+
+%%+toolchain_v14
+# This board builds with arm-none-eabi-gcc 14.3.Rel1 instead of the
+# platform default (arm-none-eabi-gcc 6-2017-q2-update used by every board
+# through v3.2.0). Board Manager installs both toolchains: both are listed
+# in this package's tools dependencies.
+{{board}}.compiler.path={runtime.tools.arm-none-eabi-gcc-14.3.Rel1.path}/bin/
+{{board}}.compiler.c.std=gnu17
+{{board}}.compiler.cpp.std=gnu++17
+{{board}}.compiler.cpp.extra_flags=-fno-use-cxa-atexit
+# re-override per menu.opt choice: each one sets build.flags.ldspecs
+# directly (see the menu.opt block above), which takes precedence over
+# a plain {{board}}.build.flags.ldspecs setting.
+{{board}}.menu.opt.osstd.build.flags.ldspecs=--specs=nano.specs --specs=nosys.specs
+{{board}}.menu.opt.o1std.build.flags.ldspecs=--specs=nano.specs --specs=nosys.specs
+{{board}}.menu.opt.o2std.build.flags.ldspecs=--specs=nano.specs --specs=nosys.specs
+{{board}}.menu.opt.o3std.build.flags.ldspecs=--specs=nano.specs --specs=nosys.specs
+{{board}}.menu.opt.ogstd.build.flags.ldspecs=--specs=nano.specs --specs=nosys.specs
+%%-toolchain_v14
