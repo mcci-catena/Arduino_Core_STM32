@@ -466,3 +466,11 @@ inline void TwoWire::resetTxBuffer(void)
 // Preinstantiate Objects //////////////////////////////////////////////////////
 
 TwoWire Wire = TwoWire(); //D14-D15
+
+#if defined(PIN_WIRE_SDA_2) && defined(PIN_WIRE_SCL_2)
+TwoWire Wire2 = TwoWire(SDA_2, SCL_2);
+#endif
+
+#if defined(PIN_WIRE_PMIC_SDA) && defined(PIN_WIRE_PMIC_SCL)
+TwoWire WirePMIC = TwoWire(SDA_PMIC, SCL_PMIC);
+#endif

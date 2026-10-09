@@ -1,0 +1,65 @@
+/*
+
+Module: override_usbd_ll_connectionstate.c
+
+Function:
+        Override USBD_LL_ConnectionState() function for CATENA_5230 variant.
+
+Copyright notice and license information:
+        Copyright 2018-2026 MCCI Corporation. All rights reserved.
+
+        This library is free software; you can redistribute it and/or
+        modify it under the terms of the GNU Lesser General Public
+        License as published by the Free Software Foundation; either
+        version 2.1 of the License, or (at your option) any later version.
+
+        This library is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+        See the GNU Lesser General Public License for more details.
+
+        You should have received a copy of the GNU Lesser General Public
+        License along with this library; if not, write to the Free
+        Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+        Boston, MA  02110-1301  USA
+
+Author:
+        Dhinesh Kumar Pitchai, MCCI Corporation
+
+*/
+
+#include <Arduino.h>
+#include <usbd_conf.h>
+#include "pmic.h"
+
+// VBUS reads near 0 mV with no USB host present and near 5000 mV when
+// one is; this threshold, roughly half of nominal VBUS, distinguishes
+// the two with margin for cable/ADC tolerance.
+#ifndef USB_VBUS_PRESENT_THRESHOLD_MV
+#define USB_VBUS_PRESENT_THRESHOLD_MV  2500
+#endif
+
+#ifdef USBCON
+
+/**
+  * @brief  Get USB connection state
+  * @param  None
+  * @retval 0 if disconnected
+  */
+USBD_LL_ConnectionState_WEAK uint32_t USBD_LL_ConnectionState(void)
+{
+float vBus;
+
+// get the bus voltage
+vBus = readBusVoltage();
+// if the PMIC can't be read, assume USB is present, so the USB console
+// stays usable.
+if (vBus < 0)
+    return 1;
+// convert the voltage to millivoltage
+float vBusMilli = vBus * 1000;
+
+return (vBusMilli < USB_VBUS_PRESENT_THRESHOLD_MV) ? 0 : 1;
+}
+
+#endif // USBCON

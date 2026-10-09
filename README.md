@@ -4,7 +4,7 @@ This repository is MCCI's version of [Arduino_Core_STM32](https://github.com/stm
 
 For general information, please check the stm32duino [README.md](https://github.com/stm32duino/Arduino_Core_STM32#arduino-core-support-for-stm32-based-boards), especially the [Getting Started](https://github.com/stm32duino/Arduino_Core_STM32#getting-started) section.
 
-[![GitHub release](https://img.shields.io/github/release/mcci-catena/Arduino_Core_STM32.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/releases/latest) [![GitHub commits](https://img.shields.io/github/commits-since/mcci-catena/Arduino_Core_STM32/latest.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/compare/v3.2.0...main)
+[![GitHub release](https://img.shields.io/github/release/mcci-catena/Arduino_Core_STM32.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/releases/latest) [![GitHub commits](https://img.shields.io/github/commits-since/mcci-catena/Arduino_Core_STM32/latest.svg)](https://github.com/mcci-catena/Arduino_Core_STM32/compare/v3.3.0...main)
 
 **Contents:**
 <!-- markdownlint-disable MD033 -->
@@ -23,6 +23,8 @@ For general information, please check the stm32duino [README.md](https://github.
 	- [Model 4917 Features](#model-4917-features)
 	- [Model 4931 Features](#model-4931-features)
 	- [Model 4933 Features](#model-4933-features)
+	- [Catena 5220 Features](#catena-5220-features)
+	- [Catena 5230 Features](#catena-5230-features)
 - [Troubleshooting](#troubleshooting)
 - [Installing a Development Copy of this BSP](#installing-a-development-copy-of-this-bsp)
 - [Release History](#release-history)
@@ -68,6 +70,8 @@ The Arduino IDE allows you to select the following items.
 | MCCI Model 4917 | Murata CMWX1ZZABZ module, STM32L082 | [4917](#model-4917-features) | Primary battery, JST-XH for OneWire sensor |
 | MCCI Model 4931 | Murata CMWX1ZZABZ module, STM32L082 | [4931](#model-4931-features) | LiPo battery, SHT35, BMP581, OneWire sensor, MS10 soil sensor, Davis rain gauge, Pressure transducer, solar panel, SD card |
 | MCCI Model 4933 | Murata CMWX1ZZABZ module, STM32L082 | [4933](#model-4933-features) | LiPo battery, GPS, BMP581, SHT35, IPS7100, Spec sensors |
+| MCCI Catena 5220 | Murata CMWX1ZZABZ module, STM32L072 | [522x](#catena-5220-features) | RS485, FRAM, Flash, SHT4x, LIS2DUXS12 |
+| MCCI Catena 5230 | Murata CMWX1ZZABZ module, STM32L072 | [523x](#catena-5230-features) | LiPo or Li-Ion battery (nPM1300 PMIC), FRAM, Flash, LTR-329 ambient light, SHT4x, LIS2DUXS12 |
 
 ### Catena 461x Series
 
@@ -200,6 +204,39 @@ The 4933 is a dedicated board designed for monitoring air quality.
 | Sensors | BMP581, SHT35, GPS |
 | External interfaces | TTL Serial, Spec Sensors, IPS7100 |
 
+### Catena 5220 Features
+
+The 5220 is a dedicated board for remote Modbus applications, using the Murata module.
+
+| Feature | 5220 |
+|---------|------|
+| TCXO Control | Not controlled by code; controlled internally by the radio module |
+| Battery type | Primary battery (non-rechargeable) |
+| System voltage | 3.3V to 5V |
+| QWIIC for external sensors | Yes |
+| Screw terminals for external sensors | 1x4 pin |
+| Feather physical compatibility | No |
+| USB | Not supported |
+| Sensors | SHT4x, LIS2DUXS12 |
+| External interfaces | Modbus, TTL Serial |
+
+### Catena 5230 Features
+
+The 5230 is a Feather-compatible board with a rechargeable LiPo battery managed by an on-board nPM1300 PMIC.
+
+| Feature | 5230 |
+|---------|------|
+| TCXO Control | Not controlled by code; controlled internally by the radio module |
+| Battery type | Rechargeable LiPo or Lithium-Ion battery |
+| System voltage | 3.3V to 5V, controlled via PMIC |
+| QWIIC for external sensors | Yes, controlled by PMIC |
+| Screw terminals for external sensors | 1x4 pin, controlled by PMIC |
+| Boot mode | Dedicated enable switch |
+| Feather physical compatibility | Yes |
+| USB | Yes, DFU download, runtime data, and charging |
+| Sensors | LTR-329, SHT4x, LIS2DUXS12 |
+| External interfaces | TTL Serial |
+
 ## Troubleshooting
 
 If you have any issue, you may [file an issue on GitHub](https://github.com/mcci-catena/Arduino_Core_STM32/issues/new).  You may also submit a support request on the [MCCI support forum](http://portal.mcci.com).
@@ -233,6 +270,8 @@ If you want to develop and test changes to this package, we suggest the followin
 Remember to restart the IDE whenever you change `platform.txt`, `boards.txt` or `programmers.txt`.
 
 ## Release History
+
+- [v3.3.0](https://github.com/mcci-catena/Arduino_Core_STM32/releases/tag/v3.3.0). Added support for Catena 5220 and Catena 5230 ([#210](https://github.com/mcci-catena/Arduino_Core_STM32/issues/210)), including Catena 5220's `McciBootloader_5220` ([#210](https://github.com/mcci-catena/Arduino_Core_STM32/issues/210)) and reading the Catena 5230 PMIC without the Wire library ([#220](https://github.com/mcci-catena/Arduino_Core_STM32/issues/220)). Added generic support for boards with swapped UART TX/RX pins ([#212](https://github.com/mcci-catena/Arduino_Core_STM32/issues/212)), used by Catena 5220's RS485 support. Horizontal review and cleanup for the Catena 5220/5230 variants ([#210](https://github.com/mcci-catena/Arduino_Core_STM32/issues/210), [#220](https://github.com/mcci-catena/Arduino_Core_STM32/issues/220)). This release still builds with the GCC 6 toolchain; a per-board GCC 14.3.Rel1 toolchain override is tracked separately in ([#222](https://github.com/mcci-catena/Arduino_Core_STM32/issues/222)).
 
 - [v3.2.0](https://github.com/mcci-catena/Arduino_Core_STM32/releases/tag/v3.2.0). Added support for new boards Model 4931 and Model 4933 ([#208](https://github.com/mcci-catena/Arduino_Core_STM32/issues/208)). Model 4917 now uses `McciBootloader_4801` ([#206](https://github.com/mcci-catena/Arduino_Core_STM32/issues/206)), and Model 4933 Rev B uses `McciBootloader_46xx` ([#213](https://github.com/mcci-catena/Arduino_Core_STM32/issues/213)). USB VBUS detection on the Catena 4551, 461x and 4630 and the Model 4917, 4931 and 4933 reads the ADC at a fixed 12 bits, so a sketch that calls `analogReadResolution()` no longer breaks it ([#217](https://github.com/mcci-catena/Arduino_Core_STM32/issues/217)). The VBUS pin and threshold are now named and can be overridden ([#214](https://github.com/mcci-catena/Arduino_Core_STM32/issues/214)). Cleanup and consistency fixes for Model 4916, 4917, 4931 and 4933 ([#215](https://github.com/mcci-catena/Arduino_Core_STM32/issues/215)).
 
