@@ -70,8 +70,8 @@ The Arduino IDE allows you to select the following items.
 | MCCI Model 4917 | Murata CMWX1ZZABZ module, STM32L082 | [4917](#model-4917-features) | Primary battery, JST-XH for OneWire sensor |
 | MCCI Model 4931 | Murata CMWX1ZZABZ module, STM32L082 | [4931](#model-4931-features) | LiPo battery, SHT35, BMP581, OneWire sensor, MS10 soil sensor, Davis rain gauge, Pressure transducer, solar panel, SD card |
 | MCCI Model 4933 | Murata CMWX1ZZABZ module, STM32L082 | [4933](#model-4933-features) | LiPo battery, GPS, BMP581, SHT35, IPS7100, Spec sensors |
-| MCCI Catena 5220 | Murata CMWX1ZZABZ module, STM32L072 | [522x](#catena-5220-features) | RS485, FRAM, Flash, SHT4x, LIS2DUXS12 |
-| MCCI Catena 5230 | Murata CMWX1ZZABZ module, STM32L072 | [523x](#catena-5230-features) | LiPo or Li-Ion battery (nPM1300 PMIC), FRAM, Flash, LTR-329 ambient light, SHT4x, LIS2DUXS12 |
+| MCCI Catena 5220 | Murata Type 1SJ module (SX1262), STM32L072 | [522x](#catena-5220-features) | RS485, FRAM, Flash, SHT4x, LIS2DUXS12 |
+| MCCI Catena 5230 | Murata Type 1SJ module (SX1262), STM32L072 | [523x](#catena-5230-features) | LiPo or Li-Ion battery (nPM1300 PMIC), FRAM, Flash, LTR-329 ambient light, SHT4x, LIS2DUXS12 |
 
 ### Catena 461x Series
 
