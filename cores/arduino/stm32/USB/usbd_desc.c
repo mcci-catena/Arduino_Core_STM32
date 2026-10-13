@@ -201,12 +201,39 @@ uint8_t *USBD_ManufacturerStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *lengt
   */
 uint8_t *USBD_SerialStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
 {
+  char sn[USBD_SERIAL_STRING_MAX + 1];
+  size_t n;
+
   UNUSED(speed);
-  
+
+  /* a serial number from the board, if a library or sketch provides one */
+  n = USBD_GetSerialNumberString(sn, sizeof(sn));
+  if (n > 0 && n <= USBD_SERIAL_STRING_MAX) {
+    uint8_t *pbuf = (uint8_t *)USBD_CtrBuf;
+    size_t i;
+
+    pbuf[0] = (uint8_t)(2 + 2 * n);
+    pbuf[1] = USB_DESC_TYPE_STRING;
+    for (i = 0; i < n; ++i) {
+      pbuf[2 + 2 * i] = (uint8_t)sn[i];
+      pbuf[3 + 2 * i] = 0;
+    }
+    *length = pbuf[0];
+    return pbuf;
+  }
+
   *length = USB_SIZ_STRING_SERIAL;
 
   /* Update the serial number string descriptor with the data from the unique ID*/
   return Get_SerialNum((uint8_t*)USBD_CtrBuf);
+}
+
+/* default: no board serial number; use the CPU unique ID (#230) */
+__attribute__((weak)) size_t USBD_GetSerialNumberString(char *pBuf, size_t nBuf)
+{
+  UNUSED(pBuf);
+  UNUSED(nBuf);
+  return 0;
 }
 
 /**
