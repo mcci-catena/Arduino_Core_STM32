@@ -56,6 +56,11 @@
 /* Private variables ---------------------------------------------------------*/
 PCD_HandleTypeDef g_hpcd;
 
+// set by HAL_PCD_SuspendCallback() when USBD_LL_ConnectionStateIsDeferred()
+// is true, to hand the suspend check off to USBD_CheckDeferredSuspend() in
+// main context. NULL when no check is pending.
+static PCD_HandleTypeDef *s_suspendedPcd;
+
 /* Private function prototypes -----------------------------------------------*/
 //static void SystemClockConfig_STOP(void);
 
@@ -243,7 +248,15 @@ void HAL_PCD_SuspendCallback(PCD_HandleTypeDef *hpcd)
     //SCB->SCR |= (uint32_t)((uint32_t)(SCB_SCR_SLEEPDEEP_Msk | SCB_SCR_SLEEPONEXIT_Msk));
   }
 
-  if (! USBD_LL_ConnectionState())
+  // USBD_LL_ConnectionState() reads from the ADC on most boards, and is
+  // safe to call here. On boards where it isn't (see
+  // USBD_LL_ConnectionStateIsDeferred()), stash the handle and let
+  // USBD_CheckDeferredSuspend() do the check from main context instead.
+  if (USBD_LL_ConnectionStateIsDeferred())
+  {
+    s_suspendedPcd = hpcd;
+  }
+  else if (! USBD_LL_ConnectionState())
   {
     USBD_UsrLog("USB suspend: no USB power");
     USBD_DeInit(hpcd->pData);
@@ -258,6 +271,26 @@ void HAL_PCD_SuspendCallback(PCD_HandleTypeDef *hpcd)
 void HAL_PCD_ResumeCallback(PCD_HandleTypeDef *hpcd)
 {
   USBD_LL_Resume(hpcd->pData);
+}
+
+USBD_LL_ConnectionStateIsDeferred_WEAK uint32_t USBD_LL_ConnectionStateIsDeferred(void)
+{
+  return 0;
+}
+
+void USBD_CheckDeferredSuspend(void)
+{
+  if (s_suspendedPcd != NULL)
+  {
+    PCD_HandleTypeDef *hpcd = s_suspendedPcd;
+    s_suspendedPcd = NULL;
+
+    if (! USBD_LL_ConnectionState())
+    {
+      USBD_UsrLog("USB suspend: no USB power");
+      USBD_DeInit(hpcd->pData);
+    }
+  }
 }
 
 /**
