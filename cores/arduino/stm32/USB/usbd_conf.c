@@ -59,7 +59,8 @@ PCD_HandleTypeDef g_hpcd;
 // set by HAL_PCD_SuspendCallback() when USBD_LL_ConnectionStateIsDeferred()
 // is true, to hand the suspend check off to USBD_CheckDeferredSuspend() in
 // main context. NULL when no check is pending.
-static PCD_HandleTypeDef *s_suspendedPcd;
+// volatile: written in interrupt context, read from the main loop.
+static PCD_HandleTypeDef * volatile s_suspendedPcd;
 
 /* Private function prototypes -----------------------------------------------*/
 //static void SystemClockConfig_STOP(void);
@@ -280,11 +281,18 @@ USBD_LL_ConnectionStateIsDeferred_WEAK uint32_t USBD_LL_ConnectionStateIsDeferre
 
 void USBD_CheckDeferredSuspend(void)
 {
-  if (s_suspendedPcd != NULL)
-  {
-    PCD_HandleTypeDef *hpcd = s_suspendedPcd;
-    s_suspendedPcd = NULL;
+  PCD_HandleTypeDef *hpcd;
+  uint32_t const primask = __get_PRIMASK();
 
+  // take the handle and clear it together, so a suspend interrupt between
+  // the two can't be lost.
+  __disable_irq();
+  hpcd = s_suspendedPcd;
+  s_suspendedPcd = NULL;
+  __set_PRIMASK(primask);
+
+  if (hpcd != NULL)
+  {
     if (! USBD_LL_ConnectionState())
     {
       USBD_UsrLog("USB suspend: no USB power");
