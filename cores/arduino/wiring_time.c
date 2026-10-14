@@ -18,27 +18,100 @@
 */
 
 #include "Arduino.h"
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+/*
+  The time provider (#223). NULL: the SysTick time below. A table is
+  const, so only the pointer is shared; it is written with interrupts
+  masked and read once per call.
+*/
+static const ArduinoTimeProvider_t * volatile s_pTimeProvider;
+
+// true if the table's nSize covers the given field.
+#define PROVIDER_HAS(p, field) \
+  ((p)->nSize >= offsetof(ArduinoTimeProvider_t, field) + sizeof((p)->field) && (p)->field != NULL)
+
+const ArduinoTimeProvider_t *setArduinoTimeProvider(const ArduinoTimeProvider_t *pProvider)
+{
+  const ArduinoTimeProvider_t *pPrevious;
+  const uint32_t primask = __get_PRIMASK();
+
+  __disable_irq();
+  pPrevious = s_pTimeProvider;
+  if (pProvider == NULL || PROVIDER_HAS(pProvider, pGetTime))
+    s_pTimeProvider = pProvider;
+  __set_PRIMASK(primask);
+  return pPrevious;
+}
+
+const ArduinoTimeProvider_t *getArduinoTimeProvider(void)
+{
+  return s_pTimeProvider;
+}
+
+int arduinoTimeProvider_delayMicroseconds(uint32_t us)
+{
+  const ArduinoTimeProvider_t * const p = s_pTimeProvider;
+
+  if (p == NULL || ! PROVIDER_HAS(p, pDelayMicroseconds))
+    return 0;
+  p->pDelayMicroseconds(p, us);
+  return 1;
+}
+
 uint32_t millis( void )
 {
-  // todo: ensure no interrupts
+  const ArduinoTimeProvider_t * const p = s_pTimeProvider;
+
+  if (p != NULL)
+    return (uint32_t) p->pGetTime(p, kArduinoTime_Millis);
   return GetCurrentMilli() ;
 }
 
 // Interrupt-compatible version of micros
 uint32_t micros( void )
 {
- return GetCurrentMicro();
+  const ArduinoTimeProvider_t * const p = s_pTimeProvider;
+
+  if (p != NULL)
+    return (uint32_t) p->pGetTime(p, kArduinoTime_Micros);
+  return GetCurrentMicro();
 }
 
 void delay( uint32_t ms )
 {
   if (ms == 0)
       return;
+
+  const ArduinoTimeProvider_t * const p = s_pTimeProvider;
+
+  if (p != NULL)
+  {
+    if (PROVIDER_HAS(p, pDelay))
+    {
+      p->pDelay(p, ms);
+      return;
+    }
+
+    // follow the provider's clock, not SysTick. Count whole milliseconds
+    // of micros(), so the delay is never short however far into a
+    // millisecond it starts, and nothing overflows for long delays.
+    uint32_t start = micros();
+    while (ms > 0)
+    {
+      yield();
+      while (ms > 0 && (micros() - start) >= 1000)
+      {
+        --ms;
+        start += 1000;
+      }
+    }
+    return;
+  }
   uint32_t startVAL = SysTick->VAL;
   uint32_t start = GetCurrentMilli();
   uint32_t minVAL = (SysTick->LOAD + 1) / 1000;

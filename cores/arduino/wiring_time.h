@@ -22,6 +22,7 @@
 #define _WIRING_TIME_H_
 
 #include "clock.h"
+#include "ArduinoTimeProvider.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -80,6 +81,12 @@ static inline void delayMicroseconds(uint32_t usec)
        delay((usec + 1000 - 1) / 1000);
        return;
     }
+
+  // longer waits go to a time provider, if one is registered and has a
+  // delayMicroseconds() (#223); short ones stay on SysTick below.
+  if (usec >= ARDUINO_TIME_PROVIDER_DELAYUS_MIN &&
+      arduinoTimeProvider_delayMicroseconds(usec))
+    return;
 
   // fetch initial time as a tick count.
   const uint32_t now = SysTick->VAL;
