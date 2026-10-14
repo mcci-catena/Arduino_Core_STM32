@@ -381,6 +381,80 @@ void i2c_setTiming(i2c_t *obj, uint32_t frequency)
   __HAL_I2C_ENABLE(&(obj->handle));
 }
 
+/*
+ * Waiting for a master transfer (mcci-catena/Arduino_Core_STM32#228).
+ *
+ * The transfers are interrupt driven, so the CPU sleeps (WFI) while it
+ * waits. The test runs with interrupts masked, so that an interrupt
+ * arriving between the test and the WFI still wakes it: the Cortex-M
+ * wakes on a pending interrupt even with PRIMASK set, and the handler
+ * runs when PRIMASK is restored. If the caller already has interrupts
+ * masked, the handlers can't run, so spin as before.
+ */
+static int i2c_transfer_busy(void *pArg)
+{
+  i2c_t *obj = (i2c_t *)pArg;
+
+  return HAL_I2C_GetState(&(obj->handle)) != HAL_I2C_STATE_READY &&
+         HAL_I2C_GetError(&(obj->handle)) == HAL_I2C_ERROR_NONE;
+}
+
+static int i2c_same_tick(void *pArg)
+{
+  return HAL_GetTick() == *(uint32_t *)pArg;
+}
+
+/* sleep until an interrupt, unless fn(pArg) is already false. */
+static void i2c_sleep_while(int (*fn)(void *), void *pArg)
+{
+  uint32_t const primask = __get_PRIMASK();
+
+  __disable_irq();
+  if (fn(pArg) && primask == 0) {
+    __WFI();
+  }
+  __set_PRIMASK(primask);
+}
+
+/* wait for the transfer to end. */
+static i2c_status_e i2c_wait_for_transfer(i2c_t *obj, uint32_t tickstart, uint32_t *pDelta)
+{
+  i2c_status_e ret = I2C_OK;
+
+  while ((HAL_I2C_GetState(&(obj->handle)) != HAL_I2C_STATE_READY) && (ret == I2C_OK)) {
+    *pDelta = (HAL_GetTick() - tickstart);
+    if (*pDelta > I2C_TIMEOUT_TICK) {
+      ret = I2C_TIMEOUT;
+    } else if (HAL_I2C_GetError(&(obj->handle)) != HAL_I2C_ERROR_NONE) {
+      ret = I2C_ERROR;
+    } else {
+      i2c_sleep_while(i2c_transfer_busy, obj);
+    }
+  }
+
+  /* a transfer can end (for example, with a NAK) before the loop looks */
+  if (ret == I2C_OK && HAL_I2C_GetError(&(obj->handle)) != HAL_I2C_ERROR_NONE) {
+    ret = I2C_ERROR;
+  }
+  return ret;
+}
+
+/* after a NAK, wait for the next tick and say whether to try again. */
+static int i2c_retry_after_nak(i2c_t *obj, uint32_t tickstart, uint32_t *pDelta)
+{
+  if (HAL_I2C_GetError(&(obj->handle)) != HAL_I2C_ERROR_AF || *pDelta >= I2C_TIMEOUT_TICK) {
+    return 0;
+  }
+
+  uint32_t const tick = HAL_GetTick();
+
+  while (i2c_same_tick((void *)&tick)) {
+    i2c_sleep_while(i2c_same_tick, (void *)&tick);
+  }
+  *pDelta = HAL_GetTick() - tickstart;
+  return *pDelta < I2C_TIMEOUT_TICK;
+}
+
 /**
   * @brief  Write bytes at a given address
   * @param  obj : pointer to i2c_t structure
@@ -399,21 +473,11 @@ i2c_status_e i2c_master_write(i2c_t *obj, uint8_t dev_address,
 
   do{
     if(HAL_I2C_Master_Transmit_IT(&(obj->handle), dev_address, data, size) == HAL_OK){
-      ret = I2C_OK;
-      // wait for transfer completion
-      while((HAL_I2C_GetState(&(obj->handle)) != HAL_I2C_STATE_READY)
-             && (ret == I2C_OK)){
-        delta = (HAL_GetTick() - tickstart);
-        if(delta > I2C_TIMEOUT_TICK) {
-          ret = I2C_TIMEOUT;
-        } else if(HAL_I2C_GetError(&(obj->handle)) != HAL_I2C_ERROR_NONE) {
-          ret = I2C_ERROR;
-        }
-      }
+      ret = i2c_wait_for_transfer(obj, tickstart, &delta);
     }
     /* When Acknowledge failure occurs (Slave don't acknowledge it's address)
-       Master restarts communication */
-  }while(HAL_I2C_GetError(&(obj->handle)) == HAL_I2C_ERROR_AF && delta < I2C_TIMEOUT_TICK);
+       Master restarts communication, at most once per tick */
+  }while(i2c_retry_after_nak(obj, tickstart, &delta));
 
   return ret;
 }
@@ -459,21 +523,11 @@ i2c_status_e i2c_master_read(i2c_t *obj, uint8_t dev_address, uint8_t *data, uin
 
   do{
     if(HAL_I2C_Master_Receive_IT(&(obj->handle), dev_address, data, size) == HAL_OK) {
-      ret = I2C_OK;
-      // wait for transfer completion
-      while((HAL_I2C_GetState(&(obj->handle)) != HAL_I2C_STATE_READY)
-             && (ret == I2C_OK)){
-        delta = (HAL_GetTick() - tickstart);
-        if( delta > I2C_TIMEOUT_TICK) {
-          ret = I2C_TIMEOUT;
-        } else if(HAL_I2C_GetError(&(obj->handle)) != HAL_I2C_ERROR_NONE) {
-          ret = I2C_ERROR;
-        }
-      }
+      ret = i2c_wait_for_transfer(obj, tickstart, &delta);
     }
     /* When Acknowledge failure occurs (Slave don't acknowledge it's address)
-       Master restarts communication */
-  }while(HAL_I2C_GetError(&(obj->handle)) == HAL_I2C_ERROR_AF && delta < I2C_TIMEOUT_TICK);
+       Master restarts communication, at most once per tick */
+  }while(i2c_retry_after_nak(obj, tickstart, &delta));
 
   return ret;
 }

@@ -50,6 +50,7 @@
 #ifdef USBCON
 /* Includes ------------------------------------------------------------------*/
 #include "usbd_def.h"
+#include <stddef.h>
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
@@ -60,6 +61,24 @@ uint8_t *USBD_DeviceDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
 uint8_t *USBD_LangIDStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
 uint8_t *USBD_ManufacturerStrDescriptor (USBD_SpeedTypeDef speed, uint16_t *length);
 uint8_t *USBD_SerialStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
+
+/*
+ * Serial number string (mcci-catena/Arduino_Core_STM32#230). A library or
+ * sketch that knows the board's serial number overrides this weak
+ * function: it writes a NUL-terminated ASCII string of at most
+ * USBD_SERIAL_STRING_MAX characters to pBuf and returns its length.
+ * Returning 0 (the default) keeps the serial number made from the CPU
+ * unique ID. It may be called before setup().
+ */
+#define USBD_SERIAL_STRING_MAX 32
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+size_t USBD_GetSerialNumberString(char *pBuf, size_t nBuf);
+#ifdef __cplusplus
+}
+#endif
 
 uint8_t *USBD_CopyDesc(uint16_t *length, const uint8_t *desc, uint16_t sizedesc);
 uint8_t *USBD_MakeStrDesc(const char *desc, uint16_t *length, uint16_t sizedesc);
