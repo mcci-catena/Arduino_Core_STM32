@@ -48,9 +48,6 @@
 #include "WString.h"
 #include "usb_serial.h"
 #include "null_serial.h"
-#if defined(PIN_WIRE_PMIC_SDA)
-#include "pmic.h"
-#endif
 #endif // __cplusplus
 
 #define clockCyclesPerMicrosecond() ( SystemCoreClock / 1000000L )

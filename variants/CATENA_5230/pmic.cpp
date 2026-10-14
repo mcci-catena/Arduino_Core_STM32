@@ -139,7 +139,7 @@ bool readReg(uint16_t reg, uint8_t &value)
   * @retval float : VBUS in volts, or a negative value if the PMIC
   *         could not be read
   */
-float readBusVoltage(void)
+float McciCatena5230_readVbus(void)
 {
     uint8_t vBusMsb;
     uint8_t vBusLsb;

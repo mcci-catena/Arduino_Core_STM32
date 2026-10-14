@@ -51,7 +51,7 @@ USBD_LL_ConnectionState_WEAK uint32_t USBD_LL_ConnectionState(void)
 float vBus;
 
 // get the bus voltage
-vBus = readBusVoltage();
+vBus = McciCatena5230_readVbus();
 // if the PMIC can't be read, assume USB is present, so the USB console
 // stays usable.
 if (vBus < 0)
@@ -60,6 +60,19 @@ if (vBus < 0)
 float vBusMilli = vBus * 1000;
 
 return (vBusMilli < USB_VBUS_PRESENT_THRESHOLD_MV) ? 0 : 1;
+}
+
+/**
+  * @brief  Report that USBD_LL_ConnectionState() must not be called from
+  *         interrupt context on this board: it reads VBUS over I2C2,
+  *         which WirePMIC also uses for interrupt-driven transfers (see
+  *         https://github.com/mcci-catena/Arduino_Core_STM32/issues/226).
+  * @param  None
+  * @retval 1
+  */
+USBD_LL_ConnectionStateIsDeferred_WEAK uint32_t USBD_LL_ConnectionStateIsDeferred(void)
+{
+return 1;
 }
 
 #endif // USBCON

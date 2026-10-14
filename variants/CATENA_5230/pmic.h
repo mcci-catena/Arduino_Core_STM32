@@ -30,8 +30,8 @@ Author:
 */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __PMIC_H
-#define __PMIC_H
+#ifndef _MCCI_CATENA_5230_PMIC_H_
+#define _MCCI_CATENA_5230_PMIC_H_
 
 /* Includes ------------------------------------------------------------------*/
 
@@ -40,11 +40,11 @@ Author:
 extern "C" {
 #endif
 
-float readBusVoltage(void);
+float McciCatena5230_readVbus(void);
 
 #ifdef __cplusplus
 } // extern "C"
 #endif
 
 
-#endif /* __PMIC_H */
+#endif /* _MCCI_CATENA_5230_PMIC_H_ */
