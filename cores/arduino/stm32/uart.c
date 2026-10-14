@@ -290,6 +290,11 @@ void uart_init(serial_t *obj)
   huart->Init.OverSampling = UART_OVERSAMPLING_16;
   // huart->Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
 
+#if defined(UART_ADVFEATURE_SWAP_INIT)
+  huart->AdvancedInit.AdvFeatureInit = obj->swap_pin_tx_rx ? UART_ADVFEATURE_SWAP_INIT : UART_ADVFEATURE_NO_INIT;
+  huart->AdvancedInit.Swap           = obj->swap_pin_tx_rx ? UART_ADVFEATURE_SWAP_ENABLE : UART_ADVFEATURE_SWAP_DISABLE;
+#endif
+
   if(HAL_UART_Init(huart) != HAL_OK) {
     return;
   }

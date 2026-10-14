@@ -132,6 +132,10 @@ class HardwareSerial : public Stream
     void setTx(uint32_t _tx);
     void setRx(PinName _rx);
     void setTx(PinName _tx);
+    // Declare that this port's TX/RX pins are wired to the opposite
+    // physical pin from the chip's normal alternate-function assignment
+    // (see uart_init() in cores/arduino/stm32/uart.c). Call before begin().
+    void setSwapTxRx(bool _swap);
 
     // Interrupt handlers
     static void _rx_complete_irq(serial_t* obj);

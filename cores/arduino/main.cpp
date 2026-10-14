@@ -57,6 +57,9 @@ int main( void )
     CoreCallback();
 #endif
     loop();
+#if defined(USBCON)
+    USBD_CheckDeferredSuspend();
+#endif
     if (serialEventRun) serialEventRun();
   }
 

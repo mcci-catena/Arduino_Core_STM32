@@ -71,6 +71,7 @@
 #define USBD_CDC_INTERVAL                     1000
 
 #define	USBD_LL_ConnectionState_WEAK	__weak
+#define	USBD_LL_ConnectionStateIsDeferred_WEAK	__weak
 
 /* Exported macro ------------------------------------------------------------*/
 /****************************************/
@@ -114,6 +115,18 @@
 void USBD_LL_EnableIRQ(void);
 void USBD_LL_DisableIRQ(void);
 uint32_t USBD_LL_ConnectionState(void);
+
+// true if USBD_LL_ConnectionState() must not be called from interrupt
+// context on this board (for example, because it reads the state over
+// I2C, and could collide with an interrupt-driven I2C transfer already
+// in progress). Default false: USBD_LL_ConnectionState() is read
+// directly from the ADC on most boards, and is safe in the interrupt.
+uint32_t USBD_LL_ConnectionStateIsDeferred(void);
+
+// finish a suspend check that HAL_PCD_SuspendCallback() deferred because
+// USBD_LL_ConnectionStateIsDeferred() was true. Called from main context
+// (see main.cpp); a no-op if no suspend is pending.
+void USBD_CheckDeferredSuspend(void);
 
 #ifdef __cplusplus
 }

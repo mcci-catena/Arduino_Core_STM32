@@ -65,6 +65,9 @@ Reset_Handler:
    ldr   r0, =_estack
    mov   sp, r0          /* set stack pointer */
 
+/* interrupts are enabled after hardware reset! but not necessarily if you jump here */
+  cpsie i                /* enable interrupts */
+
 /* Copy the data segment initializers from flash to SRAM */
   movs  r1, #0
   b  LoopCopyDataInit
@@ -182,6 +185,34 @@ _HAL_g_pfnVectors:
   .word     RNG_LPUART1_IRQHandler            /* RNG and LPUART1              */
   .word     0                                 /* Reserved                     */
   .word     USB_IRQHandler                    /* USB                          */
+
+/**** provide an appinfo header ****/
+ .global _Mcci_AppInfo
+ .type _Mcci_AppInfo, %object
+
+_Mcci_AppInfo:
+  .word     0x3050414d                        /* 0: magic */
+  .word     0x40                              /* 4: size */
+  .word     _HAL_g_pfnVectors                 /* 8: base target address */
+  .word     _McciBootloader_AppImageSize      /* 12: size of image */
+  .word     0xA0                              /* 16: size of auth info */
+  .word     0                                 /* 20: version */
+  .word     0,0                               /* 24: 64-bit posix timestamp */
+  .byte     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0   /* 32: comment[16] */
+  .byte     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0   /* 48: reserved[16] */
+.size _Mcci_AppInfo, .-_Mcci_AppInfo
+
+/* the signature */
+  .section  .McciBootloader_Signature,"a",%progbits
+  .global _McciBootloader_Signature
+  .type _McciBootloader_Signature, %object
+
+_McciBootloader_Signature:
+  .word     0,0,0,0,0,0,0,0                   /* 8*4 == 32 bytes */
+  .word     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0   /* +16*4 == 96 bytes */
+  .word     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0   /* +16*4 == 0xA0 bytes */
+
+  .size _McciBootloader_Signature, .-_McciBootloader_Signature
 
 /*******************************************************************************
 *
