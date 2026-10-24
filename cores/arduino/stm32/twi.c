@@ -439,6 +439,31 @@ static i2c_status_e i2c_wait_for_transfer(i2c_t *obj, uint32_t tickstart, uint32
   return ret;
 }
 
+/* number of times i2c_recover() has run, for diagnostics. */
+volatile uint32_t i2c_recovery_count;
+
+/*
+ * after a master transfer: if it ended in a timeout or an error other
+ * than a NAK, the HAL may leave the handle busy, and every later transfer
+ * then fails at once (mcci-catena/Arduino_Core_STM32#236). HAL_I2C_Init()
+ * disables the peripheral (a software reset, which releases the lines),
+ * reconfigures it and returns the handle to READY, as i2c_setTiming()
+ * does.
+ */
+static void i2c_recover(i2c_t *obj)
+{
+  if (HAL_I2C_GetState(&(obj->handle)) == HAL_I2C_STATE_READY &&
+      (HAL_I2C_GetError(&(obj->handle)) == HAL_I2C_ERROR_NONE ||
+       HAL_I2C_GetError(&(obj->handle)) == HAL_I2C_ERROR_AF)) {
+    return;
+  }
+
+  ++i2c_recovery_count;
+  __HAL_I2C_DISABLE(&(obj->handle));
+  HAL_I2C_Init(&(obj->handle));
+  __HAL_I2C_ENABLE(&(obj->handle));
+}
+
 /* after a NAK, wait for the next tick and say whether to try again. */
 static int i2c_retry_after_nak(i2c_t *obj, uint32_t tickstart, uint32_t *pDelta)
 {
@@ -479,6 +504,7 @@ i2c_status_e i2c_master_write(i2c_t *obj, uint8_t dev_address,
        Master restarts communication, at most once per tick */
   }while(i2c_retry_after_nak(obj, tickstart, &delta));
 
+  i2c_recover(obj);
   return ret;
 }
 
@@ -529,6 +555,7 @@ i2c_status_e i2c_master_read(i2c_t *obj, uint8_t dev_address, uint8_t *data, uin
        Master restarts communication, at most once per tick */
   }while(i2c_retry_after_nak(obj, tickstart, &delta));
 
+  i2c_recover(obj);
   return ret;
 }
 
