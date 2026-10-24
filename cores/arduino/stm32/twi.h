@@ -97,6 +97,9 @@ struct i2c_s {
   void (*i2c_onSlaveTransmit)(void);
   uint8_t i2cTxRxBuffer[I2C_TXRX_BUFFER_SIZE];
   uint8_t i2cTxRxBufferSize;
+  /* times a master transfer has re-initialised this peripheral after a
+     timeout or bus error (#236); never reset. */
+  volatile uint32_t recoveryCount;
 };
 
 ///@brief I2C state
@@ -148,10 +151,7 @@ void i2c_custom_init(i2c_t *obj, i2c_timing_e timing, uint32_t addressingMode,
                     uint32_t ownAddress, uint8_t master);
 void i2c_deinit(i2c_t *obj);
 void i2c_setTiming(i2c_t *obj, uint32_t frequency);
-
-/* times a master transfer has had to re-initialise the peripheral after a
-   timeout or bus error (#236). */
-extern volatile uint32_t i2c_recovery_count;
+uint32_t i2c_getRecoveryCount(i2c_t *obj);
 i2c_status_e i2c_master_write(i2c_t *obj, uint8_t dev_address, uint8_t *data, uint16_t size);
 i2c_status_e i2c_slave_write_IT(i2c_t *obj, uint8_t *data, uint16_t size);
 i2c_status_e i2c_master_read(i2c_t *obj, uint8_t dev_address, uint8_t *data, uint16_t size);

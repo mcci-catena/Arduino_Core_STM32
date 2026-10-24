@@ -439,9 +439,6 @@ static i2c_status_e i2c_wait_for_transfer(i2c_t *obj, uint32_t tickstart, uint32
   return ret;
 }
 
-/* number of times i2c_recover() has run, for diagnostics. */
-volatile uint32_t i2c_recovery_count;
-
 /*
  * after a master transfer: if it ended in a timeout or an error other
  * than a NAK, the HAL may leave the handle busy, and every later transfer
@@ -458,10 +455,16 @@ static void i2c_recover(i2c_t *obj)
     return;
   }
 
-  ++i2c_recovery_count;
+  ++obj->recoveryCount;
   __HAL_I2C_DISABLE(&(obj->handle));
   HAL_I2C_Init(&(obj->handle));
   __HAL_I2C_ENABLE(&(obj->handle));
+}
+
+/* number of times i2c_recover() has run on this bus, for diagnostics. */
+uint32_t i2c_getRecoveryCount(i2c_t *obj)
+{
+  return obj->recoveryCount;
 }
 
 /* after a NAK, wait for the next tick and say whether to try again. */

@@ -77,6 +77,9 @@ class TwoWire : public Stream
     void begin(int);
     void end();
     void setClock(uint32_t);
+    // times this bus has re-initialised its peripheral after a timeout or
+    // bus error, since power-up (mcci-catena/Arduino_Core_STM32#236).
+    uint32_t getRecoveryCount() { return i2c_getRecoveryCount(&_i2c); }
     void beginTransmission(uint8_t);
     void beginTransmission(int);
     uint8_t endTransmission(void);
