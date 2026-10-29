@@ -5,7 +5,7 @@
 # https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5-3rd-party-Hardware-specification
 
 name=MCCI Catena STM32 Boards
-version=3.3.1-pre4
+version=3.3.1-pre5
 
 # STM compile variables
 # ----------------------
@@ -77,7 +77,7 @@ compiler.elf2bin.extra_flags=
 compiler.elf2hex.extra_flags=
 compiler.libraries.ldflags=
 
-compiler.arm.cmsis.c.flags="-I{runtime.tools.CMSIS-4.5.0.path}/CMSIS/Include/" "-I{build.system.path}/Drivers/CMSIS/Device/ST/{build.series}/Include/" "-I{build.system.path}/Drivers/CMSIS/Device/ST/{build.series}/Source/Templates/gcc/"
+compiler.arm.cmsis.c.flags="-I{build.system.path}/Drivers/CMSIS/Core/Include/" "-I{build.system.path}/Drivers/CMSIS/Device/ST/{build.series}/Include/" "-I{build.system.path}/Drivers/CMSIS/Device/ST/{build.series}/Source/Templates/gcc/"
 compiler.arm.cmsis.ldflags="-L{runtime.tools.CMSIS-4.5.0.path}/CMSIS/Lib/GCC/" -l{build.cmsis_lib_gcc}
 # USB Flags
 # ---------
