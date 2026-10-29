@@ -38,6 +38,9 @@
   #pragma clang system_header   /* treat file as system include file */
 #endif
 
+/* MCCI: CMSIS 4.5.0, with the barriers that CMSIS 5.9.0 adds to
+   NVIC_EnableIRQ() and NVIC_DisableIRQ(). See issue #242. */
+
 #ifndef __CORE_CM0PLUS_H_GENERIC
 #define __CORE_CM0PLUS_H_GENERIC
 
@@ -744,7 +747,9 @@ typedef struct
  */
 __STATIC_INLINE void NVIC_EnableIRQ(IRQn_Type IRQn)
 {
+  __ASM volatile ("" : : : "memory");
   NVIC->ISER[0U] = (uint32_t)(1UL << (((uint32_t)(int32_t)IRQn) & 0x1FUL));
+  __ASM volatile ("" : : : "memory");
 }
 
 
@@ -756,6 +761,8 @@ __STATIC_INLINE void NVIC_EnableIRQ(IRQn_Type IRQn)
 __STATIC_INLINE void NVIC_DisableIRQ(IRQn_Type IRQn)
 {
   NVIC->ICER[0U] = (uint32_t)(1UL << (((uint32_t)(int32_t)IRQn) & 0x1FUL));
+  __DSB();
+  __ISB();
 }
 
 
